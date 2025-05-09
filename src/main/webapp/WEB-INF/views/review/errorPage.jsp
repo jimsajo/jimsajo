@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>에러</title>
 </head>
 <body>
-테스트입니다
-
+	<h3>${message}</h3>
+  <p><a href="/reviewList">[돌아가기]</a></p>
 </body>
 </html>
