@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimsajo.Mapper.IReviewMapper">
+	<select id="selectReviewList" resultType="com.jimsajo.Dto.ReviewDto">
+		select r.rNum as rNum, m.mId as mId, r.rTitle as rTitle, r.rImage as rImage, r.rDate as rDate, r.rCnt as rCnt, p.pCountry as pCountry
+		 from review r join member m join package p
+		 on r.mNum = m.mNum and r.pNum = p.pNum
+		 order by r.rNum desc
+	</select>
+	
+	<select id="reviewListDetail" resultType="com.jimsajo.Dto.ReviewDto">
+		select r.rNum as rNum, m.mId as mId, r.rTitle as rTitle, r.rImage as rImage, r.rReview as rReview, r.rDate as rDate, r.rCnt as rCnt, p.pCountry as pCountry
+		 from review r join member m join package p
+		 on r.mNum = m.mNum and r.pNum = p.pNum
+		 where r.rNum = #{rNum}
+	</select>
+	
+	<insert id="insertReview" parameterType="com.jimsajo.Dto.ReviewDto">
+		insert into review (rImage, rReview, rDate, rTitle, rCnt, mNum, pNum)
+    	 values (#{rImage}, #{rReview}, #{rDate}, #{rTitle}, #{rCnt}, #{mNum}, #{pNum})
+	</insert>
+	
+	<delete id="deleteReview" parameterType="int">
+		delete from review where rNum = #{rNum}
+	</delete>
+	
+	<update id="updateViewCount" parameterType="int">
+		update review set rCnt = rCnt+1 where rNum=#{rNum}
+	</update>
+	
+	<update id="updateReview" parameterType="com.jimsajo.Dto.ReviewDto">
+		update review set rTitle = #{rTitle}, rReview=#{rReview}, rImage=#{rImage}, rDate=#{rDate}
+		 where rNum = #{rNum}
+	</update>
+	
+	<update id="updatePackageCountry" parameterType="com.jimsajo.Dto.ReviewDto">
+		update package set pCountry = #{pCountry} 
+		 where pNum=#{pNum}
+	</update>
+</mapper>

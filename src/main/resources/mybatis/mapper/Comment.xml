@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimsajo.Mapper.ICommentMapper">
+	<insert id="insertComment" parameterType="com.jimsajo.Dto.CommentDto">
+		insert into comment(rNum, mNum, cContent, parentCNum)
+		 values(#{rNum},#{mNum},#{cContent},#{parentCNum})
+	</insert>
+	
+	<select id="selectCommentList" resultType="com.jimsajo.Dto.CommentDto">
+		select c.cNum as cNum, c.rNum as rNum ,c.mNum as mNum, m.mId as mId, c.cContent as cContent, c.cCreate as cCreate, c.parentCNum as parentCNum
+		  from comment c join member m
+		  on c.mNum = m.mNum
+		  where c.rNum = #{rNum}
+		  order by c.parentCNum asc, c.cCreate asc
+	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="com.jimsajo.Dto.CommentDto">
+		update comment 
+		 set cContent = #{cContent}, cCreate = NOW()
+		 where cNum = #{cNum}
+	</update>
+	
+	<!-- 대댓글만 삭제 -->
+	<delete id="deleteReplies" parameterType="int">
+		delete from comment
+		 where cNum = #{cNum}
+	</delete>
+	
+	<!-- 부모 댓글과 대댓글 전체 삭제 -->
+	<delete id="deleteComment" parameterType="int">
+		delete from comment
+		 where cNum = #{cNum} or parentCNum = #{cNum}
+	</delete>
+</mapper>
