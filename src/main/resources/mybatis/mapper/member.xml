@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace = "com.jimsajo.Mapper.memberMapper">
+	<insert id = "insertMember" parameterType = "com.jimsajo.Dto.memberDto">
+		insert into member (mId, mPasswd, mName, mGender, mTel, mBirth) 
+		values (#{mId},#{mPasswd},#{mName},#{mGender},#{mTel},#{mBirth})
+	</insert>
+	
+	<select id = "selectMember" resultType = "com.jimsajo.Dto.memberDto">
+		select * from member order by mNum
+	</select>
+	
+	<update id = "updateMember" parameterType = "com.jimsajo.Dto.memberDto">
+		update member 
+		set 
+		mPasswd = #{mPasswd},
+		mTel = #{mTel}
+	</update>
+
+	<delete id = "deleteMember" parameterType = "int">
+		delete from member where mNum = #{mNum}
+	</delete>
+</mapper>
