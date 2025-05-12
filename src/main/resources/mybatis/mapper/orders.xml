@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.jimsajo.Mapper.ordersMapper">
+	<insert id = "insertOrders" parameterType = "com.jimsajo.Dto.ordersDto">
+		insert into orders( oStart, oReturn, oPeople, oPirce, mNum, pNum)
+		values (#{oStart}, #{oReturn}, #{oPeople}, #{oPirce}, #{mNum}, #{pNum})
+	</insert>
+</mapper>

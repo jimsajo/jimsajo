@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.jimsajo.Mapper.boardMapper">
+	
+	<!-- 모든 공지 사항 조회-->
+	<select id = "selectBoard" resultType ="com.jimsajo.Dto.boardDto"> 
+		select 
+      	b.bNum, b.bTitle, b.bContent, b.bTime, b.bCnt, b.bImage,b.mNum, m.mName
+	    from board b join member m 
+	    on b.mNum = m.mNum 
+	</select>
+	
+	<!-- 단건 공지 사항 조회-->
+	<select id = "selectBoardById" parameterType = "int" resultType = "com.jimsajo.Dto.boardDto">
+		select b.bNum, b.bTitle, b.bContent, b.bTime, b.bCnt, b.bImage, b.mNum, m.mName
+		from board b join member m
+		on b.mNum = m.mNum
+		where b.bNum = #{bNum}
+	</select>
+	
+	
+	<!--  <insert id = "insertBoard" parameterType = "com.jimsajo.Dto.boardDto">
+		insert into board (bTitle, bContent, bImage, mNum)
+		values(#{bTitle}, #{bContent}, #{bImage}, #{mNum})
+		
+	</insert> 
+	-->
+	
+	<insert id="insertBoard" parameterType="com.jimsajo.Dto.boardDto">
+  		insert into board (bTitle, bContent, bImage, mNum, bTime, bCnt)
+		  	values (
+		    #{bTitle},
+		    #{bContent},
+		    #{bImage},
+		    1,                      <!-- 테스트용 회원번호를 1로 고정 -->
+		    now(),                  <!-- MySQL 함수로 작성일시 세팅 -->
+		    0                       <!-- 조회수 초기값 -->
+		  )
+</insert>
+	
+	
+	<update id = "updateBoard" parameterType = "com.jimsajo.Dto.boardDto">
+		update board set 
+		bTitle = #{bTitle},
+		bContent = #{bContent},
+		bTime = #{bTime},
+		bImage = #{bImage}
+		where bNum = #{bNum}
+	</update>
+	
+	<update id="updateCnt" parameterType="int">
+    	update board set bCnt = bCnt + 1 where bNum = #{bNum}
+	</update>
+	
+	<delete id = "deleteBoard" parameterType = "com.jimsajo.Dto.boardDto">
+		delete from board where bNum = #{bNum}
+	</delete>
+</mapper>
