@@ -30,7 +30,7 @@ public class ReviewController {
 	@Autowired //좋아요
 	private GoodService goodService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/review")
 	public String root() {
 		return "review/reviewForm"; //리뷰 작성 홈
 	}
@@ -44,7 +44,7 @@ public class ReviewController {
 		if(loginUser != null) {
 			reviewDto.setMNum(loginUser.getMNum()); //로그인 사용자 ID설정
 		}
-		
+		 System.out.println("===== reviewDto.mNum: " + reviewDto.getMNum());
 		reviewService.saveReview(reviewDto, file);
 		return "redirect:/review/reviewList"; //리뷰저장
 	}
