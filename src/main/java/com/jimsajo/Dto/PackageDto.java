@@ -8,7 +8,15 @@ public class PackageDto {
     private String pCountry;
     private String pDescription;
     private LocalDateTime pCreate;
+    private int pPrice;
     
+    
+	public int getpPrice() {
+		return pPrice;
+	}
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
+	}
 	public Integer getpNum() {
 		return pNum;
 	}

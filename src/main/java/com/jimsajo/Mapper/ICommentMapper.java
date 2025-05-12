@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jimsajo.Dto.CommentDto;
 
+
 public interface ICommentMapper {
 	List<CommentDto> selectCommentList(int rNum);
 	void insertComment (CommentDto commentDto);

@@ -5,11 +5,9 @@
 <mapper namespace="com.jimsajo.Mapper.PackageMapper">
 
     <insert id="insertPackage" parameterType="com.jimsajo.Dto.PackageDto">
-        INSERT INTO package (
-             pName, pCountry, pDescription, pCreate
-        ) VALUES (
-             #{pName}, #{pCountry}, #{pDescription}, #{pCreate}
-        )
+
+        INSERT INTO package (pName, pCountry, pDescription, pCreate, pPrice)
+    		VALUES (#{pName}, #{pCountry}, #{pDescription}, #{pCreate}, #{pPrice})
     </insert>
     
     <select id="selectPackage" resultType="com.jimsajo.Dto.PackageDto">
@@ -21,8 +19,9 @@
 	</select>
 	<update id="updatePackage" parameterType="com.jimsajo.Dto.PackageDto">
 	    UPDATE package
-	    SET pName = #{pName}, pCountry = #{pCountry}, pDescription = #{pDescription}
-	    WHERE pNum = #{pNum}
+	     SET pName = #{pName}, pCountry = #{pCountry}, pDescription = #{pDescription}, pPrice = #{pPrice}	    
+	     WHERE pNum = #{pNum}
+
 	</update>
 	
 	<delete id="deletePackage" parameterType="Integer">

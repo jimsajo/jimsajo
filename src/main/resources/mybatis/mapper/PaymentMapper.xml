@@ -5,12 +5,29 @@
 <mapper namespace="com.jimsajo.Mapper.IPaymentMapper">
 	<insert id="insertPayment" parameterType="com.jimsajo.Dto.PaymentDto">
 		INSERT INTO payment
-		(imp_uid, merchant_uid, pay_method, pay_amount, pay_status, paid_at, created_at)
-		VALUES
-		(#{impUid}, #{merchantUid}, #{payMethod}, #{payAmount}, #{payStatus}, #{paidAt}, NOW())
+
+		(imp_uid, merchant_uid, pay_method, pay_amount, pay_status, paid_at, created_at, pNum)
+		 VALUES
+		(#{impUid}, #{merchantUid}, #{payMethod}, #{payAmount}, #{payStatus}, #{paidAt}, NOW(), #{pNum})
+
 	</insert>
 
 	<select id="selectPayment" resultType="com.jimsajo.Dto.PaymentDto">
-		SELECT * FROM payment ORDER BY payment_id DESC
+		SELECT 
+	      p.payment_id,
+	      p.imp_uid,
+	      p.merchant_uid,
+	      p.pay_method,
+	      p.pay_amount,
+	      p.pay_status,
+	      p.paid_at,
+	      p.created_at,
+	      p.pNum,
+	      pkg.pName,
+	      pkg.pPrice
+	    FROM payment p
+	    JOIN package pkg ON p.pNum = pkg.pNum
+	    ORDER BY p.payment_id DESC
+
 	</select>
 </mapper>

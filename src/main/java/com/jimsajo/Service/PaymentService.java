@@ -51,33 +51,35 @@ public class PaymentService {
 		}
 	}
 
-	public void verifyAndSave(String impUid) throws IOException {
-		String token = getAccessToken();
-		URL url = new URL("https://api.iamport.kr/payments/" + impUid);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.setRequestProperty("Authorization", token);
 
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-			String response = br.lines().collect(Collectors.joining());
-			ObjectMapper mapper = new ObjectMapper();
-			JsonNode paymentInfo = mapper.readTree(response).path("response");
+	public void verifyAndSave(String impUid, int pNum, int mNum) throws IOException {
+	    String token = getAccessToken();
+	    URL url = new URL("https://api.iamport.kr/payments/" + impUid);
+	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	    conn.setRequestMethod("GET");
+	    conn.setRequestProperty("Authorization", token);
 
-			PaymentDto payment = new PaymentDto();
-			payment.setImpUid(paymentInfo.get("imp_uid").asText());
-			payment.setMerchantUid(paymentInfo.get("merchant_uid").asText());
-			payment.setPayMethod(paymentInfo.get("pay_method").asText());
-			//payment.setpName(paymentInfo.get("name").asText());
-			payment.setPayAmount(paymentInfo.get("amount").asInt());
-			payment.setPayStatus(paymentInfo.get("status").asText());
+	    try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+	        String response = br.lines().collect(Collectors.joining());
+	        ObjectMapper mapper = new ObjectMapper();
+	        JsonNode paymentInfo = mapper.readTree(response).path("response");
 
-			if (paymentInfo.hasNonNull("paid_at")) {
-				payment.setPaidAt(LocalDateTime.ofInstant(
-					Instant.ofEpochSecond(paymentInfo.get("paid_at").asLong()), ZoneId.systemDefault()));
-			}
+	        PaymentDto payment = new PaymentDto();
+	        payment.setImpUid(paymentInfo.get("imp_uid").asText());
+	        payment.setMerchantUid(paymentInfo.get("merchant_uid").asText());
+	        payment.setPayMethod(paymentInfo.get("pay_method").asText());
+	        payment.setPayAmount(paymentInfo.get("amount").asInt());
+	        payment.setPayStatus(paymentInfo.get("status").asText());
 
-			iPaymentDao.insertPayment(payment);
-		}
+	        if (paymentInfo.hasNonNull("paid_at")) {
+	            payment.setPaidAt(LocalDateTime.ofInstant(
+	                Instant.ofEpochSecond(paymentInfo.get("paid_at").asLong()), ZoneId.systemDefault()));
+	        }
+	        payment.setPNum(pNum);
+	        payment.setMNum(mNum);
+	        iPaymentDao.insertPayment(payment);
+	    }
+
 	}
 }
 

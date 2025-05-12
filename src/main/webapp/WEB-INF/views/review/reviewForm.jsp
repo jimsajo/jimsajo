@@ -6,14 +6,13 @@
   <form name="reviewForm" method="post" action="/reviewSave" enctype="multipart/form-data">
     <p>
       작성자 ID:
-      <input type="text" name="mId" value="${sessionScope.loginUser.mId}" >
+
+      <input type="text" name="mId" value="${sessionScope.loginUser.mId}" readonly>
     </p>
 
     <p>
       제목:
       <input type="text" name="rTitle" required>
-      <input type="hidden" name="mNum" value="${sessionScope.loginUser.mNum}">
-      
     </p>
 
     <p>

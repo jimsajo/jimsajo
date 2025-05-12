@@ -15,15 +15,29 @@ public class GoodService {
 		return iGoodMapper.countGood(rNum);
 	}
 	
-	public boolean isGoodByUser(ReviewGoodDto reviewGoodDto)throws Exception{
-		return iGoodMapper.isGood(reviewGoodDto) > 0;
+
+	public boolean isGoodByUser(int rNum, int mNum)throws Exception{
+		return iGoodMapper.isGood(rNum, mNum) > 0;
 	}
 	
-	public void toggleGood(ReviewGoodDto reviewGoodDto)throws Exception{
-		if(isGoodByUser(reviewGoodDto)) {
-			iGoodMapper.deleteGood(reviewGoodDto);
+	public void toggleGood(int rNum, int mNum)throws Exception{
+		if(isGoodByUser(rNum, mNum)) {
+			iGoodMapper.deleteGood(rNum, mNum);
 		}else {
-			iGoodMapper.insertGood(reviewGoodDto);
+			iGoodMapper.insertGood(rNum, mNum);
+
 		}
+	}
+
+
+	public boolean isGoodByUser(ReviewGoodDto reviewGoodDto) {
+	
+		return false;
+	}
+
+
+	public void toggleGood(ReviewGoodDto reviewGoodDto) {
+
+		
 	}
 }

@@ -44,7 +44,7 @@ public class ReviewController {
 		if(loginUser != null) {
 			reviewDto.setMNum(loginUser.getMNum()); //로그인 사용자 ID설정
 		}
-		 System.out.println("===== reviewDto.mNum: " + reviewDto.getMNum());
+		
 		reviewService.saveReview(reviewDto, file);
 		return "redirect:/review/reviewList"; //리뷰저장
 	}

@@ -20,6 +20,7 @@ public class PackageController {
     private PackageService packageService;
 
     // 등록 폼
+
     @RequestMapping("/")
     public String uploadPage() {
         return "package/packageUpload"; // packageUpload.jsp
@@ -46,7 +47,7 @@ public class PackageController {
         model.addAttribute("dto", dto);
         return "package/packageDetail";
     }
- // 수정 폼 보여주기
+    // 수정 폼 보여주기
     @GetMapping("/package/edit")
     public String packageEdit(@RequestParam("pNum") Integer pNum, Model model) {
         PackageDto dto = packageService.selectPackageById(pNum);

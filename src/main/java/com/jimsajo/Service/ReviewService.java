@@ -59,39 +59,32 @@ public class ReviewService {
 		iReviewMapper.updateViewCount(rNum);
 	}
 	
-	// 파일 저장
+	//파일 저장
 	private String saveFile(MultipartFile file) {
 	    if (file.isEmpty() || !file.getContentType().startsWith("image/")) return null;
 
-	    String originalFilename = file.getOriginalFilename();
-	    String safeFilename = UUID.randomUUID() + "_" + originalFilename.replaceAll("[\\\\/:*?\"<>|]", "_");
+	    String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+	    Path path = Paths.get(uploadDir, filename);
 
 	    try {
-	        // 디버깅용 로그 출력
-	        System.out.println("Upload Directory: " + uploadDir);
-	        System.out.println("Final Filename: " + safeFilename);
-
-	        // 절대 경로 보정
-	        Path path = Paths.get(uploadDir).resolve(safeFilename);
-	        Files.createDirectories(path.getParent()); // 업로드 디렉토리 생성
+	        Files.createDirectories(path.getParent());
 	        Files.write(path, file.getBytes());
-	        return safeFilename;
+	        return filename;
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return null;
 	    }
 	}
 
-	// 파일 삭제
+	//파일 삭제
 	private void deleteFile(String filename) {
-	    if (filename == null || filename.isBlank()) return;
-
-	    try {
-	        Path path = Paths.get(uploadDir).resolve(filename);
-	        Files.deleteIfExists(path);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		if(filename == null || filename.isBlank()) return;
+		Path path = Paths.get(uploadDir,filename);
+		try {
+			Files.deleteIfExists(path);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
