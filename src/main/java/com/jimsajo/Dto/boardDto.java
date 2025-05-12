@@ -1,13 +1,13 @@
 package com.jimsajo.Dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class boardDto {
 	
 	private int bNum;
 	private String bTitle; //제목 
 	private String bContent; // 내용 
-	private LocalDateTime bTime; // 작성시간 
+	private LocalDate bTime; // 작성시간 
 	private int bCnt; // 조회수 
 	private String bImage; // 이미지 
 	private int mNum; // 작성자 번호(member table)
@@ -32,10 +32,10 @@ public class boardDto {
 	public void setbContent(String bContent) {
 		this.bContent = bContent;
 	}
-	public LocalDateTime getbTime() {
+	public LocalDate getbTime() {
 		return bTime;
 	}
-	public void setbTime(LocalDateTime bTime) {
+	public void setbTime(LocalDate bTime) {
 		this.bTime = bTime;
 	}
 	public int getbCnt() {

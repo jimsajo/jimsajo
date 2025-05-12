@@ -1,6 +1,6 @@
 package com.jimsajo.Controller;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class boardController {
             session.setAttribute("mNum", mNum);
         }
         dto.setmNum(mNum);
-    	dto.setbTime(LocalDateTime.now());
+    	dto.setbTime(LocalDate.now());
         dto.setbCnt(0);
         mapper.insertBoard(dto);
         return "redirect:/board";
@@ -69,7 +69,7 @@ public class boardController {
     // 수정처리 
     @RequestMapping("/boardUpdate")
     public String updateBoard(boardDto dto) throws Exception {
-    	dto.setbTime(LocalDateTime.now());
+    	dto.setbTime(LocalDate.now());
         mapper.updateBoard(dto);
         return "redirect:/board/" + dto.getbNum() + "/detail";
     }
