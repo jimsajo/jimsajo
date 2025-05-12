@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jimsajo.Mapper.PackageMapper">
+
+    <insert id="insertPackage" parameterType="com.jimsajo.Dto.PackageDto">
+        INSERT INTO package (pName, pCountry, pDescription, pCreate, pPrice)
+    		VALUES (#{pName}, #{pCountry}, #{pDescription}, #{pCreate}, #{pPrice})
+    </insert>
+    
+    <select id="selectPackage" resultType="com.jimsajo.Dto.PackageDto">
+        SELECT * FROM package
+    </select>
+    <!-- Mapper.xml 예시 -->
+	<select id="selectPackageById" resultType="com.jimsajo.Dto.PackageDto">
+	    SELECT * FROM package WHERE pNum = #{pNum}
+	</select>
+	<update id="updatePackage" parameterType="com.jimsajo.Dto.PackageDto">
+	    UPDATE package
+	     SET pName = #{pName}, pCountry = #{pCountry}, pDescription = #{pDescription}, pPrice = #{pPrice}	    
+	     WHERE pNum = #{pNum}
+	</update>
+	
+	<delete id="deletePackage" parameterType="Integer">
+	    DELETE FROM package WHERE pNum = #{pNum}
+	</delete>
+	
+	
+	 <select id="selectPackageByCountry" parameterType="String" resultType="com.jimsajo.Dto.PackageDto">
+    	SELECT * FROM package WHERE pCountry = #{pCountry}
+	</select>
+    
+
+</mapper>

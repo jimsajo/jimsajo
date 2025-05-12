@@ -1,0 +1,13 @@
+package com.jimsajo.Mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.jimsajo.Dto.PaymentDto;
+
+@Mapper
+public interface IPaymentMapper {
+	public List<PaymentDto> selectPayment();
+	void insertPayment(PaymentDto paymentDto);
+}
