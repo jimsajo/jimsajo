@@ -118,7 +118,7 @@ public class ReviewController {
 		model.addAttribute("goodCnt", goodCount);
 		model.addAttribute("goodByUser", goodByUser);
 		model.addAttribute("review",review);
-		model.addAttribute("comments", commentService.getCommentByReview(rNum)); //댓글
+		model.addAttribute("comments", commentService.getFlatCommentsWithDepth(rNum)); //댓글
 		return "review/reviewDetail"; //리뷰 상세보기
 	}
 	

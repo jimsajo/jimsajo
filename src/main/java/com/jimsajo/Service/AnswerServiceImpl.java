@@ -3,10 +3,11 @@ package com.jimsajo.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.jimsajo.Dto.AnswerDto;
 import com.jimsajo.Mapper.IAnswerMapper;
-
+@Service
 public class AnswerServiceImpl implements AnswerService {
 	@Autowired
 	IAnswerMapper iAnswerMapper;

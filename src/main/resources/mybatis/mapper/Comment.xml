@@ -24,7 +24,7 @@
 	</update>
 	
 	<!-- 대댓글만 삭제 -->
-	<delete id="deleteReplies" parameterType="int">
+	<delete id="deleteSingleComment" parameterType="int">
 		delete from comment
 		 where cNum = #{cNum}
 	</delete>
