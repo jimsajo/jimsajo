@@ -35,7 +35,7 @@
 		<sec:authorize access="hasRole('ROLE_admin')">
 		<div>
 			<label for = "package"></label>
-			<a href = "#">상품등록</a>
+			<a href = "/package">상품등록</a>
 		</div>
 		</sec:authorize>
 		
