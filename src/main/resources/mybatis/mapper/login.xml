@@ -8,4 +8,65 @@
     	select * FROM member 
     	where mId = #{mId} AND mPasswd = #{mPasswd}
 	</select>
+
+	 <select id="selectMemberById" resultType="com.jimsajo.Dto.memberDto" parameterType="String">
+        select mId, mPasswd, mRole, mName, mNum from member 
+        where mId = #{mId}
+    </select>
+    
+     <select id="selectMemberByName" resultType="com.jimsajo.Dto.memberDto" parameterType="String">
+        select * from member where mName = #{mName}
+    </select>
+    
+    
+    <insert id="insertMember" parameterType="com.jimsajo.Dto.memberDto">
+	    INSERT INTO member (
+	        mId,
+	        mPasswd,
+	        mName,
+	        mGender,
+	        mTel,
+	        mBirth,
+	        mCreateTime,
+	        mRole
+	    ) VALUES (
+	        #{mId},
+	        #{mPasswd},
+	        #{mName},
+	        #{mGender},
+	        #{mTel},
+	        #{mBirth},
+	        NOW(),
+	        #{mRole}
+	    )
+	</insert>
+	
+	<insert id="insertSocialMember" parameterType="com.jimsajo.Dto.memberDto">
+    INSERT INTO member (
+        mId,
+        mPasswd,
+        mName,
+        mGender,
+        mTel,
+        mBirth,
+        mCreateTime,
+        mRole,
+        socialType,
+        socialId
+    ) VALUES (
+        #{mId},
+        #{mPasswd},
+        #{mName},
+        #{mGender},
+        #{mTel},
+        #{mBirth},
+        NOW(),
+        #{mRole},
+        #{socialType},
+        #{socialId}
+    )
+	</insert>
+	
+    
 </mapper>
+

@@ -15,7 +15,8 @@ public class memberDto {
 	private LocalDateTime mCreateTime;
 	private String mRole; // user, admin
 	
-	
+	private String socialType; // ex: "KAKAO"
+	private String socialId;
 	public int getmNum() {
 		return mNum;
 	}
@@ -70,6 +71,19 @@ public class memberDto {
 	public void setmRole(String mRole) {
 		this.mRole = mRole;
 	}
+	public String getSocialType() {
+		return socialType;
+	}
+	public void setSocialType(String socialType) {
+		this.socialType = socialType;
+	}
+	public String getSocialId() {
+		return socialId;
+	}
+	public void setSocialId(String socialId) {
+		this.socialId = socialId;
+	}  
+	
 	
 	
 }

@@ -14,11 +14,23 @@
 		select * from member order by mNum
 	</select>
 	
-	<update id = "updateMember" parameterType = "com.jimsajo.Dto.memberDto">
+	<!-- 회원정보 수정 시 회원 조회 -->
+	<select id="findBy" parameterType="String" resultType="com.jimsajo.Dto.memberDto">
+  		select * from member where mId = #{mId}
+	</select>
+	
+	<select id="selectMemberById" parameterType="string" resultType="com.jimsajo.Dto.memberDto">
+    	select * from member where mId = #{mId}
+	</select>
+	
+	
+	<!-- 회원정보 수정 시 필요 -->
+	<update id = "updatePasswordAndTel" parameterType = "com.jimsajo.Dto.memberDto">
 		update member 
 		set 
 		mPasswd = #{mPasswd},
 		mTel = #{mTel}
+		where mNum = #{mNum}
 	</update>
 
 	<delete id = "deleteMember" parameterType = "int">

@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.jimsajo.Dto.MemberDto;
+
 import com.jimsajo.Dto.PackageDto;
 import com.jimsajo.Dto.PaymentDto;
+import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Mapper.IPaymentMapper;
 import com.jimsajo.Service.PackageService;
 import com.jimsajo.Service.PaymentService;
@@ -41,7 +42,7 @@ public class PaymentController {
                                   Model model,
                                   HttpSession session,
                                   RedirectAttributes ra) {
-        MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
+        memberDto loginUser = (memberDto) session.getAttribute("loginUser");
 
         if (loginUser == null) {
             ra.addFlashAttribute("msg", "로그인이 필요합니다.");
@@ -85,9 +86,9 @@ public class PaymentController {
     public String verifyIamport(@RequestBody Map<String, String> param,HttpSession session) throws IOException {
         String impUid = param.get("imp_uid");
         int pNum = Integer.parseInt(param.get("pNum"));
-        MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
+        memberDto loginUser = (memberDto) session.getAttribute("loginUser");
         if (loginUser == null) return "로그인 필요";
-        paymentService.verifyAndSave(impUid, pNum,loginUser.getMNum());
+        paymentService.verifyAndSave(impUid, pNum,loginUser.getmNum());
         return "결제 완료";
     }
 }

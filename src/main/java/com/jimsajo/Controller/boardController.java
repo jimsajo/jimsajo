@@ -4,21 +4,26 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jimsajo.Dto.boardDto;
+import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Mapper.boardMapper;
-
-import jakarta.servlet.http.HttpSession;
+import com.jimsajo.Mapper.memberMapper;
 
 @Controller
 public class boardController {
 	
 	@Autowired
     boardMapper mapper;
+	@Autowired
+	memberMapper mMapper;
 
     // 공지사항 목록
     @RequestMapping("/board")
@@ -27,27 +32,50 @@ public class boardController {
         model.addAttribute("boards", list);
         return "board/board";
     }
-    
-    // 작성 폼
+    // 공지사항 폼(관리자만 접근 가능)
     @RequestMapping("/newBoard")
-    public String form() {
+    public String newBoard() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean isAdmin = auth.getAuthorities().stream()
+            .map(GrantedAuthority::getAuthority)
+            .anyMatch(role -> role.equals("ROLE_admin")); // 중요: ROLE_ 접두어
+
+        if (!isAdmin) {
+            return "redirect:/accessDenied";
+        }
+
         return "board/boardForm";
     }
-   
-    // 공지사항 저장
+
     @RequestMapping("/boardSave")
-    public String saveBoard(boardDto dto, HttpSession session) throws Exception {
-        Integer mNum = (Integer) session.getAttribute("mNum");
-        if (mNum == null) {
-            mNum = 1; // 테스트용 회원번호
-            session.setAttribute("mNum", mNum);
+    public String saveBoard(boardDto dto) throws Exception {
+
+        // SecurityContext에서 인증 정보 가져오기
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); // 로그인한 사용자 ID
+        String role = auth.getAuthorities().iterator().next().getAuthority(); // 
+
+        System.out.println("저장 요청자 아이디: " + username);
+        System.out.println("저장 요청자 권한: " + role);
+
+        if (!role.equals("ROLE_admin")) {
+            return "redirect:/accessDenied";
         }
+
+        // DB에서 사용자 mNum을 조회
+        memberDto member = mMapper.selectMemberById(username); // 이미 정의돼 있다고 가정
+        Integer mNum = member.getmNum();
+
         dto.setmNum(mNum);
-    	dto.setbTime(LocalDate.now());
+        dto.setbTime(LocalDate.now());
         dto.setbCnt(0);
         mapper.insertBoard(dto);
+
         return "redirect:/board";
     }
+
+
     
     // 상세 보기
     @RequestMapping("/board/{bNum}/detail")
@@ -80,6 +108,12 @@ public class boardController {
     	mapper.deleteBoard(bNum);
         return "redirect:/board";
 
+    }
+    
+    // 사용자가 공지사항 글쓰기에 접근 했을때
+    @RequestMapping("/accessDenied")
+    public String accessDenied() {
+    	return "board/accessDenied";
     }
 }	
 

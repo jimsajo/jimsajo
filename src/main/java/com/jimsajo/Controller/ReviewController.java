@@ -13,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jimsajo.Dto.CommentDto;
-import com.jimsajo.Dto.MemberDto;
 import com.jimsajo.Dto.ReviewDto;
+import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Service.CommentService;
 import com.jimsajo.Service.GoodService;
 import com.jimsajo.Service.ReviewService;
@@ -42,9 +42,9 @@ public class ReviewController {
 							 @RequestParam("file") MultipartFile file,
 							 HttpSession session) {
 		
-		MemberDto loginUser = (MemberDto)session.getAttribute("loginUser");
+		memberDto loginUser = (memberDto)session.getAttribute("loginUser");
 		if(loginUser != null) {
-			reviewDto.setMNum(loginUser.getMNum()); //로그인 사용자 ID설정
+			reviewDto.setMNum(loginUser.getmNum()); //로그인 사용자 ID설정
 		}
 		
 		reviewService.saveReview(reviewDto, file);
@@ -59,9 +59,9 @@ public class ReviewController {
 	
 	@RequestMapping("commentAdd")
 	public String  commentAdd(@ModelAttribute CommentDto commentDto,HttpSession session) throws Exception{
-		MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
+		memberDto loginUser = (memberDto) session.getAttribute("loginUser");
 		if(loginUser != null) {
-			commentDto.setMNum(loginUser.getMNum());
+			commentDto.setMNum(loginUser.getmNum());
 		}
 		if(commentDto.getParentCNum() == 0) {
 			commentDto.setParentCNum(0);
@@ -86,7 +86,7 @@ public class ReviewController {
 	
 	@RequestMapping("reviewDetail/{rNum}")
 	public String reviewDetail(@PathVariable int rNum, Model model,HttpSession session)throws Exception{
-		MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
+		memberDto loginUser = (memberDto) session.getAttribute("loginUser");
 		ReviewDto review = reviewService.reviewListDetail(rNum);
 
 	    if (review == null) {
@@ -101,7 +101,7 @@ public class ReviewController {
 		int goodCount = goodService.getGoodCnt(rNum);
 	    boolean goodByUser = false;
 	    if (loginUser != null) {
-	        goodByUser = goodService.isGoodByUser(rNum, loginUser.getMNum());
+	        goodByUser = goodService.isGoodByUser(rNum, loginUser.getmNum());
 	    }
 
 	    // 댓글 리스트 가져오기
@@ -136,12 +136,12 @@ public class ReviewController {
 	//좋아용
 	@RequestMapping("toggleGood")
 	public String toggleGood(@RequestParam int rNum, HttpSession session, RedirectAttributes ra) throws Exception{
-		MemberDto loginUser = (MemberDto)session.getAttribute("loginUser");
+		memberDto loginUser = (memberDto)session.getAttribute("loginUser");
 		if(loginUser == null) {
 			 ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 		        return "redirect:/loginForm";
 		}
-		int mNum = loginUser.getMNum();
+		int mNum = loginUser.getmNum();
 		goodService.toggleGood(rNum, mNum);
 	    return "redirect:/reviewDetail/" + rNum;
 	}

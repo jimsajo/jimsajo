@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib prefix = "C" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<sec:authorize access="hasRole('ROLE_admin')">
 	<table border = "1">
 		<tr>
 			<td>회원번호</td>
@@ -36,5 +37,6 @@
 	    </tr>
   		</c:forEach>
 	</table>
+	</sec:authorize>
 </body>
 </html>
