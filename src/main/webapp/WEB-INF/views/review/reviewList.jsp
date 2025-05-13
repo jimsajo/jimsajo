@@ -30,10 +30,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-<<<<<<< HEAD
 	<a href="/review">리뷰쓰기</a>
-=======
-	<a href="/">리뷰쓰기</a>
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 </body>
 </html>

@@ -30,4 +30,11 @@
 	    ORDER BY p.payment_id DESC
 
 	</select>
+	
+	<update id="updatePaymentStatus">
+		UPDATE payment
+		 SET pay_status = #{status}
+		 WHERE imp_uid = #{impUid}
+	</update>
+	
 </mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimsajo.Mapper.IAnswerMapper">
+	<!-- 답변 등록 -->
+	<insert id="insertAnswer" parameterType="com.jimsajo.Dto.AnswerDto">
+        INSERT INTO answer (aContent, iNum, mNum, aTime)
+         VALUES (#{aContent}, #{iNum}, #{mNum}, NOW())
+    </insert>
+    
+    <!-- 문의 번호로 답변들 조회 -->
+    <select id="selectAnswersByINum" resultType="com.jimsajo.Dto.AnswerDto">
+        SELECT a.*, m.mId
+         FROM answer a
+         JOIN member m ON a.mNum = m.mNum
+         WHERE a.iNum = #{iNum}
+         ORDER BY a.aTime ASC
+    </select>
+    
+    <select id="getAnswerById" resultType="com.jimsajo.Dto.AnswerDto">
+        SELECT a.*, m.mId
+         FROM answer a
+         JOIN member m ON a.mNum = m.mNum
+         WHERE a.aNum = #{aNum}
+    </select>
+    
+    <!-- 답변 수정 -->
+    <update id="updateAnswer" parameterType="com.jimsajo.Dto.AnswerDto">
+        UPDATE answer
+         SET aContent = #{aContent},aTime = now()
+         WHERE aNum = #{aNum}
+    </update>
+
+    <!-- 답변 삭제 -->
+    <delete id="deleteAnswer" parameterType="int">
+        DELETE FROM answer WHERE aNum = #{aNum}
+    </delete>
+</mapper>

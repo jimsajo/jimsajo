@@ -78,4 +78,9 @@ public class ReviewService {
     public void deleteReview(int rNum) {
         reviewMapper.deleteReview(rNum);  // 리뷰 삭제
     }
+
+	public void increaseViewCount(int rNum) {
+		
+		
+	}
 }
