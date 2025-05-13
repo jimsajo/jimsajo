@@ -1,6 +1,7 @@
 package com.jimsajo.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -8,8 +9,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.jimsajo.Dto.memberDto;
-
-import java.util.List;
 
 public class CustomOAuth2User implements OAuth2User {
 

@@ -44,28 +44,21 @@
 	<insert id="insertSocialMember" parameterType="com.jimsajo.Dto.memberDto">
     INSERT INTO member (
         mId,
-        mPasswd,
         mName,
-        mGender,
-        mTel,
-        mBirth,
         mCreateTime,
         mRole,
         socialType,
         socialId
     ) VALUES (
         #{mId},
-        #{mPasswd},
         #{mName},
-        #{mGender},
-        #{mTel},
-        #{mBirth},
         NOW(),
         #{mRole},
         #{socialType},
         #{socialId}
     )
-	</insert>
+</insert>
+
 	
     
 </mapper>
