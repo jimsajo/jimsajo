@@ -6,8 +6,8 @@
 <mapper namespace="com.jimsajo.Mapper.InquiryMapper">
 	<!-- 문의 추가 -->
     <insert id="insertInquiry" parameterType="com.jimsajo.Dto.InquiryDto">
-        INSERT INTO inquiry (iTitle, iType, iContent, iTime, iAnswer, iImage, mNum)
-        VALUES (#{iTitle}, #{iType}, #{iContent}, NOW(), #{iAnswer}, #{iImage}, #{mNum})
+        INSERT INTO inquiry (iTitle, iType, iContent, iTime, iImage, mNum)
+        VALUES (#{iTitle}, #{iType}, #{iContent}, NOW(), #{iImage}, #{mNum})
     </insert>
 	<!-- 문의 목록 조회 -->
     <select id="selectAllInquiries" resultType="com.jimsajo.Dto.InquiryDto">

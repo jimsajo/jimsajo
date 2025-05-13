@@ -49,7 +49,7 @@ public class PaymentController {
             return "redirect:/loginForm";
         }
 
-        PackageDto dto = packageService.selectPackageById(pNum);
+        PackageDto dto = packageService.getPackageById(pNum);
         model.addAttribute("package", dto);
         model.addAttribute("loginUser", loginUser);
 

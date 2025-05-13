@@ -1,6 +1,6 @@
 package com.jimsajo.config;
 
-import org.springframework.beans.factory.annotation.Value; // ✅ 올바른 import
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,8 +13,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // 상대 경로에서 파일 서빙
-        registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("classpath:/uploads/");
+        // 이미지 파일 처리 경로를 정적 리소스로 설정
+        registry.addResourceHandler("/uploads/images/**")
+                .addResourceLocations("file:/C:/uploads/images/");
     }
 }

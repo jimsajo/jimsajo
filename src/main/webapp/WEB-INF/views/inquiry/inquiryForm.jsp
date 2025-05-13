@@ -19,15 +19,17 @@
         <input type="submit" value="제출">
     </form>
     <script>
-  ClassicEditor
+    ClassicEditor
     .create(document.querySelector('#editor'), {
-      ckfinder: {
-        uploadUrl: '/upload-image' // Spring Boot 업로드 API
-      }
+        ckfinder: {
+            uploadUrl: '/api/upload-inquiry-image'  // 업로드 URL 지정
+        },
+        toolbar: ['heading', '|', 'bold', 'italic', '|', 'link', 'imageUpload']
     })
     .catch(error => {
-      console.error(error);
+        console.error(error);
     });
+
 </script>
 </body>
 </html>

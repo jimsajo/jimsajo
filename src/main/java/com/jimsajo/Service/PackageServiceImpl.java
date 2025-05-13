@@ -1,7 +1,5 @@
 package com.jimsajo.Service;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,36 +10,43 @@ import com.jimsajo.Mapper.PackageMapper;
 
 @Service
 public class PackageServiceImpl implements PackageService {
+
     @Autowired
     private PackageMapper packageMapper;
 
+    // 패키지 등록
     @Override
     public void registerPackage(PackageDto packageDto) {
-        packageDto.setpCreate(LocalDateTime.now()); // 작성 시간 설정
         packageMapper.insertPackage(packageDto);
     }
+
+    // 전체 패키지 목록 조회
     @Override
-    public ArrayList<PackageDto> selectPackage(){
-    	ArrayList<PackageDto> list = packageMapper.selectPackage();
-    	
-    	return list;
+    public List<PackageDto> selectPackage() {
+        return packageMapper.selectPackage();
     }
+
+    // 특정 패키지 조회
     @Override
-    public PackageDto selectPackageById(Integer pNum) {
-        return packageMapper.selectPackageById(pNum);
+    public PackageDto getPackageById(Integer pNum) {
+        return packageMapper.selectPackageById(pNum); // selectPackageById 메소드 호출
     }
-	@Override
-	public void updatePackage(PackageDto dto) throws Exception {
-		packageMapper.updatePackage(dto);
-		
-	}
-	@Override
-	public void deletePackage(Integer pNum) throws Exception{
-		packageMapper.deletePackage(pNum);
-		
-	}
-	@Override
-	public List<PackageDto> selectPackageByCountry(String pCountry) {
-	    return packageMapper.selectPackageByCountry(pCountry);
-	}
+
+    // 패키지 수정
+    @Override
+    public void updatePackage(PackageDto packageDto) {
+        packageMapper.updatePackage(packageDto);
+    }
+
+    // 패키지 삭제
+    @Override
+    public void deletePackage(Integer pNum) {
+        packageMapper.deletePackage(pNum);
+    }
+
+    // 국가별 패키지 조회
+    @Override
+    public List<PackageDto> getPackagesByCountry(String pCountry) {
+        return packageMapper.selectPackageByCountry(pCountry);
+    }
 }

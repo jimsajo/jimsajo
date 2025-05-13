@@ -1,15 +1,25 @@
 package com.jimsajo.Service;
 
-import java.util.ArrayList;
+import com.jimsajo.Dto.PackageDto;
 import java.util.List;
 
-import com.jimsajo.Dto.PackageDto;
-
 public interface PackageService {
+
+    // 패키지 등록
     void registerPackage(PackageDto packageDto);
-    ArrayList<PackageDto> selectPackage();
-    public PackageDto selectPackageById(Integer pNum);
-    void updatePackage(PackageDto dto) throws Exception;
-    void deletePackage(Integer pNum) throws Exception;
-    public List<PackageDto> selectPackageByCountry(String pCountry);
+
+    // 전체 패키지 목록 조회
+    List<PackageDto> selectPackage();
+
+    // 특정 패키지 조회
+    PackageDto getPackageById(Integer pNum);  // 메소드 이름 통일
+
+    // 패키지 수정
+    void updatePackage(PackageDto packageDto);
+
+    // 패키지 삭제
+    void deletePackage(Integer pNum);
+
+    // 국가별 패키지 조회
+    List<PackageDto> getPackagesByCountry(String pCountry);
 }

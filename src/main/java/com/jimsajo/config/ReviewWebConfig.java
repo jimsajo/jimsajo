@@ -5,11 +5,13 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class ReviewWebConfig implements WebMvcConfigurer{
-	 @Override
-	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	        // /images/** 로 접근하면 C:/upload/images 에 있는 파일을 보여줌
-	        registry.addResourceHandler("/images2/**")
-	                .addResourceLocations("file:///C:/upload/images2/");
-	    }
+public class ReviewWebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // /images2/** 경로는 C:/upload/images2/로 매핑
+        registry.addResourceHandler("/images2/**")
+                .addResourceLocations("file:///C:/upload/images2/");
+    }
 }
+

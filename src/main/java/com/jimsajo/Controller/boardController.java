@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class boardController {
-	
-	@Autowired
+
+    @Autowired
     boardMapper mapper;
 
     // 공지사항 목록
@@ -27,13 +27,13 @@ public class boardController {
         model.addAttribute("boards", list);
         return "board/board";
     }
-    
+
     // 작성 폼
     @RequestMapping("/newBoard")
     public String form() {
         return "board/boardForm";
     }
-   
+
     // 공지사항 저장
     @RequestMapping("/boardSave")
     public String saveBoard(boardDto dto, HttpSession session) throws Exception {
@@ -43,12 +43,12 @@ public class boardController {
             session.setAttribute("mNum", mNum);
         }
         dto.setmNum(mNum);
-    	dto.setbTime(LocalDate.now());
+        dto.setbTime(LocalDate.now());
         dto.setbCnt(0);
         mapper.insertBoard(dto);
         return "redirect:/board";
     }
-    
+
     // 상세 보기
     @RequestMapping("/board/{bNum}/detail")
     public String detailBoard(@PathVariable int bNum, Model model) throws Exception{
@@ -57,7 +57,7 @@ public class boardController {
         model.addAttribute("board", board);
         return "board/boardDetail";
     }
-    
+
     // 수정 폼
     @RequestMapping("/board/{bNum}/update")
     public String updateBoard(@PathVariable int bNum, Model model) throws Exception {
@@ -65,21 +65,19 @@ public class boardController {
         model.addAttribute("board", board);
         return "board/boardUpdate";
     }
-    
-    // 수정처리 
+
+    // 수정처리
     @RequestMapping("/boardUpdate")
     public String updateBoard(boardDto dto) throws Exception {
-    	dto.setbTime(LocalDate.now());
+        dto.setbTime(LocalDate.now());
         mapper.updateBoard(dto);
         return "redirect:/board/" + dto.getbNum() + "/detail";
     }
-    
+
     // 삭제하기
     @RequestMapping("board/{bNum}/delete")
     public String deleteBoard(@PathVariable int bNum) throws Exception{
-    	mapper.deleteBoard(bNum);
+        mapper.deleteBoard(bNum);
         return "redirect:/board";
-
     }
-}	
-
+}
