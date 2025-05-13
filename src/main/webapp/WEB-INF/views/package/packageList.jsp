@@ -22,8 +22,8 @@
     </p>
     <p>국가: ${dto.pCountry}</p>
     <p>작성일: ${dto.pCreate}</p>
-    <p>내용:</p>
-    <div>${dto.pDescription}</div>
+
+    <p>
      <hr>
 	</c:forEach>
 </body>

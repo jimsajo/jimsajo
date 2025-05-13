@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jimsajo.Dto.CommentDto;
-import com.jimsajo.Dto.MemberDto;
+
 import com.jimsajo.Dto.ReviewDto;
 import com.jimsajo.Dto.ReviewGoodDto;
+import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Service.CommentService;
 import com.jimsajo.Service.GoodService;
 import com.jimsajo.Service.ReviewService;
@@ -37,17 +38,27 @@ public class ReviewController {
 	
 	@RequestMapping("reviewSave")
 	public String reviewSave(@ModelAttribute ReviewDto reviewDto,
-							 @RequestParam("file") MultipartFile file,
-							 HttpSession session) {
-		
-		MemberDto loginUser = (MemberDto)session.getAttribute("loginUser");
-		if(loginUser != null) {
-			reviewDto.setMNum(loginUser.getMNum()); //로그인 사용자 ID설정
-		}
-		
-		reviewService.saveReview(reviewDto, file);
-		return "redirect:/review/reviewList"; //리뷰저장
+	                         @RequestParam("file") MultipartFile file,
+	                         HttpSession session) {
+	    // 세션에서 로그인된 사용자 정보 가져오기
+	    memberDto loginUser = (memberDto) session.getAttribute("loginMember");
+
+	    // 로그인되지 않은 사용자의 경우 로그인 페이지로 리다이렉트
+	    if (loginUser == null) {
+	        return "redirect:/login"; // 로그인 페이지로 리다이렉트
+	    }
+
+	    // 로그인된 사용자의 mNum을 리뷰 DTO에 설정
+	    reviewDto.setMNum(loginUser.getmNum());
+	    
+	    // 리뷰 저장 서비스 호출
+	    reviewService.saveReview(reviewDto, file);
+	    
+	    // 리뷰 목록 페이지로 리다이렉트
+	    return "redirect:/review/reviewList"; 
 	}
+
+
 	
 	@RequestMapping("reviewList")
 	public String reviewList(Model model)throws Exception{
@@ -57,9 +68,9 @@ public class ReviewController {
 	
 	@RequestMapping("commentAdd")
 	public String  commentAdd(@ModelAttribute CommentDto commentDto,HttpSession session) throws Exception{
-		MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
+		memberDto loginUser = (memberDto) session.getAttribute("loginUser");
 		if(loginUser != null) {
-			commentDto.setMNum(loginUser.getMNum());
+			commentDto.setMNum(loginUser.getmNum());
 		}
 		if(commentDto.getParentCNum() == 0) {
 			commentDto.setParentCNum(0);
@@ -84,7 +95,7 @@ public class ReviewController {
 	
 	@RequestMapping("reviewDetail/{rNum}")
 	public String reviewDetail(@PathVariable int rNum, Model model,HttpSession session)throws Exception{
-		MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
+		memberDto loginUser = (memberDto) session.getAttribute("loginUser");
 		ReviewDto review = reviewService.reviewListDetail(rNum);
 
 	    if (review == null) {
@@ -99,7 +110,7 @@ public class ReviewController {
 		ReviewGoodDto reviewGoodDto = new ReviewGoodDto();
 		reviewGoodDto.setRNum(rNum);
 		if(loginUser != null){
-			reviewGoodDto.setMNum(loginUser.getMNum());
+			reviewGoodDto.setMNum(loginUser.getmNum());
 		}
 		int goodCount = goodService.getGoodCnt(rNum);
 		boolean goodByUser = loginUser != null && goodService.isGoodByUser(reviewGoodDto);
@@ -132,9 +143,9 @@ public class ReviewController {
 	//좋아용
 	@RequestMapping("toggleGood")
 	public String toggleGood(@ModelAttribute ReviewGoodDto reviewGoodDto, HttpSession session) throws Exception{
-		MemberDto loginUser = (MemberDto)session.getAttribute("loginUser");
+		memberDto loginUser = (memberDto)session.getAttribute("loginUser");
 		if(loginUser != null) {
-			reviewGoodDto.setMNum(loginUser.getMNum());
+			reviewGoodDto.setMNum(loginUser.getmNum());
 			goodService.toggleGood(reviewGoodDto);
 		}
 		return "redirect:/review/reviewDetail/"+reviewGoodDto.getRNum();

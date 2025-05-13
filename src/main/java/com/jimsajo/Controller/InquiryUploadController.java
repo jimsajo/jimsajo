@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class InquiryUploadController {
 
-    @PostMapping("/upload-image")
+    @PostMapping("/inquiry/upload-image")
     public Map<String, Object> uploadImage(@RequestParam("upload") MultipartFile file) {
         Map<String, Object> response = new HashMap<>();
         try {

@@ -6,8 +6,8 @@
 
     <insert id="insertPackage" parameterType="com.jimsajo.Dto.PackageDto">
 
-        INSERT INTO package (pName, pCountry, pDescription, pCreate, pPrice)
-    		VALUES (#{pName}, #{pCountry}, #{pDescription}, #{pCreate}, #{pPrice})
+        INSERT INTO package (pName, pCountry, pDescription, pCreate, pPrice,pImage)
+    		VALUES (#{pName}, #{pCountry}, #{pDescription}, #{pCreate}, #{pPrice},#{pImage})
     </insert>
     
     <select id="selectPackage" resultType="com.jimsajo.Dto.PackageDto">
@@ -19,7 +19,7 @@
 	</select>
 	<update id="updatePackage" parameterType="com.jimsajo.Dto.PackageDto">
 	    UPDATE package
-	     SET pName = #{pName}, pCountry = #{pCountry}, pDescription = #{pDescription}, pPrice = #{pPrice}	    
+	     SET pName = #{pName}, pCountry = #{pCountry}, pDescription = #{pDescription}, pPrice = #{pPrice}, pImage = #{pImage}	    
 	     WHERE pNum = #{pNum}
 
 	</update>

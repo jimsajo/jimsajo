@@ -8,6 +8,7 @@
       작성자 ID:
 
       <input type="text" name="mId" value="${sessionScope.loginUser.mId}" readonly>
+      
     </p>
 
     <p>
