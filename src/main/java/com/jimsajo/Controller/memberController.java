@@ -3,11 +3,14 @@ package com.jimsajo.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Mapper.memberMapper;
@@ -60,25 +63,20 @@ public class memberController {
 		model.addAttribute("members", members);
 		return "member/memberList";
 	}
-	//회원 정보 수정 페이지
-	@RequestMapping("/memberUpdate")
-	public String updateMemberForm(HttpSession session, Model model) throws Exception {
-	    String mId = (String) session.getAttribute("mId");
-	    if (mId == null) {
-	        return "redirect:/login";
-	    }
-
-	    memberDto member = mapper.findBy(mId); // 로그인한 회원의 정보 조회
-	    model.addAttribute("member", member); // JSP에서 사용 가능하도록 모델에 저장
-	    return "member/memberUpdate"; // myPage.jsp로 이동
-	}
 	
-	//회원정보 수정 처리
+	//정보 수정 처리
 	@RequestMapping("/memberUpdateProcess")
 	public String updateMember(@ModelAttribute memberDto member) {
-	    mapper.updatePasswordAndTel(member);  // 아래 mapper 참고
+	    // 비밀번호 입력이 있으면 암호화 후 저장
+	    if (member.getmPasswd() != null && !member.getmPasswd().isEmpty()) {
+	        String encodedPassword = passwordEncoder.encode(member.getmPasswd());
+	        member.setmPasswd(encodedPassword);
+	    }
+
+	    mapper.updatePasswordAndTel(member);  // MyBatis에서 mPasswd, mTel 둘 다 처리하도록
 	    return "redirect:/myPage";
 	}
+
 
 	
 	//회원 탈퇴
@@ -89,10 +87,10 @@ public class memberController {
 	    if (mNum != null) {
 	        mapper.deleteMember(mNum);
 	        session.invalidate();
+	        System.out.println("탈퇴 시도 - 세션 mNum: " + mNum);
 	        return "redirect:/"; // 탈퇴 후 메인으로
 	    } else {
 	        return "redirect:/login";
 	    }
 	}
-
 }
