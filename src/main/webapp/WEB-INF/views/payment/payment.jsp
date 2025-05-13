@@ -9,14 +9,13 @@
 <body>
   <h2>패키지 결제</h2>
 
-  <form name="payment-form" id="payment-form" method="post" action="paymentWrite">
+  <form name="payment-form" id="payment-form" method="post">
     <input type="hidden" id="pNum" value="${package.pNum}" />
 
     <p><strong>상품명:</strong> <span id="name">${package.pName}</span></p>
     <p><strong>금액:</strong> <span id="amount">${package.pPrice}</span></p>
     <p><strong>국가:</strong> ${package.pCountry}</p>
 
-    <input type="hidden" id="buyer_email" value="${loginUser.mId}@example.com" />
     <input type="hidden" id="buyer_name" value="${loginUser.mName}" />
     <input type="hidden" id="buyer_tel" value="${loginUser.mTel}" />
     
@@ -37,7 +36,6 @@
         merchant_uid: "order_" + new Date().getTime(),  // 고유 주문번호
         name: document.getElementById("name").innerText,
         amount: parseInt(document.getElementById("amount").innerText),
-        buyer_email: document.getElementById("buyer_email").value,
         buyer_name: document.getElementById("buyer_name").value,
         buyer_tel: document.getElementById("buyer_tel").value
       }, function (rsp) {

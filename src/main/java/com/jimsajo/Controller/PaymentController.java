@@ -32,7 +32,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @Autowired
-    private IPaymentMapper iPaymentDao;
+    private IPaymentMapper iPaymentMapper;
     
     @Autowired
     private PackageService packageService;
@@ -42,25 +42,25 @@ public class PaymentController {
                                   Model model,
                                   HttpSession session,
                                   RedirectAttributes ra) {
-        memberDto loginUser = (memberDto) session.getAttribute("loginUser");
+    	memberDto loginUser = (memberDto) session.getAttribute("loginUser");
 
         if (loginUser == null) {
             ra.addFlashAttribute("msg", "로그인이 필요합니다.");
             return "redirect:/loginForm";
         }
 
-        PackageDto dto = packageService.selectPackageById(pNum);
+        PackageDto dto = packageService.getPackageById(pNum);
         model.addAttribute("package", dto);
         model.addAttribute("loginUser", loginUser);
 
         return "payment/payment"; 
     }
     // 결제 내역 조회
-    @RequestMapping("paymentList")
+    @RequestMapping("/payment/paymentList")
     public ModelAndView paymentList() throws Exception{
-    	ModelAndView mv = new ModelAndView("paymentList");
+    	ModelAndView mv = new ModelAndView("payment/paymentList");
     	
-    	List<PaymentDto> list = iPaymentDao.selectPayment();
+    	List<PaymentDto> list = iPaymentMapper.selectPayment();
     	mv.addObject("payments",list);
     	return mv;
     }
@@ -88,9 +88,26 @@ public class PaymentController {
         int pNum = Integer.parseInt(param.get("pNum"));
         memberDto loginUser = (memberDto) session.getAttribute("loginUser");
         if (loginUser == null) return "로그인 필요";
-        paymentService.verifyAndSave(impUid, pNum,loginUser.getmNum());
+        paymentService.verifyAndSave(impUid, pNum,loginUser.getmNum());//이 안에서 DB에 insertPayment()실행
         return "결제 완료";
     }
+    // 결제 취소
+    @PostMapping("/payment/cancel")
+    public String cancelPayment(@RequestParam String impUid,
+                                 @RequestParam int amount,
+                                 HttpSession session,
+                                 RedirectAttributes ra) throws IOException {
+        memberDto loginUser = (memberDto) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            ra.addFlashAttribute("msg", "로그인이 필요합니다.");
+            return "redirect:/loginForm";
+        }
+
+        boolean result = paymentService.cancelPayment(impUid, amount);
+        ra.addFlashAttribute("msg", result ? "결제 취소 완료" : "결제 취소 실패");
+        return "redirect:/payment/paymentList";
+    }
+    
 }
 
 

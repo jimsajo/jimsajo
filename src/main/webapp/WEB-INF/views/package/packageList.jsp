@@ -15,20 +15,24 @@
     <li><a href="/packagelist/country?pCountry=Malaysia">말레이시아</a></li>
     <li><a href="/packagelist/country?pCountry=Indonesia">인도네시아</a></li>
 </ul>
-	<h1>패키지 상품 리스트</h1>
-	<c:forEach var="dto" items="${packageList}">
+<h1>패키지 상품 리스트</h1>
+
+<c:forEach var="dto" items="${packageList}">
     <p>
-    <a href="/package/detail?pNum=${dto.pNum}">제목: ${dto.pName}</a>
+        <a href="/package/detail/${dto.pNum}">제목: ${dto.pName}</a>
     </p>
     <p>국가: ${dto.pCountry}</p>
     <p>작성일: ${dto.pCreate}</p>
-    <p>내용:</p>
-    <div>${dto.pDescription}</div>
-     <hr>
-     <form name="payment" action="/pay" method="get">
-	    <input type="hidden" name="pNum" value="${dto.pNum}">
-	    <input type="submit" value="결제하기">
-	</form>
-	</c:forEach>
+    
+    <!-- 썸네일 이미지 표시 -->
+  <c:if test="${not empty dto.pImage}">
+    <img src="/uploads/images/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;"/>
+</c:if>
+
+    <p>
+        <hr>
+    </p>
+</c:forEach>
+
 </body>
 </html>

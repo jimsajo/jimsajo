@@ -15,6 +15,7 @@ public class GoodService {
 		return iGoodMapper.countGood(rNum);
 	}
 	
+
 	public boolean isGoodByUser(int rNum, int mNum)throws Exception{
 		return iGoodMapper.isGood(rNum, mNum) > 0;
 	}
@@ -24,6 +25,19 @@ public class GoodService {
 			iGoodMapper.deleteGood(rNum, mNum);
 		}else {
 			iGoodMapper.insertGood(rNum, mNum);
+
 		}
+	}
+
+
+	public boolean isGoodByUser(ReviewGoodDto reviewGoodDto) {
+	
+		return false;
+	}
+
+
+	public void toggleGood(ReviewGoodDto reviewGoodDto) {
+
+		
 	}
 }

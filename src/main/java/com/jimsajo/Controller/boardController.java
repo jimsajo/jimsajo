@@ -19,8 +19,8 @@ import com.jimsajo.Mapper.memberMapper;
 
 @Controller
 public class boardController {
-	
-	@Autowired
+
+    @Autowired
     boardMapper mapper;
 	@Autowired
 	memberMapper mMapper;
@@ -32,7 +32,6 @@ public class boardController {
         model.addAttribute("boards", list);
         return "board/board";
     }
-    // 공지사항 폼(관리자만 접근 가능)
     @RequestMapping("/newBoard")
     public String newBoard() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -47,6 +46,7 @@ public class boardController {
 
         return "board/boardForm";
     }
+
 
     @RequestMapping("/boardSave")
     public String saveBoard(boardDto dto) throws Exception {
@@ -76,7 +76,6 @@ public class boardController {
     }
 
 
-    
     // 상세 보기
     @RequestMapping("/board/{bNum}/detail")
     public String detailBoard(@PathVariable int bNum, Model model) throws Exception{
@@ -85,7 +84,7 @@ public class boardController {
         model.addAttribute("board", board);
         return "board/boardDetail";
     }
-    
+
     // 수정 폼
     @RequestMapping("/board/{bNum}/update")
     public String updateBoard(@PathVariable int bNum, Model model) throws Exception {
@@ -93,27 +92,19 @@ public class boardController {
         model.addAttribute("board", board);
         return "board/boardUpdate";
     }
-    
-    // 수정처리 
+
+    // 수정처리
     @RequestMapping("/boardUpdate")
     public String updateBoard(boardDto dto) throws Exception {
-    	dto.setbTime(LocalDate.now());
+        dto.setbTime(LocalDate.now());
         mapper.updateBoard(dto);
         return "redirect:/board/" + dto.getbNum() + "/detail";
     }
-    
+
     // 삭제하기
     @RequestMapping("board/{bNum}/delete")
     public String deleteBoard(@PathVariable int bNum) throws Exception{
-    	mapper.deleteBoard(bNum);
+        mapper.deleteBoard(bNum);
         return "redirect:/board";
-
     }
-    
-    // 사용자가 공지사항 글쓰기에 접근 했을때
-    @RequestMapping("/accessDenied")
-    public String accessDenied() {
-    	return "board/accessDenied";
-    }
-}	
-
+}

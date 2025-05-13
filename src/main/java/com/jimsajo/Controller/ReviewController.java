@@ -1,7 +1,5 @@
 package com.jimsajo.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jimsajo.Dto.CommentDto;
+
 import com.jimsajo.Dto.ReviewDto;
+import com.jimsajo.Dto.ReviewGoodDto;
 import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Service.CommentService;
 import com.jimsajo.Service.GoodService;
@@ -32,24 +31,34 @@ public class ReviewController {
 	@Autowired //좋아요
 	private GoodService goodService;
 	
-	@RequestMapping("/reviewForm")
+	@RequestMapping("/review")
 	public String root() {
 		return "review/reviewForm"; //리뷰 작성 홈
 	}
 	
 	@RequestMapping("reviewSave")
 	public String reviewSave(@ModelAttribute ReviewDto reviewDto,
-							 @RequestParam("file") MultipartFile file,
-							 HttpSession session) {
-		
-		memberDto loginUser = (memberDto)session.getAttribute("loginUser");
-		if(loginUser != null) {
-			reviewDto.setMNum(loginUser.getmNum()); //로그인 사용자 ID설정
-		}
-		
-		reviewService.saveReview(reviewDto, file);
-		return "redirect:/review/reviewList"; //리뷰저장
+	                         @RequestParam("file") MultipartFile file,
+	                         HttpSession session) {
+	    // 세션에서 로그인된 사용자 정보 가져오기
+	    memberDto loginUser = (memberDto) session.getAttribute("loginMember");
+
+	    // 로그인되지 않은 사용자의 경우 로그인 페이지로 리다이렉트
+	    if (loginUser == null) {
+	        return "redirect:/login"; // 로그인 페이지로 리다이렉트
+	    }
+
+	    // 로그인된 사용자의 mNum을 리뷰 DTO에 설정
+	    reviewDto.setMNum(loginUser.getmNum());
+	    
+	    // 리뷰 저장 서비스 호출
+	    reviewService.saveReview(reviewDto, file);
+	    
+	    // 리뷰 목록 페이지로 리다이렉트
+	    return "redirect:/review/reviewList"; 
 	}
+
+
 	
 	@RequestMapping("reviewList")
 	public String reviewList(Model model)throws Exception{
@@ -97,21 +106,19 @@ public class ReviewController {
 		//조회수 증가
 		reviewService.increaseViewCount(rNum);
 		
-		// 좋아요 수 및 사용자 좋아요 여부 조회 
+		//좋아요 
+		ReviewGoodDto reviewGoodDto = new ReviewGoodDto();
+		reviewGoodDto.setRNum(rNum);
+		if(loginUser != null){
+			reviewGoodDto.setMNum(loginUser.getmNum());
+		}
 		int goodCount = goodService.getGoodCnt(rNum);
-	    boolean goodByUser = false;
-	    if (loginUser != null) {
-	        goodByUser = goodService.isGoodByUser(rNum, loginUser.getmNum());
-	    }
-
-	    // 댓글 리스트 가져오기
-	    List<CommentDto> comments = commentService.getCommentByReview(rNum);
+		boolean goodByUser = loginUser != null && goodService.isGoodByUser(reviewGoodDto);
 		
-		// 모델에 데이터 추가
 		model.addAttribute("goodCnt", goodCount);
 		model.addAttribute("goodByUser", goodByUser);
 		model.addAttribute("review",review);
-		model.addAttribute("comments", comments);
+		model.addAttribute("comments", commentService.getFlatCommentsWithDepth(rNum)); //댓글
 		return "review/reviewDetail"; //리뷰 상세보기
 	}
 	
@@ -135,15 +142,13 @@ public class ReviewController {
 	
 	//좋아용
 	@RequestMapping("toggleGood")
-	public String toggleGood(@RequestParam int rNum, HttpSession session, RedirectAttributes ra) throws Exception{
+	public String toggleGood(@ModelAttribute ReviewGoodDto reviewGoodDto, HttpSession session) throws Exception{
 		memberDto loginUser = (memberDto)session.getAttribute("loginUser");
-		if(loginUser == null) {
-			 ra.addFlashAttribute("msg", "로그인이 필요합니다.");
-		        return "redirect:/loginForm";
+		if(loginUser != null) {
+			reviewGoodDto.setMNum(loginUser.getmNum());
+			goodService.toggleGood(reviewGoodDto);
 		}
-		int mNum = loginUser.getmNum();
-		goodService.toggleGood(rNum, mNum);
-	    return "redirect:/reviewDetail/" + rNum;
+		return "redirect:/review/reviewDetail/"+reviewGoodDto.getRNum();
 	}
 	
 }

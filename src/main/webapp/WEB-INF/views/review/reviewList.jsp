@@ -30,6 +30,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/">리뷰쓰기</a>
+	<a href="/review">리뷰쓰기</a>
 </body>
 </html>

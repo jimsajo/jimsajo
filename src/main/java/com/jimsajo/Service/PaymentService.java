@@ -24,7 +24,7 @@ import com.jimsajo.Mapper.IPaymentMapper;
 public class PaymentService {
 
 	@Autowired
-	private IPaymentMapper iPaymentDao;
+	private IPaymentMapper iPaymentMapper;
 
 	private final String impKey = "7147215444520710";
 	private final String impSecret = "T20TfyhxdHXEaXYxb2bfwqBw60fxBA0tgrK20xta87zgTQns9ogBDSgdr3HGqKWONe3Cro83mVOQlnmi";
@@ -39,7 +39,7 @@ public class PaymentService {
 		Map<String, String> map = Map.of("imp_key", impKey, "imp_secret", impSecret);
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(map);
-
+ 
 		try (OutputStream os = conn.getOutputStream()) {
 			os.write(json.getBytes());
 		}
@@ -50,6 +50,7 @@ public class PaymentService {
 			return node.path("response").path("access_token").asText();
 		}
 	}
+
 
 	public void verifyAndSave(String impUid, int pNum, int mNum) throws IOException {
 	    String token = getAccessToken();
@@ -76,8 +77,44 @@ public class PaymentService {
 	        }
 	        payment.setPNum(pNum);
 	        payment.setMNum(mNum);
-	        iPaymentDao.insertPayment(payment);
+	        iPaymentMapper.insertPayment(payment);
 	    }
+
+	}
+	
+	public boolean cancelPayment(String impUid, int amount) throws IOException {
+	    String token = getAccessToken();
+
+	    URL url = new URL("https://api.iamport.kr/payments/cancel");
+	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	    conn.setRequestMethod("POST");
+	    conn.setRequestProperty("Authorization", token);
+	    conn.setRequestProperty("Content-Type", "application/json");
+	    conn.setDoOutput(true);
+
+	    ObjectMapper mapper = new ObjectMapper();
+	    Map<String, Object> body = Map.of(
+	        "imp_uid", impUid,
+	        "amount", amount,
+	        "reason", "사용자 요청 취소"
+	    );
+
+	    String json = mapper.writeValueAsString(body);
+	    try (OutputStream os = conn.getOutputStream()) {
+	        os.write(json.getBytes());
+	    }
+
+	    try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+	        String response = br.lines().collect(Collectors.joining());
+	        JsonNode jsonNode = mapper.readTree(response);
+	     // ✅ 아임포트에서 응답 코드가 0이면 취소 성공
+	        if (jsonNode.path("code").asInt() == 0) {
+	            iPaymentMapper.updatePaymentStatus(impUid, "cancelled"); // ← 이곳!
+	            return true;
+	        }
+	    }
+	    // ❗실패 시 false 반환
+	    return false;
 	}
 }
 

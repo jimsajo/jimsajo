@@ -63,15 +63,14 @@
 	<a href="/updateReview/${review.rNum}">[수정]</a>
   	<a href="/deleteReview/${review.rNum}" onclick="return confirm('삭제하시겠습니까?');">[삭제]</a>
   	<a href="/reviewList">[목록으로]</a>
+  	
   	<h3>댓글</h3>
   	<hr>
   	<!-- 댓글/대댓글 출력 -->
 	<c:forEach var="comment" items="${comments}">
-		<jsp:include page="commentItem.jsp">
-		    <jsp:param name="depth" value="0"/>
-		    <jsp:param name="comment" value="${comment}"/>
-		</jsp:include>
-	</c:forEach>
+	    <c:set var="commentItem" value="${comment}" />
+	    <jsp:include page="commentItem.jsp" />
+  	</c:forEach>
 
 	<!-- 최상위 댓글 작성 -->
 	<form action="/commentAdd" method="post" style="margin-top: 20px;">

@@ -4,32 +4,46 @@
 
 <mapper namespace="com.jimsajo.Mapper.PackageMapper">
 
+    <!-- 패키지 등록 -->
     <insert id="insertPackage" parameterType="com.jimsajo.Dto.PackageDto">
-        INSERT INTO package (pName, pCountry, pDescription, pCreate, pPrice)
-    		VALUES (#{pName}, #{pCountry}, #{pDescription}, #{pCreate}, #{pPrice})
+        INSERT INTO package (pName, pCountry, pDescription, pCreate, pPrice, pImage)
+        VALUES (#{pName}, #{pCountry}, #{pDescription}, #{pCreate}, #{pPrice}, #{pImage})
     </insert>
-    
+
+    <!-- 전체 패키지 목록 조회 -->
     <select id="selectPackage" resultType="com.jimsajo.Dto.PackageDto">
         SELECT * FROM package
     </select>
-    <!-- Mapper.xml 예시 -->
-	<select id="selectPackageById" resultType="com.jimsajo.Dto.PackageDto">
-	    SELECT * FROM package WHERE pNum = #{pNum}
-	</select>
-	<update id="updatePackage" parameterType="com.jimsajo.Dto.PackageDto">
-	    UPDATE package
-	     SET pName = #{pName}, pCountry = #{pCountry}, pDescription = #{pDescription}, pPrice = #{pPrice}	    
-	     WHERE pNum = #{pNum}
-	</update>
-	
-	<delete id="deletePackage" parameterType="Integer">
-	    DELETE FROM package WHERE pNum = #{pNum}
-	</delete>
-	
-	
-	 <select id="selectPackageByCountry" parameterType="String" resultType="com.jimsajo.Dto.PackageDto">
-    	SELECT * FROM package WHERE pCountry = #{pCountry}
-	</select>
-    
+
+    <!-- 특정 패키지 조회 -->
+    <select id="selectPackageById" resultType="com.jimsajo.Dto.PackageDto">
+        SELECT * FROM package WHERE pNum = #{pNum}
+    </select>
+
+    <!-- 패키지 수정 -->
+    <update id="updatePackage" parameterType="com.jimsajo.Dto.PackageDto">
+        UPDATE package
+        SET 
+            pName = #{pName}, 
+            pCountry = #{pCountry}, 
+            pDescription = #{pDescription}, 
+            pCreate = #{pCreate}, 
+            pPrice = #{pPrice}, 
+            pImage = #{pImage}
+        WHERE pNum = #{pNum}
+    </update>
+
+    <!-- 패키지 삭제 -->
+    <delete id="deletePackage">
+        DELETE FROM package WHERE pNum = #{pNum}
+    </delete>
+
+    <!-- 국가별 패키지 조회 -->
+    <select id="selectPackageByCountry" resultType="com.jimsajo.Dto.PackageDto">
+        SELECT * FROM package WHERE pCountry = #{pCountry}
+    </select>
 
 </mapper>
+
+
+

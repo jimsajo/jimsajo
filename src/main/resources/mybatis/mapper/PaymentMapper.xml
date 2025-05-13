@@ -5,6 +5,7 @@
 <mapper namespace="com.jimsajo.Mapper.IPaymentMapper">
 	<insert id="insertPayment" parameterType="com.jimsajo.Dto.PaymentDto">
 		INSERT INTO payment
+
 		(imp_uid, merchant_uid, pay_method, pay_amount, pay_status, paid_at, created_at, pNum)
 		 VALUES
 		(#{impUid}, #{merchantUid}, #{payMethod}, #{payAmount}, #{payStatus}, #{paidAt}, NOW(), #{pNum})
@@ -27,5 +28,13 @@
 	    FROM payment p
 	    JOIN package pkg ON p.pNum = pkg.pNum
 	    ORDER BY p.payment_id DESC
+
 	</select>
+	
+	<update id="updatePaymentStatus">
+		UPDATE payment
+		 SET pay_status = #{status}
+		 WHERE imp_uid = #{impUid}
+	</update>
+	
 </mapper>
