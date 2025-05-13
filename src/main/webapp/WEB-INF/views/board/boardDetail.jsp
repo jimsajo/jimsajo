@@ -8,6 +8,8 @@
 <title>공지사항 상세보기</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 	<h3>${board.bTitle}</h3>
 	<p>작성자 : ${board.mName} | 작성시간 : ${board.bTime} | 조회수 : ${board.bCnt}</p>
 	<hr/>

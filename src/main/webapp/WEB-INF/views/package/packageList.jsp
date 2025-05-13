@@ -7,6 +7,8 @@
 <title>패키지 리스트</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 <h3>국가별 보기</h3>
 <ul>
     <li><a href="/packagelist/country?pCountry=Vietnam">베트남</a></li>
@@ -26,7 +28,8 @@
     
     <!-- 썸네일 이미지 표시 -->
   <c:if test="${not empty dto.pImage}">
-    <img src="/uploads/images/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;"/>
+    <img src="${pageContext.request.contextPath}/uploads/images/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;">
+
 </c:if>
 
     <p>

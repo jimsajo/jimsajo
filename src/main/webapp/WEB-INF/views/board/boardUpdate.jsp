@@ -7,6 +7,8 @@
 <title>공지사항 수정</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 	<form name="boardUpdate" method="post" action="/boardUpdate" enctype="multidata/form">
 		<input type="hidden" name="bNum" value="${board.bNum}">
 		

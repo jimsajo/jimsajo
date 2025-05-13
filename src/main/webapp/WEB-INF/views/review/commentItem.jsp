@@ -9,6 +9,8 @@
 <title>리뷰 댓글</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 <div style="margin-left: ${commentItem.depth * 30}px; border-left: 1px solid #ccc; padding: 10px; margin-top: 10px;">
 
     <p>

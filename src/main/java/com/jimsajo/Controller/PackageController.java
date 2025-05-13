@@ -101,17 +101,54 @@ public class PackageController {
     public String updatePackageForm(@PathVariable Integer pNum, Model model) {
         PackageDto packageDto = packageService.getPackageById(pNum);  // 메소드 수정
         
-        model.addAttribute("packageDto", packageDto);
+        model.addAttribute("dto", packageDto);
         return "package/packageEdit"; // 수정 페이지로 이동
     }
 
-    // 패키지 수정 처리
     @PostMapping("/package/update")
     public String updatePackage(@ModelAttribute PackageDto packageDto, RedirectAttributes redirectAttributes) {
+        // 업로드된 파일이 있는지 확인
+        if (packageDto.getUploadFile() != null && !packageDto.getUploadFile().isEmpty()) {
+            // 새로운 이미지 파일이 업로드된 경우
+            String uploadDir = this.uploadDir; // application.properties에서 설정된 경로 사용
+            String filename = packageDto.getUploadFile().getOriginalFilename();
+            File saveDir = new File(uploadDir);
+
+            // 디렉토리가 없으면 생성
+            if (!saveDir.exists()) {
+                saveDir.mkdirs();
+            }
+
+            try {
+                // 기존 이미지 파일 삭제 (있는 경우에만)
+                if (packageDto.getpImage() != null && !packageDto.getpImage().isEmpty()) {
+                    File oldFile = new File(uploadDir + "/" + packageDto.getpImage()); // 경로 수정
+                    if (oldFile.exists()) {
+                        oldFile.delete();  // 기존 파일 삭제
+                    }
+                }
+
+                // 새로운 파일 저장
+                String newFileName = UUID.randomUUID().toString() + "_" + filename;
+                File saveFile = new File(saveDir, newFileName);
+                packageDto.getUploadFile().transferTo(saveFile);
+                packageDto.setpImage(newFileName);  // DTO에 새로운 이미지 경로 저장
+            } catch (Exception e) {
+                e.printStackTrace();
+                // 예외 처리
+            }
+        } else {
+            // 이미지가 업로드되지 않으면 기존 이미지 경로 사용
+            // 이 부분은 사실 필요없을 수 있음
+        }
+
+        // 패키지 업데이트 처리
         packageService.updatePackage(packageDto);
         redirectAttributes.addFlashAttribute("message", "패키지가 수정되었습니다.");
         return "redirect:/packagelist";  // 목록 페이지로 리다이렉트
     }
+
+
 
     // 패키지 삭제
     @PostMapping("/package/delete")
@@ -131,16 +168,19 @@ public class PackageController {
         }
 
         try {
+            // 파일명 생성
             String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-            File saveDir = new File(uploadDir);
+            File saveDir = new File(uploadDir);  // 실제 저장 경로
             if (!saveDir.exists()) {
-                saveDir.mkdirs();
+                saveDir.mkdirs();  // 디렉토리가 없으면 생성
             }
 
             File saveFile = new File(saveDir, fileName);
-            file.transferTo(saveFile);
+            file.transferTo(saveFile);  // 파일 저장
 
-            response.put("url", "/upload/" + fileName);  // CKEditor가 요구하는 응답 필드
+            // 웹 경로로 반환 (예: http://localhost:8080/uploads/images/{fileName})
+            String fileUrl = "/uploads/images/" + fileName;  // 실제 파일 경로와 웹 경로 연결
+            response.put("url", fileUrl);  // CKEditor와 같은 클라이언트에서 사용되는 경로
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -148,4 +188,5 @@ public class PackageController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
 }

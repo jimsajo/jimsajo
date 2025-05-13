@@ -6,6 +6,8 @@
     <title>공지사항 작성</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
     <form name="form" method="post" action="boardSave" enctype="multipart/form-data">
         <div>
             <label for="bTitle">제목: </label>
