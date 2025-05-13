@@ -39,7 +39,7 @@ public class PaymentService {
 		Map<String, String> map = Map.of("imp_key", impKey, "imp_secret", impSecret);
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(map);
-
+ 
 		try (OutputStream os = conn.getOutputStream()) {
 			os.write(json.getBytes());
 		}
