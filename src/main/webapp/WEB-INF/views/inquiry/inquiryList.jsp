@@ -5,6 +5,8 @@
     <title>문의 목록</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 <h2>문의 목록</h2>
 <table border="1" width="700">
     <thead>

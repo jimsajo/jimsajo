@@ -5,6 +5,8 @@
     <title>문의 수정</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 <h2>문의 수정</h2>
 <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 <form action="/inquiry/update" method="POST">
@@ -20,15 +22,17 @@
 
 <a href="/inquiry/inquiryList">목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
 <script>
-  ClassicEditor
+    ClassicEditor
     .create(document.querySelector('#editor'), {
-      ckfinder: {
-        uploadUrl: '/upload-image' // Spring Boot 업로드 API
-      }
+        ckfinder: {
+            uploadUrl: '/api/upload-package-image'  // 패키지 업로드 URL 지정 (다른 URL로 수정)
+        },
+        toolbar: ['heading', '|', 'bold', 'italic', '|', 'link', 'imageUpload']
     })
     .catch(error => {
-      console.error(error);
+        console.error(error);
     });
+
 </script>
 </body>
 </html>

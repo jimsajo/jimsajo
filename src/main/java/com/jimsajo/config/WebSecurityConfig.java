@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,10 +20,9 @@ public class WebSecurityConfig {
     @Autowired
     private CustomOAuth2UserService customOAuth2UserService;
     
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance(); // 보안상 매우 위험
+        return NoOpPasswordEncoder.getInstance(); // 비밀번호 암호화 시키지 않음
     }
     
     @Bean
@@ -32,9 +32,9 @@ public class WebSecurityConfig {
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(request -> request
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/", "/css/**", "/js/**", "/images/**","/package/**", "/checkId").permitAll()
                 .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board").permitAll()
-                .requestMatchers("/newBoard", "/boardSave").hasRole("admin")
+                .requestMatchers("/newBoard", "/boardSave","/package").hasRole("admin")
                 .requestMatchers("/member/**").hasAnyRole("user", "admin")
                 .requestMatchers("/admin/**").hasRole("admin")
                 .anyRequest().authenticated()
@@ -59,12 +59,24 @@ public class WebSecurityConfig {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()
-            );
+            )
+            .exceptionHandling(ex -> 
+            ex.accessDeniedHandler((request, response, accessDeniedException) -> {
+                String uri = request.getRequestURI();
+                if (uri.startsWith("/package")) {
+                    response.sendRedirect("/accessDeniedPackage");
+                } else {
+                    response.sendRedirect("/accessDeniedBoard");
+                }
+            })
+        );
+
+        	
 
         return http.build();
     }
 
-//    // 비밀번호 암호화기
+
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
 //        return PasswordEncoderFactories.createDelegatingPasswordEncoder();

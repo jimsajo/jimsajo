@@ -2,6 +2,8 @@
 <html>
 <head><title>리뷰 작성</title></head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
   <h2>리뷰 작성</h2>
   <form name="reviewForm" method="post" action="/reviewSave" enctype="multipart/form-data">
     <p>
