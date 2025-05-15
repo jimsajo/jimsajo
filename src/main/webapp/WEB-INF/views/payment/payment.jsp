@@ -7,6 +7,8 @@
   <script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
   <h2>패키지 결제</h2>
 
   <form name="payment-form" id="payment-form" method="post">

@@ -9,6 +9,8 @@
 <title>마이페이지</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 
 <c:if test="${not empty sessionScope.mId}">
     <p>${sessionScope.loginUser.mName}님 환영합니다!</p>
@@ -17,7 +19,7 @@
 	<form name = "myPage" method ="post">
 		<div>
 			<label for = "inquiry"></label>
-			<a href = "#">1대1 문의</a>
+			<a href = "/inquiry">1대1 문의</a>
 		</div>
 		
 		<div>
@@ -33,7 +35,7 @@
 		<sec:authorize access="hasRole('ROLE_admin')">
 		<div>
 			<label for = "package"></label>
-			<a href = "#">상품등록</a>
+			<a href = "/package">상품등록</a>
 		</div>
 		</sec:authorize>
 		

@@ -7,6 +7,9 @@
 <title>공지사항 수정</title>
 </head>
 <body>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+<a href="/"><img src="/images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 	<form name="boardUpdate" method="post" action="/boardUpdate" enctype="multidata/form">
 		<input type="hidden" name="bNum" value="${board.bNum}">
 		
@@ -17,10 +20,22 @@
 		
 		<div>
 			<label for="bContent">내용:</label>
-			<textarea id="bContent" name="bContent" cols="10" rows="10">${board.bContent}</textarea>
+			<textarea id="editor" name="bContent" cols="10" rows="10">${board.bContent}</textarea>
 		</div>
 		
 		<input type="submit" value="수정완료">
 	</form>
+	<script>
+    ClassicEditor
+    .create(document.querySelector('#editor'), {
+        ckfinder: {
+            uploadUrl: '/api/upload-package-image'  // 패키지 업로드 URL 지정 (다른 URL로 수정)
+        },
+        toolbar: ['heading', '|', 'bold', 'italic', '|', 'link', 'imageUpload']
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    </script>
 </body>
 </html>

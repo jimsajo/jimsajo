@@ -7,6 +7,8 @@
 <title>답변 수정</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 	<h2>답변 수정</h2>
 		<form action="/answer/update" method="post">
 		    <input type="hidden" name="aNum" value="${answer.aNum}" />

@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 	<form action="loginProcess" method="post">
     	아이디: <input type="text" name="mId" /><br/>
     	비밀번호: <input type="password" name="mPasswd" /><br/>

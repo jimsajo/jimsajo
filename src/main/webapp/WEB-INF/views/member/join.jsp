@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 	<form class="form-container" name = "member" method = "post" action = "save" >
     <!-- 상단 테이블 3 input -->
     <table class="form-table">

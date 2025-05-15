@@ -36,12 +36,16 @@ public class boardController {
     public String newBoard() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
+        if (auth == null || !auth.isAuthenticated()) {
+            return "redirect:/login";
+        }
+
         boolean isAdmin = auth.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority)
-            .anyMatch(role -> role.equals("ROLE_admin")); // 중요: ROLE_ 접두어
+            .anyMatch(role -> role.equals("ROLE_admin")); 
 
         if (!isAdmin) {
-            return "redirect:/accessDenied";
+            return "redirect:/board/accessDenied"; // 슬래시(/) 빠지지 않게 주의
         }
 
         return "board/boardForm";

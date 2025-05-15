@@ -68,41 +68,37 @@ public class memberController {
 	    if (auth == null || !auth.isAuthenticated()) {
 	        return "redirect:/login";
 	    }
-
 	    String loginUserId = ((User) auth.getPrincipal()).getUsername();
 	    memberDto member = mapper.findBy(loginUserId);
 
 	    model.addAttribute("member", member); // ← 기존에는 loginUser (String)만 넣었음
 	    return "member/memberUpdate";
 	}
-	
+
 	//회원정보 수정 처리
 	@RequestMapping("/memberUpdateProcess")
 	public String updateMemberProcess(@ModelAttribute memberDto member, HttpSession session) {
-		String encodedPassword = passwordEncoder.encode(member.getmPasswd());
-		member.setmPasswd(encodedPassword);
-        mapper.updatePasswordAndTel(member);
-
-        // 세션 갱신
-        memberDto updated = mapper.findBy(member.getmId());
-        session.setAttribute("loginUser", updated);
-
-        return "redirect:/myPage";
+	    memberDto loginUser = (memberDto) session.getAttribute("loginUser");    
+	    if (loginUser == null || !loginUser.getmId().equals(member.getmId())) {
+	        return "redirect:/login";
+	    }
+	    mapper.updatePasswordAndTel(member);
+	    return "redirect:/myPage";
 	}
 
-	
 	//회원 탈퇴
 	@RequestMapping("/memberDelete")
 	public String deleteMember(HttpSession session) throws Exception {
-		memberDto loginUser = (memberDto) session.getAttribute("loginUser");  // 로그인 시 저장했던 키 사용
-
-		if (loginUser != null) {
-            mapper.deleteMember(loginUser.getmNum());
-            session.invalidate();
-	        return "redirect:/"; // 탈퇴 후 메인으로
+	    memberDto loginUser = (memberDto) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        Integer mNum = loginUser.getmNum(); // 세션에 저장된 객체에서 꺼냄
+	        mapper.deleteMember(mNum);
+	        session.invalidate();
+	        return "redirect:/"; // 탈퇴 후 메인으로 이동
 	    } else {
 	        return "redirect:/login";
 	    }
 	}
+
 
 }

@@ -1,7 +1,8 @@
 package com.jimsajo.Service;
 
-import com.jimsajo.Dto.PackageDto;
 import java.util.List;
+
+import com.jimsajo.Dto.PackageDto;
 
 public interface PackageService {
 
@@ -22,4 +23,12 @@ public interface PackageService {
 
     // 국가별 패키지 조회
     List<PackageDto> getPackagesByCountry(String pCountry);
+    
+    // 추천하기 (패키지 추천 등록)
+    void recommendPackage(Integer pNum);
+
+    // 추천된 패키지 목록 조회
+    List<PackageDto> getRecommendedPackages();
+    
+	
 }

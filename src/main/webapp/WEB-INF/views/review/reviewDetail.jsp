@@ -9,6 +9,8 @@
 <title>리뷰 상세보기</title>
 </head>
 <body>
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
 	<h2>리뷰 상세보기</h2>
 	<hr>
 	<table>
@@ -40,7 +42,7 @@
 			<td>이미지</td>
 			<td>
 				<c:if test="${not empty review.rImage}">
-          			<img src="../../images/${review.rImage}" style="max-width:300px;">
+          			<img src="/assets/img/package/${review.rImage}" style="max-width:300px;">
         		</c:if>
 			</td>
 		</tr>

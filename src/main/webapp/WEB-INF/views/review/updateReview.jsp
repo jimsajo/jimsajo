@@ -8,8 +8,10 @@
 <title>리뷰수정</title>
 </head>
 <body>
-  <h2>리뷰 수정</h2>
-  <form method="post" action="${pageContext.request.contextPath}/review/updateReview" enctype="multipart/form-data">
+<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+
+	 <h2>리뷰 수정</h2>
+  	<form method="post" action="${pageContext.request.contextPath}/review/updateReview" enctype="multipart/form-data">
     <input type="hidden" name="rNum" value="${upReview.rNum}">
     <input type="hidden" name="mNum" value="${sessionScope.loginUser.mNum}">
 

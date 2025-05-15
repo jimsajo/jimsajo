@@ -42,6 +42,23 @@
     <select id="selectPackageByCountry" resultType="com.jimsajo.Dto.PackageDto">
         SELECT * FROM package WHERE pCountry = #{pCountry}
     </select>
+   
+	   <!-- 추천 여부 확인 -->
+	<select id="checkPackageRecommendation" resultType="int">
+	    SELECT COUNT(*) FROM recommendations WHERE package_id = #{pNum}
+	</select>
+	
+	<!-- 추천 등록 -->
+	<insert id="insertPackageRecommendation" parameterType="int">
+	    INSERT INTO recommendations (package_id) VALUES (#{pNum})
+	</insert>
+	
+	<!-- 추천된 패키지 목록 조회 -->
+	<select id="selectRecommendedPackages" resultType="com.jimsajo.Dto.PackageDto">
+	    SELECT p.*
+	    FROM package p
+	    INNER JOIN recommendations r ON p.pNum = r.package_id
+	</select>
 
 </mapper>
 
