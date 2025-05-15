@@ -5,31 +5,33 @@
 <mapper namespace="com.jimsajo.Mapper.IPaymentMapper">
 	<insert id="insertPayment" parameterType="com.jimsajo.Dto.PaymentDto">
 		INSERT INTO payment
-
-		(imp_uid, merchant_uid, pay_method, pay_amount, pay_status, paid_at, created_at, pNum)
-		 VALUES
-		(#{impUid}, #{merchantUid}, #{payMethod}, #{payAmount}, #{payStatus}, #{paidAt}, NOW(), #{pNum})
+    	 (imp_uid, merchant_uid, pay_method, pay_amount, pay_status, paid_at, created_at, pNum, mNum, oNum)
+    	 VALUES
+    	 (#{impUid}, #{merchantUid}, #{payMethod}, #{payAmount}, #{payStatus}, #{paidAt}, NOW(), #{pNum}, #{mNum}, #{oNum})
 
 	</insert>
+	
+	<!--  resultMap 명시 (pName, pPrice 포함 매핑) -->
+    <resultMap id="PaymentResultMap" type="com.jimsajo.Dto.PaymentDto">
+        <id property="paymentId" column="payment_id"/>
+        <result property="impUid" column="imp_uid"/>
+        <result property="merchantUid" column="merchant_uid"/>
+        <result property="payMethod" column="pay_method"/>
+        <result property="payAmount" column="pay_amount"/>
+        <result property="payStatus" column="pay_status"/>
+        <result property="paidAt" column="paid_at"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="pNum" column="pNum"/>
+        <result property="mNum" column="mNum"/>
+        <result property="oNum" column="oNum"/>
+        <result property="pName" column="pName"/>
+        <result property="pPrice" column="pPrice"/>
+    </resultMap>
 
 	<select id="selectPayment" resultType="com.jimsajo.Dto.PaymentDto">
-		SELECT 
-	      p.payment_id,
-	      p.imp_uid,
-	      p.merchant_uid,
-	      p.pay_method,
-	      p.pay_amount,
-	      p.pay_status,
-	      p.paid_at,
-	      p.created_at,
-	      p.pNum,
-	      pkg.pName,
-	      pkg.pPrice
-	    FROM payment p
-	    JOIN package pkg ON p.pNum = pkg.pNum
-	    ORDER BY p.payment_id DESC
-
+		select * from payment order by payment_id desc;
 	</select>
+
 	
 	<update id="updatePaymentStatus">
 		UPDATE payment

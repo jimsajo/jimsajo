@@ -52,7 +52,7 @@ public class PaymentService {
 	}
 
 
-	public void verifyAndSave(String impUid, int pNum, int mNum) throws IOException {
+	public void verifyAndSave(String impUid, int pNum, int mNum, int oNum) throws IOException {
 	    String token = getAccessToken();
 	    URL url = new URL("https://api.iamport.kr/payments/" + impUid);
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -75,8 +75,9 @@ public class PaymentService {
 	            payment.setPaidAt(LocalDateTime.ofInstant(
 	                Instant.ofEpochSecond(paymentInfo.get("paid_at").asLong()), ZoneId.systemDefault()));
 	        }
-	        payment.setPNum(pNum);
-	        payment.setMNum(mNum);
+	        payment.setpNum(pNum);
+	        payment.setmNum(mNum);
+	        payment.setoNum(oNum);
 	        iPaymentMapper.insertPayment(payment);
 	    }
 

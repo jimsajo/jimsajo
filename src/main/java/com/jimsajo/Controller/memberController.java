@@ -3,6 +3,8 @@ package com.jimsajo.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,33 +64,41 @@ public class memberController {
 	}
 	//회원 정보 수정 페이지
 	@RequestMapping("/memberUpdate")
-	public String updateMemberForm(HttpSession session, Model model) throws Exception {
-	    String mId = (String) session.getAttribute("mId");
-	    if (mId == null) {
+	public String updateMember(Authentication auth, Model model) {
+	    if (auth == null || !auth.isAuthenticated()) {
 	        return "redirect:/login";
 	    }
 
-	    memberDto member = mapper.findBy(mId); // 로그인한 회원의 정보 조회
-	    model.addAttribute("member", member); // JSP에서 사용 가능하도록 모델에 저장
-	    return "member/memberUpdate"; // myPage.jsp로 이동
+	    String loginUserId = ((User) auth.getPrincipal()).getUsername();
+	    memberDto member = mapper.findBy(loginUserId);
+
+	    model.addAttribute("member", member); // ← 기존에는 loginUser (String)만 넣었음
+	    return "member/memberUpdate";
 	}
 	
 	//회원정보 수정 처리
 	@RequestMapping("/memberUpdateProcess")
-	public String updateMember(@ModelAttribute memberDto member) {
-	    mapper.updatePasswordAndTel(member);  // 아래 mapper 참고
-	    return "redirect:/myPage";
+	public String updateMemberProcess(@ModelAttribute memberDto member, HttpSession session) {
+		String encodedPassword = passwordEncoder.encode(member.getmPasswd());
+		member.setmPasswd(encodedPassword);
+        mapper.updatePasswordAndTel(member);
+
+        // 세션 갱신
+        memberDto updated = mapper.findBy(member.getmId());
+        session.setAttribute("loginUser", updated);
+
+        return "redirect:/myPage";
 	}
 
 	
 	//회원 탈퇴
 	@RequestMapping("/memberDelete")
 	public String deleteMember(HttpSession session) throws Exception {
-	    Integer mNum = (Integer) session.getAttribute("mNum");  // 로그인 시 저장했던 키 사용
+		memberDto loginUser = (memberDto) session.getAttribute("loginUser");  // 로그인 시 저장했던 키 사용
 
-	    if (mNum != null) {
-	        mapper.deleteMember(mNum);
-	        session.invalidate();
+		if (loginUser != null) {
+            mapper.deleteMember(loginUser.getmNum());
+            session.invalidate();
 	        return "redirect:/"; // 탈퇴 후 메인으로
 	    } else {
 	        return "redirect:/login";

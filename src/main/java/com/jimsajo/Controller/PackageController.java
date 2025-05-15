@@ -148,4 +148,9 @@ public class PackageController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+    @GetMapping("/api/packages")
+    @ResponseBody
+    public List<PackageDto> getPackagesByCountry(@RequestParam("country") String country) {
+        return packageService.getPackagesByCountry(country);
+    }
 }

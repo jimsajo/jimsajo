@@ -23,12 +23,18 @@
     </p>
     <p>국가: ${dto.pCountry}</p>
     <p>작성일: ${dto.pCreate}</p>
+    <p>가격: <strong>${dto.pPrice} 원</strong></p>
     
     <!-- 썸네일 이미지 표시 -->
-  <c:if test="${not empty dto.pImage}">
-    <img src="/uploads/images/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;"/>
-</c:if>
-
+ 	<c:if test="${not empty dto.pImage}">
+    	<img src="/uploads/images/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;"/>
+	</c:if>
+	
+	<!-- 구매하기 -->
+	<form method="get" action="/orders/ordersform">
+            <input type="hidden" name="pNum" value="${dto.pNum}" />
+            <button type="submit">예약하기</button>
+    </form>
     <p>
         <hr>
     </p>

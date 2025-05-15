@@ -36,8 +36,8 @@
       </tr>
     </c:forEach>
   </table>
-    <button onclick="location.href='/'">홈으로</button>
-  	<button onclick="location.href='/packagelist'">패키지 보기</button>
-  	<button onclick="history.back()">이전 페이지</button>
+	<input type="button" value="Home" onclick="location.href='/'">
+	<input type="button" value="패키지 보기" onclick="location.href='/packagelist'">
+	<input type="button" value="예약 내역 보기" onclick="location.href='/orders/orderList'">
 </body>
 </html>

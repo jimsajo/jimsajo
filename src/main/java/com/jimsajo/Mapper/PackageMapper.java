@@ -3,6 +3,8 @@ package com.jimsajo.Mapper;
 import com.jimsajo.Dto.PackageDto;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+@Mapper
 public interface PackageMapper {
 
     // 패키지 등록

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,13 +24,13 @@
 			<tr>
 				<td>${rw.rNum}</td>
 				<td>${rw.mId}</td>
-				<td><a href="/reviewDetail/${rw.rNum}">${rw.rTitle}</a></td>
-				<td>${rw.rDate}</td>
+				<td><a href="${pageContext.request.contextPath}/review/reviewDetail/${rw.rNum}">${rw.rTitle}</a></td>
+				<td><fmt:formatDate value="${rw.rDate}" pattern="yyyy-MM-dd" /></td>
 				<td>${rw.rCnt}</td>
 				<td>${rw.pCountry}</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/review">리뷰쓰기</a>
+	<a href="${pageContext.request.contextPath}/review">리뷰쓰기</a>
 </body>
 </html>

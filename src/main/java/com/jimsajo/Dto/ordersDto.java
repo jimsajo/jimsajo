@@ -5,20 +5,24 @@ import java.time.LocalDate;
 public class ordersDto {
 	
 	private int oNum;
-	private LocalDate oStart;
-	private LocalDate oReturn;
-	private int oPeople;
-	private int oPrice;
-	private int mNum; // fk
-	private int Pnum; // fk
-	
-	
-	
+	private LocalDate oDate; //결제일
+	private LocalDate oStart; //출발날짜
+	private LocalDate oReturn; //도착날짜
+	private int oPeople; //패키지 여행 인원수
+	private int oPrice;  //패키지 상품 가격
+	private int mNum; // 로그인
+	private int pNum; // 패키지
 	public int getoNum() {
 		return oNum;
 	}
 	public void setoNum(int oNum) {
 		this.oNum = oNum;
+	}
+	public LocalDate getoDate() {
+		return oDate;
+	}
+	public void setoDate(LocalDate oDate) {
+		this.oDate = oDate;
 	}
 	public LocalDate getoStart() {
 		return oStart;
@@ -50,17 +54,16 @@ public class ordersDto {
 	public void setmNum(int mNum) {
 		this.mNum = mNum;
 	}
-	public int getPnum() {
-		return Pnum;
+	public int getpNum() {
+		return pNum;
 	}
-	public void setPnum(int pnum) {
-		Pnum = pnum;
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
 	}
 	@Override
 	public String toString() {
-		return "ordersDto [oNum=" + oNum + ", oStart=" + oStart + ", oReturn=" + oReturn + ", oPeople=" + oPeople
-				+ ", oPrice=" + oPrice + ", mNum=" + mNum + ", Pnum=" + Pnum + "]";
+		return "ordersDto [oNum=" + oNum + ", oDate=" + oDate + ", oStart=" + oStart + ", oReturn=" + oReturn
+				+ ", oPeople=" + oPeople + ", oPrice=" + oPrice + ", mNum=" + mNum + ", pNum=" + pNum + "]";
 	}
-	
 	
 }
