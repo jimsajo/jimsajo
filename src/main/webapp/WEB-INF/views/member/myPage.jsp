@@ -13,7 +13,7 @@
 
 
 <c:if test="${not empty sessionScope.mId}">
-    <p>${sessionScope.mName}님 환영합니다!</p>
+    <p>${sessionScope.loginUser.mName}님 환영합니다!</p>
     <a href="/logout">로그아웃</a>
 </c:if>
 	<form name = "myPage" method ="post">

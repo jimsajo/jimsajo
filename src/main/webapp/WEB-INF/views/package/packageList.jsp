@@ -7,7 +7,8 @@
 <title>패키지 리스트</title>
 </head>
 <body>
-<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
+<a href="/"><img src="${pageContext.request.contextPath}/images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;">
+</a>
 
 <h3>국가별 보기</h3>
 <ul>

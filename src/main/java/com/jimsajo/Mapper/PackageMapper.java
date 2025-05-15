@@ -1,7 +1,8 @@
 package com.jimsajo.Mapper;
 
-import com.jimsajo.Dto.PackageDto;
 import java.util.List;
+
+import com.jimsajo.Dto.PackageDto;
 
 public interface PackageMapper {
 
@@ -22,4 +23,13 @@ public interface PackageMapper {
 
     // 국가별 패키지 조회
     List<PackageDto> selectPackageByCountry(String pCountry);
+
+    // 추천된 패키지 확인
+    int checkPackageRecommendation(Integer pNum);
+
+    // 추천 등록
+    void insertPackageRecommendation(Integer pNum);
+
+    // 추천된 패키지 목록 조회
+    List<PackageDto> selectRecommendedPackages();
 }

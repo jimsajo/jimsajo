@@ -28,9 +28,9 @@ public class WebSecurityConfig {
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(request -> request
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
-                .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board").permitAll()
-                .requestMatchers("/newBoard", "/boardSave").hasRole("admin")
+                .requestMatchers("/", "/assets/**").permitAll()
+                .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board","/packagelist/country","/review/reviewList").permitAll()
+                .requestMatchers("/newBoard", "/boardSave","/package").hasRole("admin")
                 .requestMatchers("/member/**").hasAnyRole("user", "admin")
                 .requestMatchers("/admin/**").hasRole("admin")
                 .anyRequest().authenticated()

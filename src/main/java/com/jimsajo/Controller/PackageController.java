@@ -28,6 +28,7 @@ import com.jimsajo.Service.PackageService;
 @Controller
 public class PackageController {
 
+	
     @Autowired
     private PackageService packageService;
 
@@ -38,6 +39,7 @@ public class PackageController {
     // 패키지 등록 페이지로 이동
     @GetMapping("/package")
     public String uploadPage() {
+    	
         return "package/packageUpload";
     }
 
@@ -188,5 +190,15 @@ public class PackageController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-
+    // 추천하기
+    @PostMapping("/recommend/{pNum}")
+    public String recommendPackage(@PathVariable Integer pNum) {
+        try {
+            packageService.recommendPackage(pNum);  // 서비스 계층에서 추천 등록
+            return "redirect:/package/detail/" + pNum;  // 상세 페이지로 리다이렉트
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";  // 오류 발생 시 에러 페이지로 리다이렉트
+        }
+    }
 }
