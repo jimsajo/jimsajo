@@ -29,7 +29,7 @@
     
     <!-- 썸네일 이미지 표시 -->
   <c:if test="${not empty dto.pImage}">
-    <img src="${pageContext.request.contextPath}/uploads/images/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;">
+    <img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;">
 
 </c:if>
 

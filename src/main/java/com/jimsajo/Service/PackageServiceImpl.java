@@ -68,4 +68,5 @@ public class PackageServiceImpl implements PackageService {
     public List<PackageDto> getRecommendedPackages() {
         return packageMapper.selectRecommendedPackages();
     }
+    
 }

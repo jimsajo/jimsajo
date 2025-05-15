@@ -29,6 +29,6 @@ public interface PackageService {
 
     // 추천된 패키지 목록 조회
     List<PackageDto> getRecommendedPackages();
-
+    
 	
 }

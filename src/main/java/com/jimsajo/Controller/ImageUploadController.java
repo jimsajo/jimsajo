@@ -17,7 +17,7 @@ public class ImageUploadController {
     @Value("${file.upload-dir}")
     private String imageUploadDir;
 
-    @Value("${file.access-url-prefix:/uploads/images/}")
+    @Value("${file.access-url-prefix:/assets/img/package/}")
     private String imageAccessUrlPrefix;
 
     private static final List<String> ALLOWED_EXTENSIONS = List.of("jpg", "jpeg", "png", "gif", "webp");
