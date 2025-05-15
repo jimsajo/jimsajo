@@ -18,5 +18,5 @@ public interface memberMapper {
 	int updatePasswordAndTel(memberDto member); // 비밀번호, 전화번호 수정
 	memberDto selectMemberById(@Param ("mId") String mId);
 	memberDto selectMemberByName(@Param("mName") String mName);
-	
+	int countById(@Param("mId") String mId);
 }

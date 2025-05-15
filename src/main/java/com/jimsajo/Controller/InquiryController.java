@@ -34,7 +34,7 @@ public class InquiryController {
     @RequestMapping("/inquiry/inquiryList")
     public String showInquiryList(Model model) {
         List<InquiryDto> list = inquiryService.getAllInquiries();
-        model.addAttribute("inquiry", list);
+        model.addAttribute("list", list);
         return "inquiry/inquiryList";
     }
 

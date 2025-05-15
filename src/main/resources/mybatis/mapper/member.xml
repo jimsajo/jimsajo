@@ -23,6 +23,10 @@
     	select * from member where mId = #{mId}
 	</select>
 	
+	<select id="countById" parameterType="string" resultType="int">
+    	select count(*) from member where mId = #{mId}
+	</select>
+	
 	
 	<!-- 회원정보 수정 시 필요 -->
 	<update id = "updatePasswordAndTel" parameterType = "com.jimsajo.Dto.memberDto">
