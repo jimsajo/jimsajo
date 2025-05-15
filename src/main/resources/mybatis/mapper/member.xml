@@ -13,6 +13,11 @@
 	<select id = "selectMember" resultType = "com.jimsajo.Dto.memberDto">
 		select * from member order by mNum
 	</select>
+	<!--아이디 중복검사 -->
+	<select id="countById" resultType="int" parameterType="string">
+    	select count(*) from member where mId = #{mId}
+  	</select>	
+	
 	
 	<!-- 회원정보 수정 시 회원 조회 -->
 	<select id="findBy" parameterType="String" resultType="com.jimsajo.Dto.memberDto">

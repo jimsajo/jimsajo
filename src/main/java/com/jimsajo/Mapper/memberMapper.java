@@ -16,7 +16,7 @@ public interface memberMapper {
 	int updateMember(memberDto member) throws Exception; //회원 정보 수정
 	memberDto findBy(String mId); // 회원 아이디로 조회
 	int updatePasswordAndTel(memberDto member); // 비밀번호, 전화번호 수정
-	memberDto selectMemberById(@Param ("mId") String mId);
-	memberDto selectMemberByName(@Param("mName") String mName);
-	
+	memberDto selectMemberById(@Param ("mId") String mId); //아이디만 조회 
+	memberDto selectMemberByName(@Param("mName") String mName); // 이름 조회 
+	int countById(@Param("mId") String mId);
 }

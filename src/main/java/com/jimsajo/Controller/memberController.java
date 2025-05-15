@@ -3,13 +3,14 @@ package com.jimsajo.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jimsajo.Dto.memberDto;
@@ -64,33 +65,53 @@ public class memberController {
 		return "member/memberList";
 	}
 	
-	//정보 수정 처리
-	@RequestMapping("/memberUpdateProcess")
-	public String updateMember(@ModelAttribute memberDto member) {
-	    // 비밀번호 입력이 있으면 암호화 후 저장
-	    if (member.getmPasswd() != null && !member.getmPasswd().isEmpty()) {
-	        String encodedPassword = passwordEncoder.encode(member.getmPasswd());
-	        member.setmPasswd(encodedPassword);
+	@RequestMapping("/memberUpdate")
+	public String updateMember(Authentication auth, Model model) {
+	    if (auth == null || !auth.isAuthenticated()) {
+	        return "redirect:/login";
 	    }
 
-	    mapper.updatePasswordAndTel(member);  // MyBatis에서 mPasswd, mTel 둘 다 처리하도록
-	    return "redirect:/myPage";
+	    String loginUserId = ((User) auth.getPrincipal()).getUsername();
+	    memberDto member = mapper.findBy(loginUserId);
+
+	    model.addAttribute("member", member); // ← 기존에는 loginUser (String)만 넣었음
+	    return "member/memberUpdate";
 	}
 
+	
+	@RequestMapping("/memberUpdateProcess")
+	   public String updateMemberProcess(@ModelAttribute memberDto member, HttpSession session) {
+	      String encodedPassword = passwordEncoder.encode(member.getmPasswd());
+	      member.setmPasswd(encodedPassword);
+	        mapper.updatePasswordAndTel(member);
+
+	        // 세션 갱신
+	        memberDto updated = mapper.findBy(member.getmId());
+	        session.setAttribute("loginUser", updated);
+
+	        return "redirect:/myPage";
+	   }
 
 	
 	//회원 탈퇴
 	@RequestMapping("/memberDelete")
 	public String deleteMember(HttpSession session) throws Exception {
-	    Integer mNum = (Integer) session.getAttribute("mNum");  // 로그인 시 저장했던 키 사용
+	    memberDto loginUser = (memberDto) session.getAttribute("loginUser");  // 로그인 시 저장했던 키 사용
 
-	    if (mNum != null) {
-	        mapper.deleteMember(mNum);
+	    if (loginUser != null) {
+	        mapper.deleteMember(loginUser.getmNum());
 	        session.invalidate();
-	        System.out.println("탈퇴 시도 - 세션 mNum: " + mNum);
+	        System.out.println("탈퇴 시도 - 세션 mNum: " + loginUser);
 	        return "redirect:/"; // 탈퇴 후 메인으로
 	    } else {
 	        return "redirect:/login";
 	    }
+	}
+	
+	@RequestMapping("/checkId")
+	@ResponseBody
+	public String checkId(@RequestParam String mId) {
+		int count = mapper.countById(mId);
+		return count > 0 ? "DUPLICATE" : "OK";
 	}
 }

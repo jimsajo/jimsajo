@@ -33,19 +33,23 @@ public class boardController {
         return "board/board";
     }
     @RequestMapping("/newBoard")
-    public String newBoard() {
+    public String newBoard(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
+        // 로그인은 했지만 관리자 권한이 아님
         boolean isAdmin = auth.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority)
-            .anyMatch(role -> role.equals("ROLE_admin")); // 중요: ROLE_ 접두어
+            .noneMatch(role -> role.equals("ROLE_admin"));
 
-        if (!isAdmin) {
-            return "redirect:/accessDenied";
+        if (isAdmin) {
+            model.addAttribute("errorMessage", "접근 권한이 없습니다.");
+            return "error/accessDeniedBoard";
         }
 
+        // 관리자일 경우 접근 허용
         return "board/boardForm";
     }
+
 
 
     @RequestMapping("/boardSave")
@@ -55,9 +59,6 @@ public class boardController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); // 로그인한 사용자 ID
         String role = auth.getAuthorities().iterator().next().getAuthority(); // 
-
-        System.out.println("저장 요청자 아이디: " + username);
-        System.out.println("저장 요청자 권한: " + role);
 
         if (!role.equals("ROLE_admin")) {
             return "redirect:/accessDenied";
@@ -106,5 +107,11 @@ public class boardController {
     public String deleteBoard(@PathVariable int bNum) throws Exception{
         mapper.deleteBoard(bNum);
         return "redirect:/board";
+    }
+    //공지사항 접근권한 거부 페이지
+    @RequestMapping("/accessDeniedBoard")
+    public String accessDenied(Model model) {
+        model.addAttribute("errorMessage", "접근 권한이 없습니다.");
+        return "board/accessDeniedBoard";
     }
 }

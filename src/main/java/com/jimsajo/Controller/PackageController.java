@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,12 +38,25 @@ public class PackageController {
     @Value("${file.upload-dir}")
     private String uploadDir;
 
-    // 패키지 등록 페이지로 이동
-    @GetMapping("/package")
-    public String uploadPage() {
+    @RequestMapping("/package")
+    public String uploadPage(Model model) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        // 로그인은 했지만 관리자 권한이 아님
+        boolean isAdmin = auth.getAuthorities().stream()
+            .map(GrantedAuthority::getAuthority)
+            .noneMatch(role -> role.equals("ROLE_admin"));
+
+        if (isAdmin) {
+            model.addAttribute("errorMessage", "접근 권한이 없습니다.");
+            return "package/accessDeniedPackage";
+        }
+
+        // 관리자일 경우 접근 허용
         return "package/packageUpload";
     }
 
+    	
     // 패키지 등록 처리
     @PostMapping("/write")
     public String packageWrite(@ModelAttribute PackageDto packageDto) throws Exception {
@@ -187,6 +203,13 @@ public class PackageController {
             response.put("error", "업로드 중 오류 발생");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
+    }
+    
+    //접근권한 거부 페이지
+    @RequestMapping("/accessDeniedPackage")
+    public String accessDenied(Model model) {
+        model.addAttribute("errorMessage", "접근 권한이 없습니다.");
+        return "package/accessDenied";
     }
 
 }
