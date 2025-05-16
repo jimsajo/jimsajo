@@ -1,6 +1,7 @@
 package com.jimsajo.Controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,18 +13,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jimsajo.Dto.PackageDto;
+import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Service.PackageService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PackageController {
 
     @Autowired
     private PackageService packageService;
+    
 
     @Value("${file.upload-dir}")
     private String uploadDir;
@@ -184,5 +195,15 @@ public class PackageController {
             e.printStackTrace();
             return "error";
         }
+    }
+     // 로그인한 사용자의 결제 패키지 중, 특정 국가 필터로 가져오기
+    @GetMapping("/api/orderedPackagesByCountry")
+    @ResponseBody
+    public List<PackageDto> getOrderedPackagesByCountry(@RequestParam("country") String country, HttpSession session) {
+        memberDto loginUser = (memberDto) session.getAttribute("loginUser");
+        if (loginUser == null) return new ArrayList<>();
+
+        int mNum = loginUser.getmNum();
+        return packageService.getPackagesByMemberAndCountry(mNum, country);
     }
 }

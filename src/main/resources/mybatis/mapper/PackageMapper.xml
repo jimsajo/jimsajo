@@ -59,7 +59,22 @@
 	    FROM package p
 	    INNER JOIN recommendations r ON p.pNum = r.package_id
 	</select>
-
+	
+	<select id="selectPackagesByMemberAndCountry" resultType="com.jimsajo.Dto.PackageDto">
+	  SELECT DISTINCT 
+	    p.pNum        AS pNum,
+	    p.pName       AS pName,
+	    p.pCountry    AS pCountry,
+	    p.pDescription AS pDescription,
+	    p.pCreate     AS pCreate,
+	    p.pPrice      AS pPrice,
+	    p.pImage      AS pImage
+	  FROM package p
+	  JOIN orders o ON p.pNum = o.pNum
+	  WHERE o.mNum = #{mNum}
+	    AND p.pCountry = #{country}
+	</select>
+	
 </mapper>
 
 

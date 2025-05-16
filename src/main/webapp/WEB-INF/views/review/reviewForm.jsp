@@ -2,27 +2,38 @@
 <html>
 <head>
 <title>리뷰 작성</title>
-<script>
-    function loadPackagesByCountry() {
-      const country = document.getElementById("pCountry").value;
-      const xhr = new XMLHttpRequest();
-      xhr.open("GET", "/api/packages?country=" + country, true);
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          const packageSelect = document.getElementById("pNum");
-          packageSelect.innerHTML = "<option value=''>패키지 선택</option>";
-          const packages = JSON.parse(xhr.responseText);
-          packages.forEach(pkg => {
-            const option = document.createElement("option");
-            option.value = pkg.pNum;
-            option.text = pkg.pName + " (" + pkg.pCountry + ")";
-            packageSelect.appendChild(option);
-          });
-        }
-      };
-      xhr.send();
-    }
-  </script>
+		<script>
+		  window.onload = function () {
+		    document.getElementById("pCountry").addEventListener("change", loadMyPackagesByCountry);
+		  };
+		
+		  function loadMyPackagesByCountry() {
+		    const country = document.getElementById("pCountry").value;
+		
+		    if (!country) {
+		      document.getElementById("pNum").innerHTML = "<option value=''>패키지 선택</option>";
+		      return;
+		    }
+		
+		    const xhr = new XMLHttpRequest();
+		    xhr.open("GET", "/api/orderedPackagesByCountry?country=" + encodeURIComponent(country), true);
+		    xhr.onreadystatechange = function () {
+		      if (xhr.readyState === 4 && xhr.status === 200) {
+		        const packageSelect = document.getElementById("pNum");
+		        packageSelect.innerHTML = "<option value=''>패키지 선택</option>";
+		        const packages = JSON.parse(xhr.responseText);
+		        packages.forEach(pkg => {
+		          const option = document.createElement("option");
+		          option.value = pkg.pNum;
+		          option.text = pkg.pName + " (" + pkg.pCountry + ")";
+		          packageSelect.appendChild(option);
+		        });
+		      }
+		    };
+		    xhr.send();
+		  }
+		</script>
+
   </head>
 <body>
 <a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
@@ -48,7 +59,7 @@
 
     <p>
       여행한 나라:
-      <select id="pCountry" name="pCountry" onchange="loadPackagesByCountry()" required>
+      <select id="pCountry" name="pCountry" onchange="loadMyPackagesByCountry()" required>
         <option value="">선택하세요</option>
         <option value="Vietnam">베트남</option>
         <option value="Thailand">태국</option>

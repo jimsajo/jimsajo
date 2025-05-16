@@ -68,6 +68,7 @@ public class memberController {
 	    if (auth == null || !auth.isAuthenticated()) {
 	        return "redirect:/login";
 	    }
+
 	    String loginUserId = ((User) auth.getPrincipal()).getUsername();
 	    memberDto member = mapper.findBy(loginUserId);
 
@@ -75,21 +76,27 @@ public class memberController {
 	    return "member/memberUpdate";
 	}
 
+	
 	//회원정보 수정 처리
 	@RequestMapping("/memberUpdateProcess")
 	public String updateMemberProcess(@ModelAttribute memberDto member, HttpSession session) {
-	    memberDto loginUser = (memberDto) session.getAttribute("loginUser");    
+	    memberDto loginUser = (memberDto) session.getAttribute("loginUser");
+	    
 	    if (loginUser == null || !loginUser.getmId().equals(member.getmId())) {
 	        return "redirect:/login";
 	    }
+
 	    mapper.updatePasswordAndTel(member);
 	    return "redirect:/myPage";
 	}
 
+
+	
 	//회원 탈퇴
 	@RequestMapping("/memberDelete")
 	public String deleteMember(HttpSession session) throws Exception {
 	    memberDto loginUser = (memberDto) session.getAttribute("loginUser");
+
 	    if (loginUser != null) {
 	        Integer mNum = loginUser.getmNum(); // 세션에 저장된 객체에서 꺼냄
 	        mapper.deleteMember(mNum);
