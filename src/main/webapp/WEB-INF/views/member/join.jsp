@@ -80,14 +80,30 @@
     </div>
 
     <!-- 생년월일 -->
-    <div class="mb-4">
-      <label for="mBirth" class="form-label">생년월일</label>
-      <input type="text" class="form-control form-control-lg" id="mBirth" name="mBirth" placeholder="YYYY-MM-DD">
-    </div>
-
+	<div class="mb-4">
+	  <label for="mBirth" class="form-label">생년월일</label>
+	  <div class="input-group">
+	    <span class="input-group-text">
+	      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+	        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v1H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2z"/>
+	      </svg>
+	    </span>
+	    <input type="text" class="form-control form-control-lg" id="mBirth" name="mBirth" placeholder="YYYY-MM-DD" readonly>
+	  </div>
+	</div>
+	
     <!-- 가입하기 버튼 -->
     <button type="submit" class="btn btn-dark btn-lg w-100">가입하기</button>
   </form>
 </div>
+<!-- 생년월일 달력처리 -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script>
+	  flatpickr("#mBirth", {
+	    dateFormat: "Y-m-d",
+	    maxDate: "today",
+	    locale: "ko"
+	  });
+	</script>
 </body>
 </html>
