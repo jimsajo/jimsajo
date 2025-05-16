@@ -30,10 +30,10 @@ public class WebSecurityConfig {
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 
                 .requestMatchers("/", "/assets/**").permitAll()
-                .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board","/packagelist/country","/review/reviewList").permitAll()
+                .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board/**","/packagelist/country","/review/reviewList").permitAll()
 
                 .requestMatchers("/", "/css/**", "/js/**", "/images/**","/package/**", "/checkId","/packageList").permitAll()
-                .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board").permitAll()
+                .requestMatchers("/login", "/loginProcess", "/join", "/save").permitAll()
 
                 .requestMatchers("/newBoard", "/boardSave","/package").hasRole("admin")
                 .requestMatchers("/member/**").hasAnyRole("user", "admin")

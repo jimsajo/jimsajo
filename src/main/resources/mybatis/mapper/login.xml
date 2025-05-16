@@ -10,7 +10,7 @@
 	</select>
 
 	 <select id="selectMemberById" resultType="com.jimsajo.Dto.memberDto" parameterType="String">
-        select mId, mPasswd, mRole, mName, mNum from member 
+        select mId, mPasswd, mRole, mName, mNum, mBirth from member 
         where mId = #{mId}
     </select>
     
