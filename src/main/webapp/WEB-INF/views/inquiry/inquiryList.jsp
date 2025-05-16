@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach var="dto" items="${inquiry}">
+        <c:forEach var="dto" items="${list}">
             <tr>
                 <td>${dto.iTitle}</td>
                 <td>${dto.iType}</td>

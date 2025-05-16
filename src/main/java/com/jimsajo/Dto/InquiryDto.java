@@ -2,9 +2,6 @@ package com.jimsajo.Dto;
 
 import java.time.LocalDateTime;
 
-
-
-
 public class InquiryDto {
 	private Integer iNum;
 	private String iTitle;

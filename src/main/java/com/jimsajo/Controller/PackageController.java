@@ -175,11 +175,13 @@ public class PackageController {
             File saveFile = new File(saveDir, fileName);
             file.transferTo(saveFile);
 
-            String fileUrl = "/uploads/images/" + fileName;
+            String fileUrl = "/assets/img/package/" + fileName;
+            response.put("uploaded", true);
             response.put("url", fileUrl);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             e.printStackTrace();
+            response.put("uploaded", false);
             response.put("error", "업로드 중 오류 발생");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }

@@ -70,49 +70,72 @@
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
       </div>
-
     </div>
-
   </header>
-  <h2>결제 내역</h2>
-  <table border="1">
-    <tr>
-      <th>ID</th>
-      <th>상품명</th>
-      <th>금액</th>
-      <th>주문번호</th>
-      <th>결제수단</th>
-      <th>결제시간</th>
-      <th>상태</th>
-      <th>취소</th>
-    </tr>
-    <c:forEach var="payment" items="${payments}">
-      <tr>
-        <td>${payment.paymentId}</td>
-        <td>${payment.pName}</td>
-        <td>${payment.payAmount}</td>
-        <td>${payment.merchantUid}</td>
-        <td>${payment.payMethod}</td>
-        <td>
-          <c:if test="${not empty payment.paidAt}">
-            ${payment.paidAt}
-          </c:if>
-        </td>
-        <td>${payment.payStatus}</td>
-        <td>
-	      <c:if test="${payment.payStatus eq 'paid'}">
-	        <form action="/payment/cancel" method="post" style="display:inline;">
-	          <input type="hidden" name="impUid" value="${payment.impUid}" />
-	          <input type="hidden" name="amount" value="${payment.payAmount}" />
-	          <button type="submit" onclick="return confirm('정말 결제를 취소하시겠습니까?');">결제 취소</button>
-	        </form>
-	      </c:if>
-	    </td>
-      </tr>
-    </c:forEach>
-  </table>
-	<input type="button" value="Home" onclick="location.href='/'">
-	<input type="button" value="패키지 보기" onclick="location.href='/packagelist'">
-	<input type="button" value="예약 내역 보기" onclick="location.href='/orders/orderList'">
+  
+<div id="payment-title" class="pt-5" style="margin-top: 100px;">
+  <h2 class="text-center my-5">결제 내역</h2>
+</div>
+
+<div class="container mb-5">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>상품명</th>
+          <th>금액</th>
+          <th>주문번호</th>
+          <th>결제수단</th>
+          <th>결제시간</th>
+          <th>상태</th>
+          <th>취소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:forEach var="payment" items="${payments}">
+          <tr>
+            <td>${payment.paymentId}</td>
+            <td>${payment.pName}</td>
+            <td>${payment.payAmount}</td>
+            <td>${payment.merchantUid}</td>
+            <td>${payment.payMethod}</td>
+            <td>
+              <c:if test="${not empty payment.paidAt}">
+                ${payment.paidAt}
+              </c:if>
+            </td>
+            <td>
+              <span class="badge bg-${payment.payStatus eq 'paid' ? 'success' : 'secondary'}">${payment.payStatus}</span>
+            </td>
+            <td>
+              <c:if test="${payment.payStatus eq 'paid'}">
+                <form action="/payment/cancel" method="post" style="display:inline;">
+                  <input type="hidden" name="impUid" value="${payment.impUid}" />
+                  <input type="hidden" name="amount" value="${payment.payAmount}" />
+                  <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('정말 결제를 취소하시겠습니까?');">결제 취소</button>
+                </form>
+              </c:if>
+            </td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center mt-4">
+    <input type="button" value="Home" class="btn btn-primary mx-1" onclick="location.href='/'">
+    <input type="button" value="패키지 보기" class="btn btn-outline-success mx-1" onclick="location.href='/packagelist'">
+    <input type="button" value="예약 내역 보기" class="btn btn-outline-info mx-1" onclick="location.href='/orders/orderList'">
+  </div>
+</div>
 </body>
+<script>
+  window.addEventListener('load', function () {
+    const target = document.getElementById('payment-title');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+</script>
 </html>
