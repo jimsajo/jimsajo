@@ -6,6 +6,8 @@
 <head>
   <meta charset="UTF-8">
   <title>마이페이지</title>
+  <!-- memberUpdate JS -->
+  <script src = "/js/memberUpdate.js"></script>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap JS -->
@@ -45,6 +47,7 @@
       </div>
     </div>
 
+
     <!-- 메인 콘텐츠 -->
     <div class="col-md-9">
       <sec:authorize access="isAuthenticated()">
@@ -54,47 +57,11 @@
           </h3>
         </div>
       </sec:authorize>
-
-      <sec:authorize access="hasRole('ROLE_user')">
-        <div class="card mb-5">
-          <div class="card-header bg-dark text-white text-center fw-bold">1대1 문의 내역</div>
-          <div class="card-body p-0">
-            <table class="table table-bordered mb-0 text-center">
-              <thead class="table-light">
-                <tr><th>제목</th><th>타입</th><th>내용</th><th>작성일</th></tr>
-              </thead>
-              <tbody>
-                <c:forEach var="inquiry" items="${list}">
-                  <tr>
-                    <td>${inquiry.iTitle}</td>
-                    <td>${inquiry.iType}</td>
-                    <td>${inquiry.iContent}</td>
-                    <td>${inquiry.iTime}</td>
-                  </tr>
-                </c:forEach>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </sec:authorize>
-
-      <sec:authorize access="hasRole('ROLE_admin')">
-        <div class="card mt-4">
-          <div class="card-header bg-dark text-white text-center fw-bold">1대1 문의 내역</div>
-          <div class="card-body text-center">
-            <p class="text-muted">문의 내역이 없습니다</p>
-          </div>
-        </div>
-      </sec:authorize>
-    </div>
-  </div>
-</div>
-
-
+	  
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">
-    <form method="post" action="/memberUpdateProcess">
+    <form method="post" action="/memberUpdateProcess" onsubmit = "return validateForm(this)">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title fw-bold" id="updateModalLabel">회원정보 수정</h5>
@@ -112,7 +79,7 @@
 
           <!-- 기존 비밀번호 -->
           <div class="mb-3">
-            <input type="password" name="currentPasswd" class="form-control" placeholder="기존 비밀번호 입력" required>
+            <input type="password" name="currentPasswd" class="form-control" placeholder="기존 비밀번호 입력">
           </div>
 
           <!-- 새 비밀번호 -->
@@ -149,7 +116,7 @@
           <!-- 연락처 -->
           <div class="mb-3">
             <label class="form-label">연락처</label>
-            <input type="text" name="mTel" class="form-control" placeholder="'-'없이 입력해주세요." value="${sessionScope.loginUser.mTel}" required>
+            <input type="text" name="mTel" class="form-control" placeholder="'-'없이 입력해주세요." value="${sessionScope.loginUser.mTel}">
           </div>
 
           <!-- 생년월일 -->
@@ -167,10 +134,6 @@
     </form>
   </div>
 </div>
-
-
-
-
 
 <!-- 회원탈퇴 확인 모달 -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -194,6 +157,14 @@
   </div>
 </div>
 
+<!-- 기존 비밀번호 다르게 입력했을때 프롬포트 창 띄우기 -->
+<c:if test="${not empty errorMsg}">
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    alert("${errorMsg}");
+  });
+</script>
+</c:if>
 <!-- 페이지 로드시 정보수정 모달 자동 오픈 -->
 <c:if test="${param.openUpdate eq 'true'}">
 <script>
@@ -211,6 +182,5 @@
   });
 </script>
 </c:if>
-
 </body>
 </html>

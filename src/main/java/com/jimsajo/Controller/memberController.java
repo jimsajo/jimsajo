@@ -54,7 +54,6 @@ public class memberController {
 	@RequestMapping("/memberList")
 	public String memberList(Model model) throws Exception {
 		List<memberDto> members = mapper.selectMember();
-		System.out.println("불러온 회원 수: " + members.size());
 	    for (memberDto m : members) {
 	        System.out.println("회원: " + m.getmId() + ", " + m.getmName());
 	    }
