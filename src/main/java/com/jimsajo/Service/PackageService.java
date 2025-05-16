@@ -2,6 +2,8 @@ package com.jimsajo.Service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jimsajo.Dto.PackageDto;
 
 public interface PackageService {
@@ -29,6 +31,7 @@ public interface PackageService {
 
     // 추천된 패키지 목록 조회
     List<PackageDto> getRecommendedPackages();
+    
+    List<PackageDto> getPackagesByMemberAndCountry(int mNum, String country);
 
-	
 }

@@ -2,9 +2,11 @@ package com.jimsajo.Mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.jimsajo.Dto.CommentDto;
 
-
+@Mapper
 public interface ICommentMapper {
 	List<CommentDto> selectCommentList(int rNum);
 	void insertComment (CommentDto commentDto);

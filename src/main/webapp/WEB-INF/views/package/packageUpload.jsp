@@ -13,28 +13,28 @@
 
     <!-- 업로드 폼 -->
     <form method="post" action="/write" enctype="multipart/form-data">
-    나라 : 
-    <select name="pCountry" id="pCountry">
-        <option value="">-- 선택하세요 --</option>
-        <option value="Vietnam">베트남</option>
-        <option value="Thailand">태국</option>
-        <option value="Indonesia">인도네시아</option>
-        <option value="Malaysia">말레이시아</option>
-        <option value="Philippines">필리핀</option>
-    </select><br>
-
-    제목 : <input type="text" name="pName" placeholder="제목"><br>
-    가격 : <input type="number" name="pPrice" placeholder="가격"><br>
-
-    상세내용 : <textarea id="editor" name="pDescription"></textarea><br>
-
-    이미지 업로드: 
-    <input type="file" name="uploadFile" accept="image/*" onchange="previewImage(event)"><br> <!-- 수정 -->
-    <img id="preview" alt="이미지 미리보기" style="max-width: 300px; display: none;"><br>
-
-    <input type="submit" value="업로드"><br>
-    <a href="/packagelist">← 목록으로 가기</a>
-</form>
+	    나라 : 
+	    <select name="pCountry" id="pCountry">
+	        <option value="">-- 선택하세요 --</option>
+	        <option value="Vietnam">베트남</option>
+	        <option value="Thailand">태국</option>
+	        <option value="Indonesia">인도네시아</option>
+	        <option value="Malaysia">말레이시아</option>
+	        <option value="Philippines">필리핀</option>
+	    </select><br>
+	
+	    제목 : <input type="text" name="pName" placeholder="제목"><br>
+	    가격 : <input type="number" name="pPrice" placeholder="가격"><br>
+	
+	    상세내용 : <textarea id="editor" name="pDescription"></textarea><br>
+	
+	    이미지 업로드: 
+	    <input type="file" name="uploadFile" accept="image/*" onchange="previewImage(event)"><br> <!-- 수정 -->
+	    <img id="preview" alt="이미지 미리보기" style="max-width: 300px; display: none;"><br>
+	
+	    <input type="submit" value="업로드"><br>
+	    <a href="/packagelist">← 목록으로 가기</a>
+	</form>
 
 
     <!-- 이미지 미리보기 스크립트 -->

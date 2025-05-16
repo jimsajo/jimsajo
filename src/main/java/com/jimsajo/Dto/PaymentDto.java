@@ -2,9 +2,7 @@ package com.jimsajo.Dto;
 
 import java.time.LocalDateTime;
 
-import lombok.Data;
 
-@Data
 public class PaymentDto {
 	private int paymentId; 
 	private String impUid; //아임포트 결제 고유 ID
@@ -18,5 +16,91 @@ public class PaymentDto {
 	private int mNum; // 로그인한 사용자 번호
 	private String pName;   // 패키지 이름 (상품명)
 	private int pPrice;     // 패키지 가격
+	private int oNum;
+	public int getPaymentId() {
+		return paymentId;
+	}
+	public void setPaymentId(int paymentId) {
+		this.paymentId = paymentId;
+	}
+	public String getImpUid() {
+		return impUid;
+	}
+	public void setImpUid(String impUid) {
+		this.impUid = impUid;
+	}
+	public String getMerchantUid() {
+		return merchantUid;
+	}
+	public void setMerchantUid(String merchantUid) {
+		this.merchantUid = merchantUid;
+	}
+	public String getPayMethod() {
+		return payMethod;
+	}
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
+	}
+	public int getPayAmount() {
+		return payAmount;
+	}
+	public void setPayAmount(int payAmount) {
+		this.payAmount = payAmount;
+	}
+	public String getPayStatus() {
+		return payStatus;
+	}
+	public void setPayStatus(String payStatus) {
+		this.payStatus = payStatus;
+	}
+	public LocalDateTime getPaidAt() {
+		return paidAt;
+	}
+	public void setPaidAt(LocalDateTime paidAt) {
+		this.paidAt = paidAt;
+	}
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+	public int getpNum() {
+		return pNum;
+	}
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
+	}
+	public int getmNum() {
+		return mNum;
+	}
+	public void setmNum(int mNum) {
+		this.mNum = mNum;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public int getpPrice() {
+		return pPrice;
+	}
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
+	}
+	public int getoNum() {
+		return oNum;
+	}
+	public void setoNum(int oNum) {
+		this.oNum = oNum;
+	}
+	@Override
+	public String toString() {
+		return "PaymentDto [paymentId=" + paymentId + ", impUid=" + impUid + ", merchantUid=" + merchantUid
+				+ ", payMethod=" + payMethod + ", payAmount=" + payAmount + ", payStatus=" + payStatus + ", paidAt="
+				+ paidAt + ", createdAt=" + createdAt + ", pNum=" + pNum + ", mNum=" + mNum + ", pName=" + pName
+				+ ", pPrice=" + pPrice + ", oNum=" + oNum + "]";
+	}
 
 }

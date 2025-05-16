@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService{
 	    parent.setDepth(depth);
 	    result.add(parent);
 	    for (CommentDto child : all) {
-	        if (child.getParentCNum() == parent.getCNum()) {
+	        if (child.getParentCNum() == parent.getcNum()) {
 	            addWithChildren(child, all, result, depth + 1);
 	        }
 	    }

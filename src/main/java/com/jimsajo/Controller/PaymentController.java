@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import com.jimsajo.Dto.PackageDto;
 import com.jimsajo.Dto.PaymentDto;
 import com.jimsajo.Dto.memberDto;
+import com.jimsajo.Dto.ordersDto;
 import com.jimsajo.Mapper.IPaymentMapper;
+import com.jimsajo.Service.OrdersService;
 import com.jimsajo.Service.PackageService;
 import com.jimsajo.Service.PaymentService;
 
@@ -37,8 +38,12 @@ public class PaymentController {
     @Autowired
     private PackageService packageService;
     
+    @Autowired 
+    private OrdersService ordersService;
+    
     @RequestMapping("/pay")
     public String goToPaymentPage(@RequestParam("pNum") Integer pNum,
+    							  @RequestParam("oNum") Integer oNum,
                                   Model model,
                                   HttpSession session,
                                   RedirectAttributes ra) {
@@ -48,9 +53,16 @@ public class PaymentController {
             ra.addFlashAttribute("msg", "로그인이 필요합니다.");
             return "redirect:/loginForm";
         }
-
+        
         PackageDto dto = packageService.getPackageById(pNum);
-        model.addAttribute("package", dto);
+        ordersDto orderDto = ordersService.getOrderById(oNum);
+        if (dto == null) {
+            ra.addFlashAttribute("msg", "해당 패키지를 찾을 수 없습니다.");
+            return "redirect:/packagelist";
+        }
+        
+        model.addAttribute("packageDto", dto);
+        model.addAttribute("orderDto", orderDto);
         model.addAttribute("loginUser", loginUser);
 
         return "payment/payment"; 
@@ -86,15 +98,16 @@ public class PaymentController {
     public String verifyIamport(@RequestBody Map<String, String> param,HttpSession session) throws IOException {
         String impUid = param.get("imp_uid");
         int pNum = Integer.parseInt(param.get("pNum"));
+        int oNum = Integer.parseInt(param.get("oNum"));
         memberDto loginUser = (memberDto) session.getAttribute("loginUser");
         if (loginUser == null) return "로그인 필요";
-        paymentService.verifyAndSave(impUid, pNum,loginUser.getmNum());//이 안에서 DB에 insertPayment()실행
+        paymentService.verifyAndSave(impUid, pNum, loginUser.getmNum(), oNum);//이 안에서 DB에 insertPayment()실행
         return "결제 완료";
     }
     // 결제 취소
     @PostMapping("/payment/cancel")
-    public String cancelPayment(@RequestParam String impUid,
-                                 @RequestParam int amount,
+    public String cancelPayment(@RequestParam("impUid") String impUid,
+                                 @RequestParam("amount") int amount,
                                  HttpSession session,
                                  RedirectAttributes ra) throws IOException {
         memberDto loginUser = (memberDto) session.getAttribute("loginUser");
