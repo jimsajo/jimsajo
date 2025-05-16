@@ -69,4 +69,9 @@ public class PackageServiceImpl implements PackageService {
         return packageMapper.selectRecommendedPackages();
     }
     
+    @Override
+    public List<PackageDto> getPackagesByMemberAndCountry(int mNum, String country) {
+        return packageMapper.selectPackagesByMemberAndCountry(mNum, country);
+    }
+
 }

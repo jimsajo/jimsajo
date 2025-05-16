@@ -23,7 +23,7 @@
     <form action="/recommend/${dto.pNum}" method="post">
         <input type="submit" value="추천하기">
     </form>
-</c:if>
+
 
 <!-- 수정 버튼 -->
 <form action="/package/update/${dto.pNum}" method="get">
@@ -35,7 +35,7 @@
     <input type="hidden" name="pNum" value="${dto.pNum}">
     <input type="submit" value="삭제">
 </form>
-
+</c:if>
 <br>
 <a href="/packagelist">← 목록으로 돌아가기</a>
 

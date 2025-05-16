@@ -76,6 +76,27 @@
                 <li><a href="/reviewList">여행 리뷰</a></li>
               </ul>
             </li>
+            <!-- 로그인 여부 체크 -->
+		  <c:if test="${empty sessionScope.loginUser}">
+		    <!-- 비로그인 상태일 때 -->
+		    <li class="dropdown">
+		      <a href="/login"><span>로그인</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+		      <ul>
+		        <li><a href="/join">회원가입</a></li>
+		      </ul>
+		    </li>
+		  </c:if><%-- 디버깅용 세션 확인 코드 --%>
+
+		  
+		  <c:if test="${not empty sessionScope.loginUser}">
+		    <!-- 로그인 상태일 때 -->
+		    <li class="dropdown">
+		      <a href="/myPage"><span>마이페이지</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+		      <ul>
+		        <li><a href="/logout">로그아웃</a></li>
+		      </ul>
+		    </li>
+		  </c:if>
             <li><a href="#contact">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -351,8 +372,8 @@
             <div class="member">
               <img src="/assets/img/team/team-1.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>Walter White</h4>
-                <span>Web Development</span>
+                <h4>김장환</h4>
+                <span>팀장</span>
                 <p>
                   Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
                 </p>
@@ -370,8 +391,8 @@
             <div class="member">
               <img src="/assets/img/team/team-2.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>Sarah Jhinson</h4>
-                <span>Marketing</span>
+                <h4>이강진</h4>
+                <span>팀원</span>
                 <p>
                   Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
                 </p>
@@ -389,8 +410,8 @@
             <div class="member">
               <img src="/assets/img/team/team-3.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>William Anderson</h4>
-                <span>Content</span>
+                <h4>김현석</h4>
+                <span>팀원</span>
                 <p>
                   Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
                 </p>
@@ -428,7 +449,7 @@
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
               <i class="bi bi-geo-alt"></i>
               <h3>Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <p>12th floor JIMSAJO 627, Jungang-daero, Busanjin-gu, Busan, Republic of Korea </p>
             </div>
           </div><!-- End Info Item -->
 
@@ -436,7 +457,7 @@
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-telephone"></i>
               <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
+              <p>+82 010-9435-4524</p>
             </div>
           </div><!-- End Info Item -->
 
@@ -444,48 +465,20 @@
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-envelope"></i>
               <h3>Email Us</h3>
-              <p>info@example.com</p>
+              <p>jimsajo456@gmail.com</p>
             </div>
           </div><!-- End Info Item -->
 
         </div>
 
         <div class="row gy-4 mt-1">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div><!-- End Google Maps -->
+		  <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+		    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d983.3215242748198!2d129.060209!3d35.155982!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356e7236cd8f5313%3A0x9d2db2967129ba0c!2s627%20Jungang%20daero%2C%20Busanjin-gu%2C%20Busan%2C%20South%20Korea!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 200%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		  </div><!-- End Google Maps -->
+		</div>
 
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
-              <div class="row gy-4">
 
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
+          <!-- End Contact Form -->
 
         </div>
 
@@ -501,12 +494,12 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6">
           <div class="footer-about">
-            <a href="/" class="logo sitename">Day</a>
+            <a href="/" class="logo sitename">JIMSAJO</a>
             <div class="footer-contact pt-3">
-              <p>A108 Adam Street</p>
-              <p>New York, NY 535022</p>
-              <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-              <p><strong>Email:</strong> <span>info@example.com</span></p>
+              <p> 12th floor JIMSAJO 627, Jungang-daero, Busanjin-gu, Busan,</p>
+              <p>Republic of Korea </p>
+              <p class="mt-3"><strong>Phone:</strong> <span>82+ 9435 4524</span></p>
+              <p><strong>Email:</strong> <span>jimsajo456@gmail.com</span></p>
             </div>
             <div class="social-links d-flex mt-4">
               <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -539,28 +532,19 @@
           </ul>
         </div>
 
-        <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>Our Newsletter</h4>
-          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-          </form>
-        </div>
+        
 
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Day</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">JIMSAJO</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        
       </div>
     </div>
 

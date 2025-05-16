@@ -11,22 +11,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jimsajo.Dto.AnswerDto;
 import com.jimsajo.Dto.InquiryDto;
+import com.jimsajo.Service.AnswerService;
 import com.jimsajo.Service.InquiryService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class InquiryController {
 
+	@Autowired
+	private AnswerService answerService;
+	
     @Autowired
     private InquiryService inquiryService;
 
     @RequestMapping("/inquiry")
-    public String inquiry() {
-        return "inquiry/inquiryForm";
+    public String inquiry(HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_admin")) {
+            return "redirect:/inquiry/inquiryList"; // 관리자면 문의 목록으로
+        }
+        return "inquiry/inquiryForm"; // 일반 유저면 문의 작성 폼으로
     }
 
     @RequestMapping("/inquiryList")
-    public String inquiryWrite(InquiryDto inquiry) throws Exception{
+    public String inquiryWrite(InquiryDto inquiry) throws Exception {
         inquiryService.insertInquiry(inquiry);
         return "redirect:/inquiry/inquiryList";
     }
@@ -38,12 +48,15 @@ public class InquiryController {
         return "inquiry/inquiryList";
     }
 
-    // 상세보기
     @GetMapping("/inquiry/detail")
     public String detail(@RequestParam("iNum") Integer iNum, Model model) {
         InquiryDto inquiry = inquiryService.getInquiryById(iNum);
         model.addAttribute("inquiry", inquiry);
-        return "inquiry/inquiryDetail"; // 상세보기 페이지 뷰
+
+        List<AnswerDto> answerList = answerService.selectAnswerByINum(iNum);
+        model.addAttribute("answerList", answerList);
+
+        return "inquiry/inquiryDetail"; 
     }
 
     @GetMapping("/inquiry/edit")

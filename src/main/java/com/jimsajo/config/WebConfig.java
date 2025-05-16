@@ -7,12 +7,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
     @Value("${file.upload-dir}")
-    private String uploadDir;  // 프로퍼티에 "C:/uploads/images/" 가 들어있다고 가정
+    private String uploadDir;  
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
         registry.addResourceHandler("/assets/img/package/**")
                 .addResourceLocations("file:///" + uploadDir);
+
     }
 }
