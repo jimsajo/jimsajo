@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jimsajo.Dto.boardDto;
 import com.jimsajo.Dto.memberDto;
@@ -26,12 +27,20 @@ public class boardController {
 	memberMapper mMapper;
 
     // 공지사항 목록
-    @RequestMapping("/board")
-    public String list(Model model) throws Exception {
-        List<boardDto> list = mapper.selectBoard();
-        model.addAttribute("boards", list);
-        return "board/board";
-    }
+	@RequestMapping("/board")
+	public String list(@RequestParam(defaultValue = "1") int page, Model model) throws Exception {
+	    int pageSize = 10;
+	    int offset = (page - 1) * pageSize;
+
+	    List<boardDto> list = mapper.selectBoardPage(offset, pageSize);
+	    int totalCount = mapper.selectBoardCount();
+	    int totalPage = (int) Math.ceil((double) totalCount / pageSize);
+
+	    model.addAttribute("boards", list);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPage", totalPage);
+	    return "board/board";
+	}
     @RequestMapping("/newBoard")
     public String newBoard() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

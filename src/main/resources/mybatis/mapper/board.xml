@@ -20,6 +20,19 @@
 		where b.bNum = #{bNum}
 	</select>
 	
+	<!-- 페이징용 목록 -->
+	<select id="selectBoardPage" resultType="com.jimsajo.Dto.boardDto">
+	    select * from board
+	    order by bNum desc
+	    limit #{pageSize} OFFSET #{startRow}
+	</select>
+	
+	<!-- 전체 게시글 수 -->
+	<select id="selectBoardCount" resultType="int">
+	    select count(*) from board
+	</select>
+	
+	
 	
 	<!--  <insert id = "insertBoard" parameterType = "com.jimsajo.Dto.boardDto">
 		insert into board (bTitle, bContent, bImage, mNum)

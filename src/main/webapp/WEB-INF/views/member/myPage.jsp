@@ -6,6 +6,8 @@
 <head>
   <meta charset="UTF-8">
   <title>마이페이지</title>
+  <!-- memberUpdate JS -->
+  <script src = "/js/memberUpdate.js"></script>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap JS -->
@@ -36,7 +38,7 @@
         <sec:authorize access="hasRole('ROLE_admin')">
           <a href="#" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
         </sec:authorize>
-        <a href="/memberUpdate" class="list-group-item list-group-item-action">정보수정</a>
+        <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#updateModal">정보수정</a>
         <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#deleteModal">회원탈퇴</a>
         <sec:authorize access="hasRole('ROLE_admin')">
           <a href="/package" class="list-group-item list-group-item-action">상품등록</a>
@@ -45,95 +47,93 @@
       </div>
     </div>
 
-    <!-- 메인 콘텐츠 (인삿말 + 문의 내역) -->
+
+    <!-- 메인 콘텐츠 -->
     <div class="col-md-9">
-
-    <!-- 인삿말 -->
-  	<sec:authorize access="isAuthenticated()">
-    	<div class="text-center mt-2 mb-3">
-      		<h3 class="fw-bold mb-2">
-      	  		${sessionScope.loginUser.mName}님, 안녕하세요!
-      		</h3>
-    	</div>
-  	</sec:authorize>
-
-      <!-- 1:1 문의 내역 (회원용) -->
-      <sec:authorize access="hasRole('ROLE_user')">
-        <div class="card mb-5">
-          <div class="card-header bg-dark text-white text-center fw-bold">
-            1대1 문의 내역
-          </div>
-          <div class="card-body p-0">
-            <table class="table table-bordered mb-0 text-center">
-              <thead class="table-light">
-                <tr>
-                  <th>제목</th>
-                  <th>타입</th>
-                  <th>내용</th>
-                  <th>작성일</th>
-                </tr>
-              </thead>
-              <tbody>
-                <c:forEach var="inquiry" items="${list}">
-                  <tr>
-                    <td>${inquiry.iTitle}</td>
-                    <td>${inquiry.iType}</td>
-                    <td>${inquiry.iContent}</td>
-                    <td>${inquiry.iTime}</td>
-                  </tr>
-                </c:forEach>
-              </tbody>
-            </table>
-          </div>
+      <sec:authorize access="isAuthenticated()">
+        <div class="text-center mt-2 mb-3">
+          <h3 class="fw-bold mb-2">
+            ${sessionScope.loginUser.mName}님, 안녕하세요!
+          </h3>
         </div>
       </sec:authorize>
-
-      <!-- 1:1 문의 내역 (관리자용) -->
-      <sec:authorize access="hasRole('ROLE_admin')">
-        <div class="card mt-4">
-          <div class="card-header bg-dark text-white text-center fw-bold">
-            1대1 문의 내역
-          </div>
-          <div class="card-body text-center">
-            <p class="text-muted">문의 내역이 없습니다</p>
-          </div>
+	  
+<!-- 회원정보 수정 모달 -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 600px; margin: auto;">
+    <form method="post" action="/memberUpdateProcess" onsubmit = "return validateForm(this)">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="updateModalLabel">회원정보 수정</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
         </div>
-      </sec:authorize>
-      
-      <!--예약 내역확인 -->
-      <sec:authorize access="hasRole('ROLE_user')">
-        <div class="card">
-          <div class="card-header bg-dark text-white text-center fw-bold">
-          		예약 내역
-          </div>
-          <div class="card-body p-0">
-            <table class="table table-bordered mb-0 text-center">
-              <thead class="table-light">
-                <tr>
-                  <th>#</th>
-                  <th>#</th>
-                  <th>#</th>
-                  <th>#</th>
-                </tr>
-              </thead>
-              <tbody>
-                <c:forEach var="#" items="#">
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </c:forEach>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </sec:authorize>
-    </div> 
+        <div class="modal-body">
+          <input type="hidden" name="mNum" value="${sessionScope.loginUser.mNum}">
+          <input type="hidden" name="mId" value="${sessionScope.loginUser.mId}">
 
-  </div> 
-</div> 
+          <!-- 아이디 -->
+          <div class="mb-3">
+            <label class="form-label">아이디</label>
+            <input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mId}" readonly>
+          </div>
+
+          <!-- 기존 비밀번호 -->
+          <div class="mb-3">
+            <input type="password" name="currentPasswd" class="form-control" placeholder="기존 비밀번호 입력">
+          </div>
+
+          <!-- 새 비밀번호 -->
+          <div class="mb-3">
+            <input type="password" name="newPasswd" class="form-control" placeholder="새로운 비밀번호 입력">
+          </div>
+
+          <!-- 비밀번호 확인 -->
+          <div class="mb-3">
+            <input type="password" name="passwdConfirm" class="form-control" placeholder="비밀번호 확인">
+          </div>
+
+          <!-- 이름 -->
+          <div class="mb-3">
+            <label class="form-label">이름</label>
+            <input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mName}" readonly>
+          </div>
+
+          <!-- 성별 -->
+          <div class="mb-3">
+            <label class="form-label d-block">성별</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="mGender" id="genderM" value="M"
+                <c:if test="${sessionScope.loginUser.mGender == 'M'}">checked</c:if> disabled>
+              <label class="form-check-label" for="genderM">남자</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="mGender" id="genderF" value="F"
+                <c:if test="${sessionScope.loginUser.mGender == 'F'}">checked</c:if> disabled>
+              <label class="form-check-label" for="genderF">여자</label>
+            </div>
+          </div>
+
+          <!-- 연락처 -->
+          <div class="mb-3">
+            <label class="form-label">연락처</label>
+            <input type="text" name="mTel" class="form-control" placeholder="'-'없이 입력해주세요." value="${sessionScope.loginUser.mTel}">
+          </div>
+
+          <!-- 생년월일 -->
+          <div class="mb-3">
+            <label class="form-label">생년월일</label>
+            <input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mBirth}" readonly>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">수정 완료</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- 회원탈퇴 확인 모달 -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -157,5 +157,30 @@
   </div>
 </div>
 
+<!-- 기존 비밀번호 다르게 입력했을때 프롬포트 창 띄우기 -->
+<c:if test="${not empty errorMsg}">
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    alert("${errorMsg}");
+  });
+</script>
+</c:if>
+<!-- 페이지 로드시 정보수정 모달 자동 오픈 -->
+<c:if test="${param.openUpdate eq 'true'}">
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var updateModal = new bootstrap.Modal(document.getElementById('updateModal'));
+    updateModal.show();
+  });
+</script>
+</c:if>
+<!--비밀번호 변경 후 알림 -->
+<c:if test="${openPopup}">
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    alert('비밀번호가 성공적으로 변경되었습니다.');
+  });
+</script>
+</c:if>
 </body>
 </html>

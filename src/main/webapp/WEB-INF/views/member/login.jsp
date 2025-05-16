@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <!-- login JS -->
+    <script src = "/js/login.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex align-items-center justify-content-center vh-100 bg-white">
@@ -14,7 +16,7 @@
             </a>
         </div>
         <h3 class="text-center mb-4">Login</h3>
-        <form action="loginProcess" method="post">
+        <form action="loginProcess" method="post" name = "login" onsubmit ="return validateForm()">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="mId" name="mId" placeholder="아이디 입력">
                 <label for="mId">아이디</label>

@@ -49,16 +49,11 @@ public class memberController {
 
 		   return "redirect:/login";
 		}
-		
-		//	   mapper.insertMember(dto);            
-//	   return "redirect:/memberList";       
-//	}
 	  
 	//회원 리스트 페이지 
 	@RequestMapping("/memberList")
 	public String memberList(Model model) throws Exception {
 		List<memberDto> members = mapper.selectMember();
-		System.out.println("불러온 회원 수: " + members.size());
 	    for (memberDto m : members) {
 	        System.out.println("회원: " + m.getmId() + ", " + m.getmName());
 	    }
@@ -82,16 +77,59 @@ public class memberController {
 	
 	//회원정보 수정 처리
 	@RequestMapping("/memberUpdateProcess")
-	public String updateMemberProcess(@ModelAttribute memberDto member, HttpSession session) {
+	public String updateMemberProcess(
+	        @ModelAttribute memberDto member,
+	        @RequestParam String currentPasswd,
+	        @RequestParam(required = false) String newPasswd,
+	        @RequestParam(required = false) String passwdConfirm,
+	        HttpSession session,
+	        RedirectAttributes redirectAttributes
+	) {
 	    memberDto loginUser = (memberDto) session.getAttribute("loginUser");
-	    
+
 	    if (loginUser == null || !loginUser.getmId().equals(member.getmId())) {
 	        return "redirect:/login";
 	    }
 
+	    // 기존 비밀번호 확인 (NoOp일 경우 단순 문자열 비교)
+	    if (!loginUser.getmPasswd().equals(currentPasswd)) {
+	        redirectAttributes.addFlashAttribute("errorMsg", "기존 비밀번호가 일치하지 않습니다.");
+	        redirectAttributes.addAttribute("openUpdate", "true");
+	        return "redirect:/myPage";
+	    }
+
+	    // 비밀번호 변경을 요청한 경우 (입력되어 있을 때만 처리)
+	    if (newPasswd != null && !newPasswd.isBlank()) {
+	        if (!newPasswd.equals(passwdConfirm)) {
+	            redirectAttributes.addFlashAttribute("errorMsg", "새 비밀번호가 일치하지 않습니다.");
+	            redirectAttributes.addAttribute("openUpdate", "true");
+	            return "redirect:/myPage";
+	        }
+
+	        // 새 비밀번호로 교체
+	        member.setmPasswd(newPasswd);
+	    } else {
+	        // 새 비밀번호가 입력되지 않은 경우, 기존 비밀번호 그대로 유지
+	        member.setmPasswd(loginUser.getmPasswd());
+	    }
+
 	    mapper.updatePasswordAndTel(member);
+	    redirectAttributes.addFlashAttribute("openPopup", true);
 	    return "redirect:/myPage";
 	}
+
+
+//	@RequestMapping("/memberUpdateProcess")
+//	public String updateMemberProcess(@ModelAttribute memberDto member, HttpSession session) {
+//	    memberDto loginUser = (memberDto) session.getAttribute("loginUser");
+//	    
+//	    if (loginUser == null || !loginUser.getmId().equals(member.getmId())) {
+//	        return "redirect:/login";
+//	    }
+//
+//	    mapper.updatePasswordAndTel(member);
+//	    return "redirect:/myPage";
+//	}
 
 	//회원탈퇴 처리
 	@RequestMapping("/memberDeleteCheck")
@@ -111,7 +149,7 @@ public class memberController {
 	        return "redirect:/mypage";
 	    }
 	    
-//	    // 암호화 후 위 코드 지운 후 주석해
+//	    // 암호화 후 위 코드 지운 후 주석해제
 //	    if (!passwordEncoder.matches(password, loginUser.getmPasswd())) {
 //	        model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
 //	        return "redirect:/mypage";

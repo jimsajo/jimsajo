@@ -82,6 +82,12 @@ public class memberDto {
 	}
 	public void setSocialId(String socialId) {
 		this.socialId = socialId;
+	}
+	@Override
+	public String toString() {
+		return "memberDto [mNum=" + mNum + ", mId=" + mId + ", mPasswd=" + mPasswd + ", mName=" + mName + ", mGender="
+				+ mGender + ", mTel=" + mTel + ", mBirth=" + mBirth + ", mCreateTime=" + mCreateTime + ", mRole="
+				+ mRole + ", socialType=" + socialType + ", socialId=" + socialId + "]";
 	}  
 	
 	

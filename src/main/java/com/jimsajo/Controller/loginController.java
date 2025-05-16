@@ -57,32 +57,43 @@ public class loginController {
 		}
 	// 마이페이지
 	@RequestMapping("/myPage")
-	public String myPage(HttpSession session, Authentication authentication) {
-		Object principal = authentication.getPrincipal();
-	    //카카오 로그인 사용자
-		if (principal instanceof CustomOAuth2User customUser) {
-			session.setAttribute("loginUser", customUser.getMember());
-	    }  else if (principal instanceof org.springframework.security.core.userdetails.User springUser) {
-	        // 일반 로그인 사용자
+	public String myPage(HttpSession session, Authentication authentication, Model model) {
+	    Object principal = authentication.getPrincipal();
+
+	    // 카카오 로그인 사용자
+	    if (principal instanceof CustomOAuth2User customUser) {
+	        session.setAttribute("loginUser", customUser.getMember());
+	        model.addAttribute("member", customUser.getMember()); // ✅ model에 추가
+	    }  
+	    // 일반 로그인 사용자
+	    else if (principal instanceof org.springframework.security.core.userdetails.User springUser) {
 	        String mId = springUser.getUsername();
 	        memberDto member = mapper.selectMemberById(mId);
-
-	    if (member != null) {
-	    	session.setAttribute("loginUser", member);
+	        if (member != null) {
+	            session.setAttribute("loginUser", member);
+	            model.addAttribute("member", member); // ✅ model에 추가
 	        }
 	    }
-	    return "member/myPage";
+
+	    return "member/myPage"; // jsp에서 ${member.~~} 사용 가능해짐
 	}
-//	
+
 //	@RequestMapping("/myPage")
-//	public String myPage(@AuthenticationPrincipal User user) {
-//	    if (user == null) {
-//	        return "redirect:/login";
-//	    }
+//	public String myPage(HttpSession session, Authentication authentication) {
+//		Object principal = authentication.getPrincipal();
+//	    //카카오 로그인 사용자
+//		if (principal instanceof CustomOAuth2User customUser) {
+//			session.setAttribute("loginUser", customUser.getMember());
+//	    }  else if (principal instanceof org.springframework.security.core.userdetails.User springUser) {
+//	        // 일반 로그인 사용자
+//	        String mId = springUser.getUsername();
+//	        memberDto member = mapper.selectMemberById(mId);
 //
-//	    
+//	    if (member != null) {
+//	    	session.setAttribute("loginUser", member);
+//	        }
+//	    }
 //	    return "member/myPage";
 //	}
-
 }
 
