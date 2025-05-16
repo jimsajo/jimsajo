@@ -73,7 +73,7 @@
             <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="/board">공지사항</a></li>               
-                <li><a href="/reviewList">여행 리뷰</a></li>
+                <li><a href="${pageContext.request.contextPath}/review/reviewList">여행 리뷰</a></li>
               </ul>
             </li>
             <li><a href="#contact">Contact</a></li>
