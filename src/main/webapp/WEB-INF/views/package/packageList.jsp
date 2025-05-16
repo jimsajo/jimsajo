@@ -34,6 +34,7 @@
 
 <body class="index-page">
 
+<<<<<<< HEAD
   <header id="header" class="header fixed-top">
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
@@ -127,5 +128,31 @@
 
     
   </main>
+=======
+<c:forEach var="dto" items="${packageList}">
+    <p>
+        <a href="/package/detail/${dto.pNum}">제목: ${dto.pName}</a>
+    </p>
+    <p>국가: ${dto.pCountry}</p>
+    <p>작성일: ${dto.pCreate}</p>
+    <p>가격: <strong>${dto.pPrice} 원</strong></p>
+	
+	<c:if test="${not empty dto.pImage}">
+    	<img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;">
+	</c:if>
+	
+	<!-- 구매하기 -->
+	<form method="get" action="/orders/ordersform">
+            <input type="hidden" name="pNum" value="${dto.pNum}" />
+            <button type="submit">예약하기</button>
+    </form>
+
+  	
+    <p>
+        <hr>
+    </p>
+</c:forEach>
+
+>>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
 </body>
 </html>

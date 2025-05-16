@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        
-<mapper namespace = "com.jimsajo.Mapper.memberMapper">
-	<insert id = "insertMember" parameterType = "com.jimsajo.Dto.memberDto">
-		insert into member (mId, mPasswd, mName, mGender, mTel, mBirth) 
-		values (#{mId},#{mPasswd},#{mName},#{mGender},#{mTel},#{mBirth})
-	</insert>
-	
-	<select id = "selectMember" resultType = "com.jimsajo.Dto.memberDto">
-		select * from member order by mNum
-	</select>
-	
-	<!-- 회원정보 수정 시 회원 조회 -->
-	<select id="findBy" parameterType="String" resultType="com.jimsajo.Dto.memberDto">
-  		select * from member where mId = #{mId}
-	</select>
-	
-	<select id="selectMemberById" parameterType="string" resultType="com.jimsajo.Dto.memberDto">
-    	select * from member where mId = #{mId}
-	</select>
-	
-	
-	<!-- 회원정보 수정 시 필요 -->
-	<update id = "updatePasswordAndTel" parameterType = "com.jimsajo.Dto.memberDto">
-		update member 
-		set 
-		mPasswd = #{mPasswd},
-		mTel = #{mTel}
-		where mNum = #{mNum}
-	</update>
 
-	<delete id = "deleteMember" parameterType = "int">
-		delete from member where mNum = #{mNum}
-	</delete>
+<mapper namespace="com.jimsajo.Mapper.memberMapper">
+
+    <!-- 🔽 1. resultMap 추가 -->
+    <resultMap id="memberResultMap" type="com.jimsajo.Dto.memberDto">
+        <id property="mNum" column="mNum"/>
+        <result property="mId" column="mId"/>
+        <result property="mPasswd" column="mPasswd"/>
+        <result property="mName" column="mName"/>
+        <result property="mGender" column="mGender"/>
+        <result property="mTel" column="mTel"/>
+        <result property="mBirth" column="mBirth"/>
+        <result property="mCreateTime" column="mCreateTime"/>
+        <result property="mRole" column="mRole"/>
+        <result property="socialType" column="socialType"/>
+        <result property="socialId" column="socialId"/>
+    </resultMap>
+
+    <insert id="insertMember" parameterType="com.jimsajo.Dto.memberDto">
+        insert into member (mId, mPasswd, mName, mGender, mTel, mBirth)
+        values (#{mId}, #{mPasswd}, #{mName}, #{mGender}, #{mTel}, #{mBirth})
+    </insert>
+
+    <!-- 🔽 2. resultType -> resultMap으로 변경 -->
+    <select id="selectMember" resultMap="memberResultMap">
+        select * from member order by mNum
+    </select>
+
+    <select id="findBy" parameterType="String" resultMap="memberResultMap">
+        select * from member where mId = #{mId}
+    </select>
+
+    <select id="selectMemberById" parameterType="string" resultMap="memberResultMap">
+        select * from member where mId = #{mId}
+    </select>
+
+    <select id="countById" parameterType="string" resultType="int">
+        select count(*) from member where mId = #{mId}
+    </select>
+
+    <update id="updatePasswordAndTel" parameterType="com.jimsajo.Dto.memberDto">
+        update member
+        set
+        mPasswd = #{mPasswd},
+        mTel = #{mTel}
+        where mNum = #{mNum}
+    </update>
+
+    <delete id="deleteMember" parameterType="int">
+        delete from member where mNum = #{mNum}
+    </delete>
+
 </mapper>

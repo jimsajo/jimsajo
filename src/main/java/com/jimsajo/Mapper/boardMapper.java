@@ -3,6 +3,7 @@ package com.jimsajo.Mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.jimsajo.Dto.boardDto;
 
@@ -15,4 +16,6 @@ public interface boardMapper {
 	int deleteBoard(int bNum) throws Exception;
 	int updateBoard(boardDto board) throws Exception;
 	int updateCnt(int bNum) throws Exception;
+	int selectBoardCount();
+	List<boardDto> selectBoardPage(@Param("startRow") int startRow, @Param("pageSize") int pageSize);
 }

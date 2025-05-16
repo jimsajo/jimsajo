@@ -8,11 +8,11 @@
 		 values(#{rNum},#{mNum},#{cContent},#{parentCNum})
 	</insert>
 	
-	<select id="selectCommentList" resultType="com.jimsajo.Dto.CommentDto">
+	<select id="selectCommentList" resultType="com.jimsajo.Dto.CommentDto" parameterType="int">
 		select c.cNum as cNum, c.rNum as rNum ,c.mNum as mNum, m.mId as mId, c.cContent as cContent, c.cCreate as cCreate, c.parentCNum as parentCNum
 		  from comment c join member m
 		  on c.mNum = m.mNum
-		  where c.rNum = #{rNum}
+		  where c.rNum = #{value}
 		  order by c.parentCNum asc, c.cCreate asc
 	</select>
 	
@@ -26,12 +26,12 @@
 	<!-- 대댓글만 삭제 -->
 	<delete id="deleteSingleComment" parameterType="int">
 		delete from comment
-		 where cNum = #{cNum}
+		 where cNum = #{value}
 	</delete>
 	
 	<!-- 부모 댓글과 대댓글 전체 삭제 -->
 	<delete id="deleteComment" parameterType="int">
 		delete from comment
-		 where cNum = #{cNum} or parentCNum = #{cNum}
+		 where cNum = #{value} or parentCNum = #{value}
 	</delete>
 </mapper>

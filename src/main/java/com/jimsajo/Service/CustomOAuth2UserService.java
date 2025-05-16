@@ -1,5 +1,6 @@
 package com.jimsajo.Service;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -39,17 +40,23 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         memberDto member = loginMapper.selectMemberById(mId);
 
         if (member == null) {
-            // 회원이 없다면 새로 등록
             memberDto newMember = new memberDto();
             newMember.setmId(mId);
             newMember.setmName(nickname);
-            newMember.setmRole("user"); // 기본 권한
+            newMember.setmRole("user");
             newMember.setSocialType("kakao");
             newMember.setSocialId(kakaoId);
 
+            // optional: 기본값 세팅
+            newMember.setmTel("미입력");
+            newMember.setmBirth(LocalDate.now());
+
             loginMapper.insertSocialMember(newMember);
-            member = newMember;
+            
+            //  여기서 다시 select해서 진짜 memberDto 받아오기!
+            member = loginMapper.selectMemberById(mId);
         }
+
 
         // Spring Security에 사용자 정보를 전달할 수 있는 OAuth2User 리턴
         return new CustomOAuth2User(member, oAuth2User.getAttributes());

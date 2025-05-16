@@ -73,7 +73,7 @@
             <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="/board">공지사항</a></li>               
-                <li><a href="/reviewList">여행 리뷰</a></li>
+                <li><a href="${pageContext.request.contextPath}/review/reviewList">여행 리뷰</a></li>
               </ul>
             </li>
             <!-- 로그인 여부 체크 -->
@@ -154,15 +154,14 @@
 
         <c:forEach var="item" items="${recommendedPackages}">
           <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-${item.pCountry}">
-           
-            <img src="/assets/img/package/${item.pImage}" class="img-fluid" alt="${item.pName}">
+            <img src="${item.pImage}" class="img-fluid" alt="${item.pName}">
             <div class="portfolio-info">
               <h4>${item.pName}</h4>
               <p>${item.pDescription}</p>
-              <a href="/assets/img/package/${item.pImage}" title="${item.pName}" data-gallery="portfolio-gallery-${item.pCountry}" class="glightbox preview-link">
+              <a href="${item.pImage}" title="${item.pName}" data-gallery="portfolio-gallery-${item.pCountry}" class="glightbox preview-link">
                 <i class="bi bi-zoom-in"></i>
               </a>
-              <a href="/package/detail/${item.pNum}" title="More Details" class="details-link">
+              <a href="/package/details/${item.pNum}" title="More Details" class="details-link">
                 <i class="bi bi-link-45deg"></i>
               </a>
             </div>
@@ -175,10 +174,7 @@
 
   </div>
 
-</section>
-
-<!-- 디버깅용 추천 패키지 개수 표시 -->
-
+</section><!-- /Portfolio Section -->
 
     <!-- Clients Section -->
     <section id="clients" class="clients section light-background">

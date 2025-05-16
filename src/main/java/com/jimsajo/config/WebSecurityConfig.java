@@ -32,9 +32,12 @@ public class WebSecurityConfig {
 
                 .requestMatchers("/", "/assets/**").permitAll()
                 .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board","/packagelist/country","/review/reviewList").permitAll()
-
                 .requestMatchers("/", "/css/**", "/js/**", "/images/**","/package/**", "/checkId","/packageList").permitAll()
                 .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board").permitAll()
+                .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board/**","/packagelist/country","/review/reviewList").permitAll()
+                .requestMatchers("/", "/css/**", "/js/**", "/images/**","/package/**", "/checkId","/packageList").permitAll()
+                .requestMatchers("/login", "/loginProcess", "/join", "/save").permitAll()
+
 
                 .requestMatchers("/newBoard", "/boardSave","/package").hasRole("admin")
                 .requestMatchers("/admin/**").hasRole("admin")

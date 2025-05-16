@@ -4,13 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jimsajo.Mapper.IReviewGoodMapper">
 
-	<select id="countLike" resultType="int">
+	<select id="countGood" resultType="int">
 		select count(*) from good where rNum = #{rNum}
 	</select>
 	
-	<select id="isGood" resultType="int">
-
-		select count(*) from good where rNum = #{rNum} and mNum = #{mNum}
+	<select id="goodByUser" resultType="boolean">
+		SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+          FROM good
+         WHERE rNum = #{rNum}
+           AND mNum = #{mNum}
 	</select>
 	
 	<insert id="insertGood" parameterType="com.jimsajo.Dto.ReviewGoodDto">
