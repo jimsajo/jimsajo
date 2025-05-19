@@ -1,27 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>마이페이지</title>
-  <!-- CSS 및 JS -->
+  <!-- memberUpdate JS -->
+  <script src = "/js/memberUpdate.js"></script>
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/memberUpdate.js"></script>
+  <!-- JS -->
   <script src="/js/memberDelete.js"></script>
-<<<<<<< HEAD
+  
+  <!-- Flatpickr CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/css/main.css" rel="stylesheet">
-=======
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
-</head>
-<<<<<<< HEAD
-<body class="index-page">
 
+  <!-- Favicon -->
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/assets/css/main.css" rel="stylesheet">
+  
+</head>
+<body class="index-page">
 <header id="header" class="header fixed-top">
   <div class="topbar d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
@@ -61,9 +81,6 @@
     </div>
   </div>
 </header>
-=======
-<body>
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 
 <!-- 로고 -->
 <div class="text-center mt-4">
@@ -72,20 +89,16 @@
   </a>
 </div>
 
-<<<<<<< HEAD
-<!-- 메인 컨테이너 -->
-<div class="container" style="margin-top: 150px;">
-=======
 <!-- 전체 컨테이너 -->
 <div class="container mt-5">
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
   <div class="row d-flex align-items-stretch">
+
     <!-- 사이드 메뉴 -->
     <div class="col-md-3 h-100">
-      <div class="list-group">
-        <a href="/payment/paymentList" class="list-group-item list-group-item-action">주문조회</a>
+      <div class="list-group h100">
+        <a href="/payment/paymentList" class="list-group-item list-group-item-action">주문상세보기</a>
         <sec:authorize access="hasRole('ROLE_user')">
-          <a href="/inquiry" class="list-group-item list-group-item-action">1대1 문의하기</a>
+        <a href="/inquiry" class="list-group-item list-group-item-action">1대1 문의하기</a>
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_admin')">
           <a href="#" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
@@ -99,55 +112,6 @@
       </div>
     </div>
 
-<<<<<<< HEAD
-   <div class="col-md-9">
-  <sec:authorize access="isAuthenticated()">
-    <div class="text-center mt-2 mb-5">
-      <h3 class="fw-bold">${sessionScope.loginUser.mName}님, 안녕하세요!</h3>
-    </div>
-  </sec:authorize>
-
-  <!-- ▶ 주문 내역 섹션 -->
-  <sec:authorize access="hasRole('ROLE_USER')">
-    <div class="text-center mb-3">
-      <h4 class="fw-bold">🛒 내 주문 내역</h4>
-    </div>
-
-    <!-- 디버그 : 실제 데이터 확인 -->
-    <p>DEBUG: paymentList = ${paymentList}</p>
-    <p>DEBUG: 개수 = <c:out value="${paymentList.size()}" default="0"/></p>
-
-    <c:choose>
-      <c:when test="${empty paymentList}">
-        <p class="text-muted text-center">주문 내역이 없습니다.</p>
-      </c:when>
-      <c:otherwise>
-        <table class="table table-bordered text-center">
-          <thead class="table-light">
-            <tr>
-              <th>주문번호</th>
-              <th>주문일자</th>
-              <th>총금액</th>
-              <th>상태</th>
-            </tr>
-          </thead>
-          <tbody>
-            <c:forEach var="p" items="${paymentList}">
-              <tr>
-                <td>${p.paymentId}</td>
-                <td>${p.paidAt}</td>
-                <td>${p.payAmount}</td>
-                <td>${p.payStatus}</td>
-              </tr>
-            </c:forEach>
-          </tbody>
-        </table>
-      </c:otherwise>
-    </c:choose>
-  </sec:authorize>
-</div>
-=======
-
     <!-- 메인 콘텐츠 -->
     <div class="col-md-9">
       <sec:authorize access="isAuthenticated()">
@@ -157,12 +121,44 @@
           </h3>
         </div>
       </sec:authorize>
-	  
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
+	</div>
+	<!-- 주문 내역 섹션 -->
+<div class="text-center mb-3 mt-5">
+  <h4 class="fw-bold">🛒 내 주문 내역</h4>
+</div>
+<c:choose>
+  <c:when test="${empty paymentList}">
+    <p class="text-muted text-center">주문 내역이 없습니다.</p>
+  </c:when>
+  <c:otherwise>
+    <table class="table table-bordered text-center">
+      <thead class="table-light">
+        <tr>
+          <th>상품명</th>
+          <th>출발날짜</th>
+          <th>도착날짜</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:forEach var="p" items="${paymentList}">
+          <tr>
+            <!--  <td>${p.merchantUid }</td> -->
+            <td>${p.pName}</td>
+            <td>${p.oStart}</td>
+            <td>${p.oReturn}</td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
+  </c:otherwise>
+</c:choose>
+	
+</div>
+</div> 
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">
-    <form method="post" action="/memberUpdateProcess" onsubmit="return validateForm(this)">
+    <form method="post" action="/memberUpdateProcess" onsubmit = "return validateForm(this)">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title fw-bold" id="updateModalLabel">회원정보 수정</h5>
@@ -171,23 +167,61 @@
         <div class="modal-body">
           <input type="hidden" name="mNum" value="${sessionScope.loginUser.mNum}">
           <input type="hidden" name="mId" value="${sessionScope.loginUser.mId}">
-          <div class="mb-3"><input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mId}" readonly></div>
-          <div class="mb-3"><input type="password" name="currentPasswd" class="form-control" placeholder="기존 비밀번호 입력"></div>
-          <div class="mb-3"><input type="password" name="newPasswd" class="form-control" placeholder="새로운 비밀번호 입력"></div>
-          <div class="mb-3"><input type="password" name="passwdConfirm" class="form-control" placeholder="비밀번호 확인"></div>
-          <div class="mb-3"><input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mName}" readonly></div>
+
+          <!-- 아이디 -->
           <div class="mb-3">
+            <label class="form-label">아이디</label>
+            <input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mId}" readonly>
+          </div>
+
+          <!-- 기존 비밀번호 -->
+          <div class="mb-3">
+            <input type="password" name="currentPasswd" class="form-control" placeholder="기존 비밀번호 입력">
+          </div>
+
+          <!-- 새 비밀번호 -->
+          <div class="mb-3">
+            <input type="password" name="newPasswd" class="form-control" placeholder="새로운 비밀번호 입력">
+          </div>
+
+          <!-- 비밀번호 확인 -->
+          <div class="mb-3">
+            <input type="password" name="passwdConfirm" class="form-control" placeholder="비밀번호 확인">
+          </div>
+
+          <!-- 이름 -->
+          <div class="mb-3">
+            <label class="form-label">이름</label>
+            <input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mName}" readonly>
+          </div>
+
+          <!-- 성별 -->
+          <div class="mb-3">
+            <label class="form-label d-block">성별</label>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="mGender" value="M" <c:if test="${sessionScope.loginUser.mGender == 'M'}">checked</c:if> disabled>
-              <label class="form-check-label">남자</label>
+              <input class="form-check-input" type="radio" name="mGender" id="genderM" value="M"
+                <c:if test="${sessionScope.loginUser.mGender == 'M'}">checked</c:if> disabled>
+              <label class="form-check-label" for="genderM">남자</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="mGender" value="F" <c:if test="${sessionScope.loginUser.mGender == 'F'}">checked</c:if> disabled>
-              <label class="form-check-label">여자</label>
+              <input class="form-check-input" type="radio" name="mGender" id="genderF" value="F"
+                <c:if test="${sessionScope.loginUser.mGender == 'F'}">checked</c:if> disabled>
+              <label class="form-check-label" for="genderF">여자</label>
             </div>
           </div>
-          <div class="mb-3"><input type="text" name="mTel" class="form-control" value="${sessionScope.loginUser.mTel}"></div>
-          <div class="mb-3"><input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mBirth}" readonly></div>
+
+          <!-- 연락처 -->
+          <div class="mb-3">
+            <label class="form-label">연락처</label>
+            <input type="text" name="mTel" class="form-control" placeholder="'-'없이 입력해주세요." value="${sessionScope.loginUser.mTel}">
+          </div>
+
+          <!-- 생년월일 -->
+          <div class="mb-3">
+            <label class="form-label">생년월일</label>
+            <input type="text" class="form-control bg-light" value="${sessionScope.loginUser.mBirth}" readonly>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">수정 완료</button>
@@ -220,34 +254,39 @@
   </div>
 </div>
 
-<<<<<<< HEAD
-<!-- JS 알림 -->
-=======
+<!-- 1:1 문의 내역 -->
+<div>
+	<div>
+		<div>
+			
+		</div>
+	</div>
+</div>
+
 <!-- 기존 비밀번호 다르게 입력했을때 프롬포트 창 띄우기 -->
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 <c:if test="${not empty errorMsg}">
-  <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      alert("${errorMsg}");
-    });
-  </script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    alert("${errorMsg}");
+  });
+</script>
 </c:if>
-
+<!-- 페이지 로드시 정보수정 모달 자동 오픈 -->
 <c:if test="${param.openUpdate eq 'true'}">
-  <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      new bootstrap.Modal(document.getElementById('updateModal')).show();
-    });
-  </script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var updateModal = new bootstrap.Modal(document.getElementById('updateModal'));
+    updateModal.show();
+  });
+</script>
 </c:if>
-
+<!--비밀번호 변경 후 알림 -->
 <c:if test="${openPopup}">
-  <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      alert('비밀번호가 성공적으로 변경되었습니다.');
-    });
-  </script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    alert('비밀번호가 성공적으로 변경되었습니다.');
+  });
+</script>
 </c:if>
-
 </body>
 </html>

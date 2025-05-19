@@ -30,7 +30,7 @@
         </p>
         <hr>
         <div style="min-height: 150px;">
-          <c:out value="${board.bContent}" escapeXml="false" />
+        	${board.bContent}
         </div>
       </div>
       <div class="card-footer bg-white text-end">
