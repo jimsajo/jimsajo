@@ -49,15 +49,21 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-
+<script>
     <!-- CKEditor5 초기화 및 이미지 업로드 설정 -->
-    <script>
     ClassicEditor
     .create(document.querySelector('#editor'), {
         ckfinder: {
-            uploadUrl: '/api/upload-package-image'  // 패키지 업로드 URL 지정 (다른 URL로 수정)
+            uploadUrl: '/api/upload-package-image'
         },
         toolbar: ['heading', '|', 'bold', 'italic', '|', 'link', 'imageUpload']
+    })
+    .then(editor => {
+        editor.model.document.on('change:data', () => {
+            // 업로드된 이미지 URL을 처리할 수 있습니다.
+            // 예를 들어, 이미지 URL이 /assets/img/package/ 경로로 들어오는지 확인.
+            console.log(editor.getData()); // HTML 콘텐츠 출력
+        });
     })
     .catch(error => {
         console.error(error);
@@ -65,3 +71,4 @@
     </script>
 </body>
 </html>
+   

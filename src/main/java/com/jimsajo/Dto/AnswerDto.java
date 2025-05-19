@@ -45,6 +45,7 @@ public class AnswerDto {
 	public void setmId(String mId) {
 		this.mId = mId;
 	}
+
 	@Override
 	public String toString() {
 		return "AnswerDto [aNum=" + aNum + ", aContent=" + aContent + ", iNum=" + iNum + ", mNum=" + mNum + ", aTime="
