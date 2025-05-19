@@ -55,4 +55,11 @@
 		update package set pCountry = #{pCountry} 
 		 where pNum=#{pNum}
 	</update>
+	<select id="selectRecentReviews" parameterType="int" resultType="com.jimsajo.Dto.ReviewDto">
+        select r.rNum as rNum, m.mId as mId, r.rTitle as rTitle, r.rImage as rImage, r.rDate as rDate, r.rCnt as rCnt, p.pCountry as pCountry
+        from review r join member m join package p
+        on r.mNum = m.mNum and r.pNum = p.pNum
+        order by r.rDate desc
+        limit #{count}
+    </select>
 </mapper>

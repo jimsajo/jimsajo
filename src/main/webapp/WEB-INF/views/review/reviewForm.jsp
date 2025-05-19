@@ -77,12 +77,11 @@
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-lg-8">
-      <div class="card shadow">
+      <div class="card shadow" style ="margin-top:90px;">
         
         <div class="card-header text-white text-center p-5" style="
 			background: url('${pageContext.request.contextPath}/assets/img/header-travel.jpg') center/cover no-repeat;
    	 		position: relative;
-    		margin-top: 80px;
     		border-top-left-radius: 0.5rem;
     		border-top-right-radius: 0.5rem;">
   
@@ -101,7 +100,7 @@
 		  </div>
 		</div>
 
-        <div class="card-body">
+        <div class="card-body" style="margin-top:110px;">
           <form method="post" action="${pageContext.request.contextPath}/review/reviewSave" enctype="multipart/form-data">
 
             <div class="mb-3">
@@ -154,5 +153,6 @@
     </div>
   </div>
 </div>
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

@@ -1,9 +1,11 @@
 package com.jimsajo.Mapper;
 
-import com.jimsajo.Dto.ReviewDto;
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.jimsajo.Dto.ReviewDto;
 
 @Mapper
 public interface IReviewMapper {
@@ -30,4 +32,7 @@ public interface IReviewMapper {
 
     // (선택적) 리뷰와 연결된 패키지 국가 정보 업데이트
     void updatePackageCountry(ReviewDto reviewDto);
+    
+    // 최근 리뷰 목록 조회 메서드 추가
+    List<ReviewDto> selectRecentReviews(@Param("count") int count);
 }

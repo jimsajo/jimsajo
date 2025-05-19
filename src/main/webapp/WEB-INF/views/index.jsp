@@ -137,7 +137,7 @@
         <p>동남아 추천 여행 패키지 상품입니다 즐겁고 행복한 여행 되세요~~</p>
       </div><!-- End Section Title -->
       </section>
-<section id="portfolio" class="portfolio section">
+<section id="portfolio" class="portfolio section" class="card shadow" style ="margin-top:-90px;">
   <div class="container">
 
     <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
@@ -232,34 +232,41 @@
     </section><!-- /Clients Section -->
 
     <!-- Services Section -->
-   <section id="about" class="about section">
+<section id="about" class="about section">
     <div class="container section-title" data-aos="fade-up">
         <span>Review<br></span>
         <h2>Review<br></h2>
-    </div></section>
-<section id="portfolio" class="portfolio section">
-    <div class="container">
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-                <c:forEach var="item" items="${reviews}">
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item ">
-                        <img src="/assets/img/review/${item.rImage}" class="img-fluid" alt="${item.rTitle}">
-                        <div class="portfolio-info">
-                            <h4>${item.rTitle}</h4>
-                            <a href="/assets/img/review/${item.rImage}" title="${item.rTitle}" data-gallery="portfolio-gallery-review" class="glightbox preview-link">
-                                <i class="bi bi-zoom-in"></i>
-                            </a>
-                            <a href="/review/reviewDetail/${item.rNum}" title="View Review" class="details-link">
-                                <i class="bi bi-link-45deg"></i>
-                            </a>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div></div>
     </div>
-</section>
-   <!-- /Services Section -->
+    </section>
 
+   <!-- /Services Section -->
+	<div class="container-md"  style ="margin-top:-90px;">
+		<div class="container my-5">
+			<div class="row g-4 mt-4">
+				<c:forEach var="review" items="${reviews}">
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+						<div class="insta-card shadow-sm">
+						<!-- 이미지 -->
+							<a href="/review/reviewDetail/${review.rNum}">
+								<img src="/assets/img/package/${review.rImage}" alt="리뷰 이미지" class="insta-img">
+								<div class="insta-overlay">
+									<i class="bi bi-heart-fill heart-icon"></i>
+								</div>
+							</a>
+								
+							<!-- 메타 정보 -->
+						<div class="insta-meta">
+							<span><strong>${review.mId}</strong></span> 
+							<span><i class="bi bi-eye me-1"></i>조회수 ${review.rCnt}</span>  
+							<span><fmt:formatDate value="${review.rDate}" pattern="yyyy-MM-dd" /></span>
+							<span>${review.rTitle}</span>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+			</div>
+		</div>
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
 

@@ -63,7 +63,7 @@
             <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="/board">공지사항</a></li>
-                <li><a href="/reviewList">여행 리뷰</a></li>
+                <li><a href="/review/reviewList">여행 리뷰</a></li>
               </ul>
             </li>
 
@@ -94,6 +94,7 @@
   </header>
 
   <main class="main" style="margin-top: 140px;">
+<div>
     <div class="container-md">
       <div class="container my-5">
         <div class="text-center mb-4">
@@ -119,17 +120,74 @@
                 </div>
 
                 
-              </div>
+	              </div>
+	            </div>
+	          </c:forEach>
+	      </div>
+	    </div>
+	    </div>
+	</div>
+  </main>
+	 <footer id="footer" class="footer position-relative dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-about">
+            <a href="/" class="logo sitename">JIMSAJO</a>
+            <div class="footer-contact pt-3">
+              <p> 12th floor JIMSAJO 627, Jungang-daero, Busanjin-gu, Busan,</p>
+              <p>Republic of Korea </p>
+              <p class="mt-3"><strong>Phone:</strong> <span>82+ 9435 4524</span></p>
+              <p><strong>Email:</strong> <span>jimsajo456@gmail.com</span></p>
             </div>
-          </c:forEach>
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
         </div>
 
-        <div class="text-center mt-5">
-          <a href="/" class="btn btn-outline-secondary">홈으로 돌아가기</a>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
         </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        
+
       </div>
     </div>
-  </main>
 
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">JIMSAJO</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        
+      </div>
+    </div>
+</footer>
+  
 </body>
 </html>
