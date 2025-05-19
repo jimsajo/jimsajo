@@ -2,8 +2,6 @@ package com.jimsajo.Dto;
 
 import java.time.LocalDateTime;
 
-
-
 public class AnswerDto {
 	private int aNum; //답변 번호
 	private String aContent; //답변내용
@@ -47,5 +45,12 @@ public class AnswerDto {
 	public void setmId(String mId) {
 		this.mId = mId;
 	}
+
+	@Override
+	public String toString() {
+		return "AnswerDto [aNum=" + aNum + ", aContent=" + aContent + ", iNum=" + iNum + ", mNum=" + mNum + ", aTime="
+				+ aTime + ", mId=" + mId + "]";
+	}
+	
 	
 }
