@@ -81,7 +81,7 @@
 <!-- <a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a> -->
 
 <div style="margin-top: 140px;">
-	<h2 class="text-center fw-bold mb-4">나의 리뷰</h2>
+	<h2 class="text-center fw-bold mb-4">여행지의 경험들</h2>
 	<p class="text-center text-muted">즐거웠던 추억들 함께 공유해 보아요</p>
 </div>
 	<div class="container-md">
@@ -104,6 +104,7 @@
 								<span><strong>${review.mId}</strong></span> 
 								<span><i class="bi bi-eye me-1"></i>조회수 ${review.rCnt}</span>  
 								<span><fmt:formatDate value="${review.rDate}" pattern="yyyy-MM-dd" /></span>
+								<span>${review.rTitle}</span>
 							</div>
 						</div>
 					</div>

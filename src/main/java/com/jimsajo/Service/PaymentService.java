@@ -9,6 +9,7 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -117,6 +118,11 @@ public class PaymentService {
 	    // ❗실패 시 false 반환
 	    return false;
 	}
+	
+	public List<PaymentDto> selectPaymentsByMember(int mNum) {
+	    return iPaymentMapper.selectPaymentsByMember(mNum);
+	}
+
 }
 
 

@@ -11,11 +11,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/js/memberUpdate.js"></script>
   <script src="/js/memberDelete.js"></script>
+<<<<<<< HEAD
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
   <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="/assets/css/main.css" rel="stylesheet">
+=======
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 </head>
+<<<<<<< HEAD
 <body class="index-page">
 
 <header id="header" class="header fixed-top">
@@ -57,6 +61,9 @@
     </div>
   </div>
 </header>
+=======
+<body>
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 
 <!-- 로고 -->
 <div class="text-center mt-4">
@@ -65,8 +72,13 @@
   </a>
 </div>
 
+<<<<<<< HEAD
 <!-- 메인 컨테이너 -->
 <div class="container" style="margin-top: 150px;">
+=======
+<!-- 전체 컨테이너 -->
+<div class="container mt-5">
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
   <div class="row d-flex align-items-stretch">
     <!-- 사이드 메뉴 -->
     <div class="col-md-3 h-100">
@@ -87,6 +99,7 @@
       </div>
     </div>
 
+<<<<<<< HEAD
    <div class="col-md-9">
   <sec:authorize access="isAuthenticated()">
     <div class="text-center mt-2 mb-5">
@@ -133,6 +146,19 @@
     </c:choose>
   </sec:authorize>
 </div>
+=======
+
+    <!-- 메인 콘텐츠 -->
+    <div class="col-md-9">
+      <sec:authorize access="isAuthenticated()">
+        <div class="text-center mt-2 mb-3">
+          <h3 class="fw-bold mb-2">
+            ${sessionScope.loginUser.mName}님, 안녕하세요!
+          </h3>
+        </div>
+      </sec:authorize>
+	  
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">
@@ -194,7 +220,11 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 <!-- JS 알림 -->
+=======
+<!-- 기존 비밀번호 다르게 입력했을때 프롬포트 창 띄우기 -->
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 <c:if test="${not empty errorMsg}">
   <script>
     window.addEventListener('DOMContentLoaded', function () {

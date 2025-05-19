@@ -47,6 +47,17 @@
 	    JOIN package pkg ON p.pNum = pkg.pNum
 	    ORDER BY p.payment_id DESC
 	</select>
+<<<<<<< HEAD
+=======
+
+	<select id="selectPaymentsByMember" resultType="com.jimsajo.Dto.PaymentDto">
+	    SELECT * 
+	     FROM payment
+	     WHERE mNum = #{mNum}
+	     ORDER BY paid_at DESC
+	</select>
+	
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 	
 	<select id="selectPaymentsByMember"
             parameterType="int"

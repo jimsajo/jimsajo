@@ -30,8 +30,8 @@
         </p>
         <hr>
         <div style="min-height: 150px;">
-  			${board.bContent}
-		</div>
+          <c:out value="${board.bContent}" escapeXml="false" />
+        </div>
       </div>
       <div class="card-footer bg-white text-end">
         <a href="/board" class="btn btn-secondary me-2">목록으로</a>
