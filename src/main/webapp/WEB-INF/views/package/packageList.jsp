@@ -34,7 +34,7 @@
 
 <body class="index-page">
 
-<<<<<<< HEAD
+
   <header id="header" class="header fixed-top">
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
@@ -92,7 +92,7 @@
               </li>
             </c:if>
 
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/#contact">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -108,51 +108,38 @@
           <span>Package<br></span>
           <h2>Package<br></h2>
           <p>동남아 추천 여행 패키지 상품입니다 즐겁고 행복한 여행 되세요~~</p><br>
+	      <c:forEach var="dto" items="${packageList}">
+			  <div style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; margin-bottom: 20px; display: flex; gap: 20px; align-items: center;">
+			    
+			    <c:if test="${not empty dto.pImage}">
+			      <img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="썸네일" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+			    </c:if>
+			
+			    <div>
+			      <p><a href="/package/detail/${dto.pNum}" style="font-weight: bold; font-size: 18px;">제목: ${dto.pName}</a></p>
+			      <p>국가: ${dto.pCountry}</p>
+			      <p>작성일: ${dto.pCreate}</p>
+			      <p>가격: <strong>${dto.pPrice} 원</strong></p>
+			
+			      <form method="get" action="/orders/ordersform">
+			        <input type="hidden" name="pNum" value="${dto.pNum}" />
+			        <button type="submit">예약하기</button>
+			      </form>
+			    </div>
+			    
+			  </div>
+		   </c:forEach>
+
           
-          
-	    <c:forEach var="dto" items="${packageList}">
-	      <p>
-	        <a href="/package/detail/${dto.pNum}">제목: ${dto.pName}</a>
-	      </p>
-	      <p>국가: ${dto.pCountry}</p>
-	      <p>작성일: ${dto.pCreate}</p>
-	
-	      <!-- 썸네일 이미지 표시 -->
-	      <c:if test="${not empty dto.pImage}">
-	        <img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;">
-	      </c:if>
-	    </c:forEach>
+	    
         </div>
       </section>
     </section><!-- /Hero Section -->
 
     
   </main>
-=======
-<c:forEach var="dto" items="${packageList}">
-    <p>
-        <a href="/package/detail/${dto.pNum}">제목: ${dto.pName}</a>
-    </p>
-    <p>국가: ${dto.pCountry}</p>
-    <p>작성일: ${dto.pCreate}</p>
-    <p>가격: <strong>${dto.pPrice} 원</strong></p>
-	
-	<c:if test="${not empty dto.pImage}">
-    	<img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;">
-	</c:if>
-	
-	<!-- 구매하기 -->
-	<form method="get" action="/orders/ordersform">
-            <input type="hidden" name="pNum" value="${dto.pNum}" />
-            <button type="submit">예약하기</button>
-    </form>
 
-  	
-    <p>
-        <hr>
-    </p>
-</c:forEach>
 
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
+
 </body>
 </html>

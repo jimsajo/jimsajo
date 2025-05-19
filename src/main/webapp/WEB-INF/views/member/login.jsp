@@ -11,9 +11,7 @@
 <body class="d-flex align-items-center justify-content-center vh-100 bg-white">
     <div class="container" style="max-width: 400px;">
         <div class="text-center mb-4">
-            <a href="/">
-                <img src="images/jimsajo_logo2.png" alt="짐싸조 로고" class="img-fluid" style="height: 150px;">
-            </a>
+            
         </div>
         <h3 class="text-center mb-4">Login</h3>
         <form action="loginProcess" method="post" name = "login" onsubmit ="return validateForm()">

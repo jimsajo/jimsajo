@@ -107,7 +107,7 @@
         <img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;">
       </a>
     </div>
-
+<br>
     <div class="mb-4 text-center">
       <h3>Sign Up</h3>
     </div>
