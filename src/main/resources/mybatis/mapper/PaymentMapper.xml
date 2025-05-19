@@ -76,8 +76,6 @@
 		  ORDER BY p.created_at DESC
 	</select>
 
-	
-
 	<update id="updatePaymentStatus">
 		UPDATE payment
 		 SET pay_status = #{status}

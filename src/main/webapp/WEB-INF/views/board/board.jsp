@@ -53,13 +53,6 @@
         </table>
       </div>
     </div>
-
-    <!-- 글쓰기 버튼 (관리자만) -->
-    <sec:authorize access="hasRole('ROLE_admin')">
-      <div class="text-end mt-3">
-        <a href="/newBoard" class="btn btn-primary">글쓰기</a>
-      </div>
-    </sec:authorize>
   </div>
   
   <nav class="mt-4">
