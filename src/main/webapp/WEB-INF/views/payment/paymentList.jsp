@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
   <title>결제 내역</title>
@@ -96,7 +97,7 @@
         <c:forEach var="payment" items="${payments}">
           <tr>
             <td>${payment.paymentId}</td>
-            <td>${payment.pName}</td>
+            <td><a href="/package/detail/${payment.pNum}">${payment.pName}</a></td>
             <td>${payment.payAmount}</td>
             <td>${payment.merchantUid}</td>
             <td>${payment.payMethod}</td>
@@ -126,7 +127,9 @@
   <div class="text-center mt-4">
     <input type="button" value="Home" class="btn btn-primary mx-1" onclick="location.href='/'">
     <input type="button" value="패키지 보기" class="btn btn-outline-success mx-1" onclick="location.href='/packagelist'">
+    <sec:authorize access="hasRole('ROLE_admin')">
     <input type="button" value="예약 내역 보기" class="btn btn-outline-info mx-1" onclick="location.href='/orders/orderList'">
+    </sec:authorize>
   </div>
 </div>
 </body>

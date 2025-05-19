@@ -13,8 +13,8 @@ function checkId() {
     return;
   }
 
-  if (id.length > 12) {
-    alert("아이디는 12자리 이하로 입력해주세요.");
+  if (!id || id.length < 8 ||id.length > 16 || !idRegex.test(id)) {
+    alert("아이디는 8자리 이상 16자리 이하의 영어 소문자와 숫자만 사용 가능합니다.");
     return;
   }
 
@@ -75,8 +75,8 @@ function validateForm() {
     return false;
   }
 
-  if (id.length > 12 || !idRegex.test(id)) {
-    alert("아이디는 12자리 이하의 영어 소문자와 숫자만 사용 가능합니다.");
+  if (!id || id.length < 8 ||id.length > 16 || !idRegex.test(id)) {
+    alert("아이디는 8자리 이상 16자리 이하의 영어 소문자와 숫자만 사용 가능합니다.");
     form.mId.focus();
     return false;
   }

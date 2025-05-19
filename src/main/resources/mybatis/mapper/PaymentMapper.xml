@@ -50,9 +50,6 @@
 	    ORDER BY p.payment_id DESC
 	</select>
 
-	
-	
-	<!-- PaymentMapper.xml -->
 <select id="selectPaymentsByMember"
         parameterType="int"
         resultMap="PaymentResultMap">

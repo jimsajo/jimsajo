@@ -60,6 +60,9 @@
 
   <div class="branding d-flex align-items-center">
     <div class="container position-relative d-flex align-items-center justify-content-between">
+      <a href="/" class="logo d-flex align-items-center">
+        <h1 class="sitename">JIMSAJO</h1>
+      </a>
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="/" class="active">홈</a></li>
@@ -96,18 +99,36 @@
     <!-- 사이드 메뉴 -->
     <div class="col-md-3 h-100">
       <div class="list-group h100">
+        <sec:authorize access="hasRole('ROLE_user')">
         <a href="/payment/paymentList" class="list-group-item list-group-item-action">주문상세보기</a>
+        </sec:authorize>
+        
+        <sec:authorize access="hasRole('ROLE_admin')">
+        <a href="/orders/orderList" class="list-group-item list-group-item-action">전체주문내역</a>
+        </sec:authorize>
+        
         <sec:authorize access="hasRole('ROLE_user')">
         <a href="/inquiry" class="list-group-item list-group-item-action">1대1 문의하기</a>
         </sec:authorize>
+    	
+    	<sec:authorize access="hasRole('ROLE_admin')">
+    	<a href="/newBoard" class="list-group-item list-group-item-action">공지사항 작성</a>
+    	</sec:authorize>
+        
         <sec:authorize access="hasRole('ROLE_admin')">
-          <a href="#" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
+        <a href="#" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
         </sec:authorize>
+        
         <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#updateModal">정보수정</a>
+        
+        <sec:authorize access="hasRole('ROLE_user')">
         <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#deleteModal">회원탈퇴</a>
+        </sec:authorize>
+        
         <sec:authorize access="hasRole('ROLE_admin')">
           <a href="/package" class="list-group-item list-group-item-action">상품등록</a>
         </sec:authorize>
+        
         <a href="/logout" class="list-group-item list-group-item-action">로그아웃</a>
       </div>
     </div>
@@ -123,6 +144,7 @@
       </sec:authorize>
 	</div>
 	<!-- 주문 내역 섹션 -->
+<sec:authorize access="hasRole('ROLE_user')">	
 <div class="text-center mb-3 mt-5">
   <h4 class="fw-bold">🛒 내 주문 내역</h4>
 </div>
@@ -155,6 +177,7 @@
 	
 </div>
 </div> 
+</sec:authorize >
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">

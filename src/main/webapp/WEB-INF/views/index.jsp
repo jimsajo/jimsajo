@@ -70,7 +70,7 @@
             <li><a href="/packagelist/country?pCountry=Vietnam">베트남</a></li>
           <li><a href="/packagelist/country?pCountry=Malaysia">말레이시아</a></li>
            <li><a href="/packagelist/country?pCountry=Philippines">필리핀</a></li>
-            <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <li class="dropdown"><a href="board"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="/board">공지사항</a></li>               
                 <li><a href="${pageContext.request.contextPath}/review/reviewList">여행 리뷰</a></li>

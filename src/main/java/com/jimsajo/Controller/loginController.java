@@ -41,12 +41,12 @@ public class loginController {
 
 	    // 아이디가 있는지 체크
 	    if (member == null || !passwordEncoder.matches(inputMember.getmPasswd(), member.getmPasswd())) {
-	        return "member/login";
+	        return "index";
 	    }
 
 	    // 세션 저장
 	    session.setAttribute("loginUser", member);
-	    return "redirect:/myPage";
+	    return "redirect:/";
 	}
 
 	
