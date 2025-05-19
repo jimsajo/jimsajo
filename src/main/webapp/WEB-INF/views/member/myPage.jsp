@@ -130,6 +130,7 @@
         </sec:authorize>
         
         <a href="/logout" class="list-group-item list-group-item-action">로그아웃</a>
+        <a href="/review" class="list-group-item list-group-item-action">✍️ 리뷰 작성하기</a>
       </div>
     </div>
 

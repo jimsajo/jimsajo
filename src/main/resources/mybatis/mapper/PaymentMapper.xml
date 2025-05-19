@@ -50,6 +50,7 @@
 	    ORDER BY p.payment_id DESC
 	</select>
 
+
 <select id="selectPaymentsByMember"
         parameterType="int"
         resultMap="PaymentResultMap">
