@@ -88,7 +88,7 @@
 </div>
 
 <!-- 전체 컨테이너 -->
-<div class="container mt-5">
+<div class="container" style="margin-top: 150px;">
   <div class="row d-flex align-items-stretch">
 
     <!-- 사이드 메뉴 -->
@@ -119,9 +119,10 @@
           </h3>
         </div>
       </sec:authorize>
-	</div>
+    </div>
+  </div>
 </div>
-</div> 
+
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">

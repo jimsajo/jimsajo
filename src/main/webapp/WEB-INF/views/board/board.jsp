@@ -84,17 +84,8 @@
 
   </header>
 
-
-
-  <!-- 로고 -->
-  <div class="text-center my-4">
-    <a href="/">
-      <img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;">
-    </a>
-  </div>
-
   <!-- 공지사항 테이블 -->
-  <div class="container">
+  <div class="container mt-5 pt-5">
     <div class="card shadow">
       <div class="card-header bg-dark text-white text-center fs-5 fw-bold">
         공지사항 목록

@@ -20,13 +20,15 @@
 		where b.bNum = #{bNum}
 	</select>
 	
-	<!-- 페이징용 목록 -->
 	<select id="selectBoardPage" resultType="com.jimsajo.Dto.boardDto">
-	    select * from board
-	    order by bNum desc
-	    limit #{pageSize} OFFSET #{startRow}
+  		SELECT 
+    	b.bNum, b.bTitle, b.bContent, b.bTime, b.bCnt, b.bImage, b.mNum, m.mName
+	  	FROM board b
+	  	JOIN member m ON b.mNum = m.mNum
+	  	ORDER BY b.bNum DESC
+	  	LIMIT #{pageSize} OFFSET #{startRow}
 	</select>
-	
+
 	<!-- 전체 게시글 수 -->
 	<select id="selectBoardCount" resultType="int">
 	    select count(*) from board
