@@ -48,6 +48,13 @@
 	    ORDER BY p.payment_id DESC
 	</select>
 
+	<select id="selectPaymentsByMember" resultType="com.jimsajo.Dto.PaymentDto">
+	    SELECT * 
+	     FROM payment
+	     WHERE mNum = #{mNum}
+	     ORDER BY paid_at DESC
+	</select>
+	
 	
 	<update id="updatePaymentStatus">
 		UPDATE payment
