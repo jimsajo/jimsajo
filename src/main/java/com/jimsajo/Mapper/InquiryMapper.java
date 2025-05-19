@@ -1,8 +1,11 @@
 package com.jimsajo.Mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import com.jimsajo.Dto.InquiryDto;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.jimsajo.Dto.InquiryDto;
 
 @Mapper  // 이 어노테이션 추가
 public interface InquiryMapper {

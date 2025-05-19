@@ -1,16 +1,17 @@
 package com.jimsajo.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jimsajo.Dto.PaymentDto;
 import com.jimsajo.Dto.memberDto;
+import com.jimsajo.Mapper.IPaymentMapper;
 import com.jimsajo.Mapper.loginMapper;
 import com.jimsajo.Service.CustomOAuth2User;
 
@@ -23,6 +24,8 @@ public class loginController {
 	private loginMapper mapper;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired 
+	private IPaymentMapper paymentMapper;
 	
 	// 로그인 폼 
 	@RequestMapping("/login")
@@ -63,7 +66,14 @@ public class loginController {
 	    // 카카오 로그인 사용자
 	    if (principal instanceof CustomOAuth2User customUser) {
 	        session.setAttribute("loginUser", customUser.getMember());
-	        model.addAttribute("member", customUser.getMember()); // ✅ model에 추가
+	        model.addAttribute("member", customUser.getMember());
+
+	        // ── 여기서 주문 내역을 꺼내 모델에 담기
+            int mNum = customUser.getMember().getmNum();
+            List<PaymentDto> paymentList =
+            paymentMapper.selectPaymentsByMember(mNum);
+            model.addAttribute("paymentList", paymentList);
+	        
 	    }  
 	    // 일반 로그인 사용자
 	    else if (principal instanceof org.springframework.security.core.userdetails.User springUser) {
@@ -71,7 +81,14 @@ public class loginController {
 	        memberDto member = mapper.selectMemberById(mId);
 	        if (member != null) {
 	            session.setAttribute("loginUser", member);
-	            model.addAttribute("member", member); // ✅ model에 추가
+	            model.addAttribute("member", member);
+
+                // ── 여기서도 주문 내역을 꺼내 모델에 담기
+                int mNum = member.getmNum();
+                List<PaymentDto> paymentList =
+                paymentMapper.selectPaymentsByMember(mNum);
+                model.addAttribute("paymentList", paymentList);
+
 	        }
 	    }
 

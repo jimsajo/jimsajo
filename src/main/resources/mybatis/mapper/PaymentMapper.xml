@@ -47,12 +47,37 @@
 	    JOIN package pkg ON p.pNum = pkg.pNum
 	    ORDER BY p.payment_id DESC
 	</select>
-
 	
+	<select id="selectPaymentsByMember"
+            parameterType="int"
+            resultMap="PaymentResultMap">
+        SELECT 
+            p.payment_id      AS payment_id,
+            p.imp_uid         AS imp_uid,
+            p.merchant_uid    AS merchant_uid,
+            p.pay_method      AS pay_method,
+            p.pay_amount      AS pay_amount,           
+            p.pay_status      AS pay_status,
+            p.paid_at         AS paid_at,         
+            p.created_at      AS created_at,
+            p.oNum            AS oNum,
+            p.pNum            AS pNum,
+            p.mNum            AS mNum,
+            pkg.pName         AS pName,
+            pkg.pPrice        AS pPrice
+        FROM payment p
+        JOIN package pkg ON p.pNum = pkg.pNum
+        WHERE p.mNum = #{mNum}
+        ORDER BY p.created_at DESC
+    </select>
+	
+
 	<update id="updatePaymentStatus">
 		UPDATE payment
 		 SET pay_status = #{status}
 		 WHERE imp_uid = #{impUid}
 	</update>
+	
+	
 	
 </mapper>
