@@ -1,0 +1,55 @@
+@charset "UTF-8";
+.insta-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .insta-card:hover {
+    transform: scale(1.02);
+  }
+
+  .insta-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: 0.3s ease;
+  }
+
+  .insta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+  }
+
+  .insta-card:hover .insta-overlay {
+    opacity: 1;
+  }
+
+  .heart-icon {
+    font-size: 2rem;
+    color: red;
+  }
+
+  .insta-meta {
+    font-size: 0.9rem;
+    padding: 8px;
+    color: #333;
+    background-color: #f9f9f9;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  .insta-meta span {
+    display: block;
+  }
