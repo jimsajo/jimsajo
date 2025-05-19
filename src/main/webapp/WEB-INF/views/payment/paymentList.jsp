@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
   <title>결제 내역</title>
@@ -96,7 +97,7 @@
         <c:forEach var="payment" items="${payments}">
           <tr>
             <td>${payment.paymentId}</td>
-            <td>${payment.pName}</td>
+            <td><a href="/package/detail/${payment.pNum}">${payment.pName}</a></td>
             <td>${payment.payAmount}</td>
             <td>${payment.merchantUid}</td>
             <td>${payment.payMethod}</td>
@@ -126,7 +127,9 @@
   <div class="text-center mt-4">
     <input type="button" value="Home" class="btn btn-primary mx-1" onclick="location.href='/'">
     <input type="button" value="패키지 보기" class="btn btn-outline-success mx-1" onclick="location.href='/packagelist'">
+    <sec:authorize access="hasRole('ROLE_admin')">
     <input type="button" value="예약 내역 보기" class="btn btn-outline-info mx-1" onclick="location.href='/orders/orderList'">
+    </sec:authorize>
   </div>
 </div>
 </body>
@@ -138,4 +141,85 @@
     }
   });
 </script>
+
+<footer id="footer" class="footer position-relative dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-about">
+            <a href="/" class="logo sitename">JIMSAJO</a>
+            <div class="footer-contact pt-3">
+              <p> 12th floor JIMSAJO 627, Jungang-daero, Busanjin-gu, Busan,</p>
+              <p>Republic of Korea </p>
+              <p class="mt-3"><strong>Phone:</strong> <span>82+ 9435 4524</span></p>
+              <p><strong>Email:</strong> <span>jimsajo456@gmail.com</span></p>
+            </div>
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">JIMSAJO</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/assets/js/main.js"></script>
+
 </html>

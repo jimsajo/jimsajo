@@ -142,38 +142,86 @@
 		</form>
 	</div>
 
-	<script>
-    function requestPay() {
-      // ✅ 반드시 테스트 상점코드 사용
-      IMP.init("imp60842643"); // 아임포트 테스트용 상점 코드
+	<script src="${pageContext.request.contextPath}/assets/js/payment.js"></script>
+  
+  <footer id="footer" class="footer position-relative dark-background">
 
-      // ✅ 아임포트 결제 요청
-      IMP.request_pay({
-        pg: "tosspay.tosstest",           // ✅ PG사 테스트 코드
-        pay_method: "card",
-        merchant_uid: "order_" + new Date().getTime(),  // 고유 주문번호
-        name: document.getElementById("name").innerText,
-        amount: parseInt(document.getElementById("amount").innerText),
-        buyer_name: document.getElementById("buyer_name").value,
-        buyer_tel: document.getElementById("buyer_tel").value
-      }, function (rsp) {
-        if (rsp.success) {
-          alert("결제 성공");
-          
-          // 서버에 결제 검증 요청
-          fetch("/api/payment/verify", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ imp_uid: rsp.imp_uid,
-                pNum: document.getElementById("pNum").value,
-                oNum: document.getElementById("oNum").value})
-          }).then(res => res.text()).then(alert);
-          location.href = "/payment/paymentList"; // 결제 완료 후 내역 보기로 이동
-        } else {
-          alert("결제 실패: " + rsp.error_msg);
-        }
-      });
-    }
-  </script>
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-about">
+            <a href="/" class="logo sitename">JIMSAJO</a>
+            <div class="footer-contact pt-3">
+              <p> 12th floor JIMSAJO 627, Jungang-daero, Busanjin-gu, Busan,</p>
+              <p>Republic of Korea </p>
+              <p class="mt-3"><strong>Phone:</strong> <span>82+ 9435 4524</span></p>
+              <p><strong>Email:</strong> <span>jimsajo456@gmail.com</span></p>
+            </div>
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">JIMSAJO</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>

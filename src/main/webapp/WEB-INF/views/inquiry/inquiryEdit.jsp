@@ -21,18 +21,6 @@
 </form>
 
 <a href="/inquiry/inquiryList">목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
-<script>
-    ClassicEditor
-    .create(document.querySelector('#editor'), {
-        ckfinder: {
-            uploadUrl: '/api/upload-package-image'  // 패키지 업로드 URL 지정 (다른 URL로 수정)
-        },
-        toolbar: ['heading', '|', 'bold', 'italic', '|', 'link', 'imageUpload']
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
-</script>
+<script src="${pageContext.request.contextPath}/assets/js/CKEditor5.js"></script>
 </body>
 </html>

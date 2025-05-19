@@ -144,8 +144,10 @@
 
     <div class="text-center mt-4">
       <a href="/" class="btn btn-secondary">🏠 Home</a>
-      <a href="/review" class="btn btn-primary">✍️ 리뷰 작성하기</a>
     </div>
   </div>
+  
+<jsp:include page="../footer.jsp"/>
+  
 </body>
 </html>
