@@ -10,7 +10,7 @@
     </insert>
     
     <!-- 문의 번호로 답변들 조회 -->
-    <select id="selectAnswersByINum" resultType="com.jimsajo.Dto.AnswerDto">
+    <select id="selectAnswerByINum" resultType="com.jimsajo.Dto.AnswerDto">
         SELECT a.*, m.mId
          FROM answer a
          JOIN member m ON a.mNum = m.mNum

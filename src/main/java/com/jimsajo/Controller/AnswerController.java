@@ -32,12 +32,12 @@ public class AnswerController {
             return "redirect:/loginForm"; // 또는 접근 거부 페이지로 리다이렉트
         }
 
-        answer.setMNum(loginUser.getmNum());
-        answer.setMId(loginUser.getmId());
-        answer.setATime(LocalDateTime.now());
+        answer.setmNum(loginUser.getmNum());
+        answer.setmId(loginUser.getmId());
+        answer.setaTime(LocalDateTime.now());
 
         answerService.insertAnswer(answer);
-        return "redirect:/inquiry/detail?iNum=" + answer.getINum();
+        return "redirect:/inquiry/detail?iNum=" + answer.getiNum();
     }
     
  // 답변 수정 폼
@@ -63,9 +63,9 @@ public class AnswerController {
             return "redirect:/loginForm";
         }
 
-        answer.setATime(LocalDateTime.now());
+        answer.setaTime(LocalDateTime.now());
         answerService.updateAnswer(answer);
-        return "redirect:/inquiry/detail?iNum=" + answer.getINum();
+        return "redirect:/inquiry/detail?iNum=" + answer.getiNum();
     }
     
  // 답변 삭제

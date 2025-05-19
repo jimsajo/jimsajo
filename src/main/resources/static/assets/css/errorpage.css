@@ -1,0 +1,51 @@
+@charset "UTF-8";
+body {
+    background-color: #2a0000;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    padding: 100px 20px;
+  }
+
+  .error-icon {
+    font-size: 80px;
+    color: #ff4d4d;
+    animation: shake 1s infinite;
+  }
+
+  .glitch-text {
+    font-size: 2.5rem;
+    color: #ff6666;
+    text-shadow: 2px 2px #000, -1px -1px #ff0000;
+    animation: flicker 2s infinite;
+  }
+
+  .error-box {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 2px solid #ff0000;
+    padding: 40px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 30px;
+  }
+
+  .btn-danger {
+    margin-top: 20px;
+    font-weight: bold;
+    box-shadow: 0 0 10px red;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    45% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    55% { opacity: 0.3; }
+  }

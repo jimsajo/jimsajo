@@ -1,6 +1,10 @@
 package com.jimsajo.Controller;
 
 import java.io.File;
+
+import java.io.IOException;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -154,7 +158,7 @@ public class PackageController {
         return "redirect:/packagelist";
     }
 
-    // CKEditor 이미지 업로드용
+   // CKEditor 이미지 업로드용
     @PostMapping("/api/upload-package-image")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> uploadPackageImage(@RequestParam("upload") MultipartFile file) {
@@ -166,24 +170,35 @@ public class PackageController {
         }
 
         try {
+            // 파일 이름 생성
             String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-            File saveDir = new File(uploadDir);
+
+            // 업로드 디렉토리 설정
+            File saveDir = new File("C:/springboot/jimsajo/src/main/resources/static/assets/img/package/");
             if (!saveDir.exists()) {
                 saveDir.mkdirs();
             }
 
+            // 파일 저장
             File saveFile = new File(saveDir, fileName);
             file.transferTo(saveFile);
 
-            String fileUrl = "/uploads/images/" + fileName;
+            // 클라이언트에게 전달할 URL 수정
+            String fileUrl = "/assets/img/package/" + fileName;  // 클라이언트에서 요청할 URL
+
+            // 성공적인 업로드 응답
+            response.put("uploaded", true);
             response.put("url", fileUrl);
             return ResponseEntity.ok(response);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            response.put("error", "업로드 중 오류 발생");
+            response.put("uploaded", false);
+            response.put("error", "파일 업로드 중 오류 발생");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
+
 
     // 추천 처리
     @PostMapping("/recommend/{pNum}")
