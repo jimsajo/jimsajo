@@ -27,7 +27,8 @@
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-
+  <link href="${pageContext.request.contextPath}/assets/css/instaReview.css" rel="stylesheet">
+ 
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
 
@@ -154,14 +155,13 @@
 
         <c:forEach var="item" items="${recommendedPackages}">
           <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-${item.pCountry}">
-            <img src="${item.pImage}" class="img-fluid" alt="${item.pName}">
+            <img src="/assets/img/package/${item.pImage}" class="img-fluid" alt="${item.pName}">
             <div class="portfolio-info">
-              <h4>${item.pName}</h4>
-              <p>${item.pDescription}</p>
-              <a href="${item.pImage}" title="${item.pName}" data-gallery="portfolio-gallery-${item.pCountry}" class="glightbox preview-link">
+              <h4>${item.pName}</h4>             
+              <a href="/assets/img/package/${item.pImage}" title="${item.pName}" data-gallery="portfolio-gallery-${item.pCountry}" class="glightbox preview-link">
                 <i class="bi bi-zoom-in"></i>
               </a>
-              <a href="/package/details/${item.pNum}" title="More Details" class="details-link">
+              <a href="/package/detail/${item.pNum}" title="More Details" class="details-link">
                 <i class="bi bi-link-45deg"></i>
               </a>
             </div>
@@ -232,99 +232,33 @@
     </section><!-- /Clients Section -->
 
     <!-- Services Section -->
-    <section id="services" class="services section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <span>Services</span>
-        <h2>Services</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item  position-relative">
-              <div class="icon">
-                <i class="bi bi-activity"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Nesciunt Mete</h3>
-              </a>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-broadcast"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Eosle Commodi</h3>
-              </a>
-              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-easel"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Ledo Markt</h3>
-              </a>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-bounding-box-circles"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Asperiores Commodit</h3>
-              </a>
-              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-calendar4-week"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Velit Doloremque</h3>
-              </a>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-chat-square-text"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Services Section -->
+   <section id="about" class="about section">
+    <div class="container section-title" data-aos="fade-up">
+        <span>Review<br></span>
+        <h2>Review<br></h2>
+    </div></section>
+<section id="portfolio" class="portfolio section">
+    <div class="container">
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                <c:forEach var="item" items="${reviews}">
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item ">
+                        <img src="/assets/img/review/${item.rImage}" class="img-fluid" alt="${item.rTitle}">
+                        <div class="portfolio-info">
+                            <h4>${item.rTitle}</h4>
+                            <a href="/assets/img/review/${item.rImage}" title="${item.rTitle}" data-gallery="portfolio-gallery-review" class="glightbox preview-link">
+                                <i class="bi bi-zoom-in"></i>
+                            </a>
+                            <a href="/review/reviewDetail/${item.rNum}" title="View Review" class="details-link">
+                                <i class="bi bi-link-45deg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div></div>
+    </div>
+</section>
+   <!-- /Services Section -->
 
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">

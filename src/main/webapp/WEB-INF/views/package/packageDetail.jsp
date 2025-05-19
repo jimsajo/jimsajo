@@ -16,6 +16,10 @@
 <p>작성일: ${dto.pCreate}</p>
 <p>내용:</p>
 <div>${dto.pDescription}</div>
+<form method="get" action="/orders/ordersform" class="text-center mt-2">
+                  <input type="hidden" name="pNum" value="${dto.pNum}" />
+                  <button type="submit" class="btn btn-sm btn-primary">예약하기</button>
+                </form>
 
 <!-- 관리자만 추천 버튼을 보이도록 처리 -->
 <c:if test="${sessionScope.loginUser.mRole == 'admin'}">
