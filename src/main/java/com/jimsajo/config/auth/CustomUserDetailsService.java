@@ -15,24 +15,39 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private loginMapper mapper;
- 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         memberDto member = mapper.selectMemberById(username);
-        if (member == null) {
-            throw new UsernameNotFoundException("존재하지 않는 사용자입니다: " + username);
-        }
-        
-        memberDto mem = mapper.selectMemberById(username);
-        System.out.println("💡 SELECT 결과: " + mem);
-        System.out.println("💡 mId: " + mem.getmId());
-        System.out.println("💡 mPasswd: " + mem.getmPasswd());
-        System.out.println("💡 mRole: " + mem.getmRole());
+        if (member == null) throw new UsernameNotFoundException("없는 사용자");
 
-        return User.builder()
-                .username(member.getmId())
-                .password(member.getmPasswd()) // 암호화된 비밀번호
-                .roles(member.getmRole())      // "user", "admin"
-                .build();
+        return new CustomUserDetails(member);  //  커스텀 객체 반환
     }
 }
+
+//@Service
+//public class CustomUserDetailsService implements UserDetailsService {
+//
+//    @Autowired
+//    private loginMapper mapper;
+// 
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        memberDto member = mapper.selectMemberById(username);
+//        if (member == null) {
+//            throw new UsernameNotFoundException("존재하지 않는 사용자입니다: " + username);
+//        }
+//        
+//        memberDto mem = mapper.selectMemberById(username);
+//        System.out.println("💡 SELECT 결과: " + mem);
+//        System.out.println("💡 mId: " + mem.getmId());
+//        System.out.println("💡 mPasswd: " + mem.getmPasswd());
+//        System.out.println("💡 mRole: " + mem.getmRole());
+//
+//        return User.builder()
+//                .username(member.getmId())
+//                .password(member.getmPasswd()) // 암호화된 비밀번호
+//                .roles(member.getmRole())      // "user", "admin"
+//                .build();
+//    }
+//}
