@@ -98,7 +98,7 @@
 	
 	    <div class="mb-3">
               <label class="form-label">제목</label>
-              <input type="text" class="form-control" name="rName" required>
+              <input type="text" class="form-control" name="pName" required>
             </div>
 	    가격 : <input type="number" name="pPrice" placeholder="가격" min="0"><br>
 	

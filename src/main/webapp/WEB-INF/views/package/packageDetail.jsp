@@ -95,38 +95,35 @@
       </div>
     </div>
   </header>
-
-		<h1>패키지 상세정보</h1>
-			<p>제목: ${dto.pName}</p>
-			<p>국가: ${dto.pCountry}</p>
-			<p>작성일: ${dto.pCreate}</p>
-			<p>내용:</p>
+		<div style="margin-top: 140px; text-align: center;">
+			<h2>${dto.pName}</h2>
+			<hr>
 		<div>${dto.pDescription}</div>
 		<form method="get" action="/orders/ordersform" class="text-center mt-2">
              <input type="hidden" name="pNum" value="${dto.pNum}" />
-	         <button type="submit" class="btn btn-sm btn-primary">예약하기</button>
+	         <button type="submit" style="margin:10px; background-color: #000; color: #fff; border: none; padding: 10px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-weight: bold; letter-spacing: 1px;">예약하기</button>
         </form>
 
 <!-- 관리자만 추천 버튼을 보이도록 처리 -->
 	<c:if test="${sessionScope.loginUser.mRole == 'admin'}">
 	    <!-- 추천 등록 버튼 -->
 	    <form action="/recommend/${dto.pNum}" method="post">
-	        <input type="submit" value="추천하기">
+	        <input type="submit" value="추천하기" style="margin:10px; background-color: #000; color: #fff; border: none; padding: 10px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-weight: bold; letter-spacing: 1px;">
 	    </form>
 	
 	
 	<!-- 수정 버튼 -->
 	<form action="/package/update/${dto.pNum}" method="get">
-	    <input type="submit" value="수정">
+	    <input type="submit" value="수정" style="margin:10px; background-color: #000; color: #fff; border: none; padding: 10px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-weight: bold; letter-spacing: 1px;">
 	</form>
 	
 	<!-- 삭제 버튼 -->
 	<form action="/package/delete" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
 	    <input type="hidden" name="pNum" value="${dto.pNum}">
-	    <input type="submit" value="삭제">
+	    <input type="submit" value="삭제" style="margin:10px; background-color: #000; color: #fff; border: none; padding: 10px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-weight: bold; letter-spacing: 1px;">
 	</form>
 	</c:if>
-
+</div>
 
 <footer id="footer" class="footer position-relative dark-background">
 
