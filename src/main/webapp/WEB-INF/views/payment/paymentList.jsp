@@ -97,7 +97,9 @@
         <c:forEach var="payment" items="${payments}">
           <tr>
             <td>${payment.paymentId}</td>
+
             <td><a href="/package/detail/${payment.pNum}">${payment.pName}</a></td>
+
             <td>${payment.payAmount}</td>
             <td>${payment.merchantUid}</td>
             <td>${payment.payMethod}</td>

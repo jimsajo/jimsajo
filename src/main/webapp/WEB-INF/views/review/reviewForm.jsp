@@ -77,7 +77,11 @@
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-lg-8">
+<<<<<<< HEAD
+      <div class="card shadow" style ="margin-top:90px;">
+=======
       <div class="card shadow" style="margin-top:90px;">
+>>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
         
         <div class="card-header text-white text-center p-5" style="
 			background: url('${pageContext.request.contextPath}/assets/img/header-travel.jpg') center/cover no-repeat;
@@ -100,7 +104,7 @@
 		  </div>
 		</div>
 
-        <div class="card-body">
+        <div class="card-body" style="margin-top:110px;">
           <form method="post" action="${pageContext.request.contextPath}/review/reviewSave" enctype="multipart/form-data">
 
             <div class="mb-3">
@@ -153,8 +157,12 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
+<jsp:include page="../footer.jsp" />
+=======
 
 <jsp:include page="../footer.jsp"/>
 
+>>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
 </body>
 </html>

@@ -1,10 +1,7 @@
 package com.jimsajo.Controller;
 
 import java.io.File;
-
 import java.io.IOException;
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jimsajo.Dto.PackageDto;
+import com.jimsajo.Dto.ReviewDto;
 import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Service.PackageService;
+import com.jimsajo.Service.ReviewService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -39,6 +38,8 @@ public class PackageController {
     @Autowired
     private PackageService packageService;
     
+    @Autowired
+    private ReviewService reviewService; // ReviewService 주입
 
     @Value("${file.upload-dir}")
     private String uploadDir;
@@ -48,7 +49,21 @@ public class PackageController {
     public String mainPage(Model model) {
         List<PackageDto> recommendedPackages = packageService.getRecommendedPackages();
         model.addAttribute("recommendedPackages", recommendedPackages);
+
+        // 최근 리뷰 목록 조회
+        try {
+            List<ReviewDto> recentReviews = reviewService.selectRecentReviews(4); // 최근 리뷰 4개 조회 (개수는 조정 가능)
+            model.addAttribute("reviews", recentReviews);
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("reviewError", "최근 리뷰를 불러오는 중 오류가 발생했습니다.");
+        }
+
         return "index";
+    }
+    @RequestMapping("/2")
+    public String footer() {
+    	return "footer";
     }
 
 

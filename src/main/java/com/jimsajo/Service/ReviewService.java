@@ -83,4 +83,8 @@ public class ReviewService {
     public void increaseViewCount(int rNum) {
         reviewMapper.updateViewCount(rNum);
     }
+ // 최근 리뷰 목록 조회 메서드 추가
+    public List<ReviewDto> selectRecentReviews(int count) {
+        return reviewMapper.selectRecentReviews(count);
+    }
 }

@@ -9,32 +9,28 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/css/instaReview.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
 
-  <!-- 현재 선택된 국가값 저장 -->
   <c:set var="currentCountry" value="${param.pCountry}" />
 </head>
 
 <body class="index-page">
 
-<<<<<<< HEAD
+
   <header id="header" class="header fixed-top">
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
@@ -49,9 +45,7 @@
           <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
       </div>
-    </div><!-- End Top Bar -->
-
-    <div class="branding d-flex align-items-center">
+    </div><div class="branding d-flex align-items-center">
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
           <h1 class="sitename">JIMSAJO</h1>
@@ -68,12 +62,11 @@
 
             <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="/board">공지사항</a></li>               
-                <li><a href="/reviewList">여행 리뷰</a></li>
+                <li><a href="/board">공지사항</a></li>
+                <li><a href="/review/reviewList">여행 리뷰</a></li>
               </ul>
             </li>
 
-            <!-- 로그인 여부 체크 -->
             <c:if test="${empty sessionScope.loginUser}">
               <li class="dropdown">
                 <a href="/login"><span>로그인</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -92,7 +85,7 @@
               </li>
             </c:if>
 
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/#contact">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -100,59 +93,101 @@
     </div>
   </header>
 
-  <main class="main">
-    <section id="hero" class="hero section dark-background">
-      <img src="/assets/img/hero-bg.jpg" alt="">
-      <section id="about" class="about section2">
-        <div class="container section-title">
-          <span>Package<br></span>
-          <h2>Package<br></h2>
-          <p>동남아 추천 여행 패키지 상품입니다 즐겁고 행복한 여행 되세요~~</p><br>
-          
-          
-	    <c:forEach var="dto" items="${packageList}">
-	      <p>
-	        <a href="/package/detail/${dto.pNum}">제목: ${dto.pName}</a>
-	      </p>
-	      <p>국가: ${dto.pCountry}</p>
-	      <p>작성일: ${dto.pCreate}</p>
-	
-	      <!-- 썸네일 이미지 표시 -->
-	      <c:if test="${not empty dto.pImage}">
-	        <img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;">
-	      </c:if>
-	    </c:forEach>
+  <main class="main" style="margin-top: 140px;">
+<div>
+    <div class="container-md">
+      <div class="container my-5">
+        <div class="text-center mb-4">
+          <h2>동남아 추천 여행 패키지</h2>
+          <p class="text-muted">즐겁고 행복한 여행 되세요~~</p>
         </div>
-      </section>
-    </section><!-- /Hero Section -->
 
-    
+        <div class="row g-4 mt-4">
+          <c:forEach var="dto" items="${packageList}">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="insta-card shadow-sm">
+                <a href="${pageContext.request.contextPath}/package/detail/${dto.pNum}">
+                  <img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="패키지 이미지" class="insta-img">
+                  <div class="insta-overlay">
+                    <i class="bi bi-bookmark-heart-fill heart-icon"></i>
+                  </div>
+                </a>
+                <div class="insta-meta">
+                  <span><strong>${dto.pName}</strong></span><br>
+                  <span><i class="bi bi-geo-alt me-1"></i>${dto.pCountry}</span><br>
+                  <span><i class="bi bi-calendar-check me-1"></i><fmt:formatDate value="${dto.pCreate}" pattern="yyyy-MM-dd" /></span><br>
+                  <span><i class="bi bi-cash-coin me-1"></i><strong>${dto.pPrice} 원</strong></span>
+                </div>
+
+                
+	              </div>
+	            </div>
+	          </c:forEach>
+	      </div>
+	    </div>
+	    </div>
+	</div>
   </main>
-=======
-<c:forEach var="dto" items="${packageList}">
-    <p>
-        <a href="/package/detail/${dto.pNum}">제목: ${dto.pName}</a>
-    </p>
-    <p>국가: ${dto.pCountry}</p>
-    <p>작성일: ${dto.pCreate}</p>
-    <p>가격: <strong>${dto.pPrice} 원</strong></p>
-	
-	<c:if test="${not empty dto.pImage}">
-    	<img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="썸네일" style="width: 100px; height: 100px;">
-	</c:if>
-	
-	<!-- 구매하기 -->
-	<form method="get" action="/orders/ordersform">
-            <input type="hidden" name="pNum" value="${dto.pNum}" />
-            <button type="submit">예약하기</button>
-    </form>
+	 <footer id="footer" class="footer position-relative dark-background">
 
-  	
-    <p>
-        <hr>
-    </p>
-</c:forEach>
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-about">
+            <a href="/" class="logo sitename">JIMSAJO</a>
+            <div class="footer-contact pt-3">
+              <p> 12th floor JIMSAJO 627, Jungang-daero, Busanjin-gu, Busan,</p>
+              <p>Republic of Korea </p>
+              <p class="mt-3"><strong>Phone:</strong> <span>82+ 9435 4524</span></p>
+              <p><strong>Email:</strong> <span>jimsajo456@gmail.com</span></p>
+            </div>
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
 
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">JIMSAJO</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        
+      </div>
+    </div>
+</footer>
+  
 </body>
 </html>
