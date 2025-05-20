@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimsajo.Mapper.IPaymentMapper">
+	<insert id="insertPayment" parameterType="com.jimsajo.Dto.PaymentDto">
+		INSERT INTO payment
+    	 (imp_uid, merchant_uid, pay_method, pay_amount, pay_status, paid_at, created_at, pNum, mNum, oNum)
+    	 VALUES
+    	 (#{impUid}, #{merchantUid}, #{payMethod}, #{payAmount}, #{payStatus}, #{paidAt}, NOW(), #{pNum}, #{mNum}, #{oNum})
+
+	</insert>
+	
+	<!--  resultMap 명시 (pName, pPrice 포함 매핑) -->
+    <resultMap id="PaymentResultMap" type="com.jimsajo.Dto.PaymentDto">
+	    <id property="paymentId" column="paymentId"/>
+	    <result property="impUid" column="impUid"/>
+	    <result property="merchantUid" column="merchantUid"/>
+	    <result property="payMethod" column="payMethod"/>
+	    <result property="payAmount" column="payAmount"/>
+	    <result property="payStatus" column="payStatus"/>
+	    <result property="paidAt" column="paidAt"/>
+	    <result property="createdAt" column="createdAt"/>
+	    <result property="pNum" column="pNum"/>
+	    <result property="mNum" column="mNum"/>
+	    <result property="oNum" column="oNum"/>
+	    <result property="pName" column="pName"/>
+	    <result property="pPrice" column="pPrice"/>
+	    <result property="oStart" column="oStart"/>
+	    <result property="oReturn" column="oReturn"/>
+</resultMap>
+
+	<select id="selectPayment" resultMap="PaymentResultMap">
+		SELECT 
+	        p.payment_id      AS payment_id,
+	        p.imp_uid         AS imp_uid,
+	        p.merchant_uid    AS merchant_uid,
+	        p.pay_method      AS pay_method,
+	        p.pay_amount      AS pay_amount,           
+	        p.pay_status      AS pay_status,
+	        p.paid_at         AS paid_at,         
+	        p.created_at      AS created_at,
+	        p.oNum            AS oNum,
+	        p.pNum            AS pNum,
+	        p.mNum            AS mNum,
+	        pkg.pName         AS pName,
+	        pkg.pPrice        AS pPrice
+	    FROM payment p
+	    JOIN package pkg ON p.pNum = pkg.pNum
+	    ORDER BY p.payment_id DESC
+	</select>
+
+
+	<select id="selectPaymentsByMember" parameterType="int" resultMap="PaymentResultMap">
+	  SELECT 
+	    p.payment_id      AS paymentId,
+	    p.imp_uid         AS impUid,
+	    p.merchant_uid    AS merchantUid,
+	    p.pay_method      AS payMethod,
+	    p.pay_amount      AS payAmount,
+	    p.pay_status      AS payStatus,
+	    p.paid_at         AS paidAt,
+	    p.created_at      AS createdAt,
+	    p.oNum            AS oNum,
+	    p.pNum            AS pNum,
+	    p.mNum            AS mNum,
+	    pkg.pName         AS pName,
+	    pkg.pPrice        AS pPrice,
+	    o.oStart          AS oStart,
+	    o.oReturn         AS oReturn
+	
+	  FROM payment p
+	  JOIN package pkg ON p.pNum = pkg.pNum
+	  JOIN orders o ON p.oNum = o.oNum
+	  WHERE p.mNum = #{mNum}
+	  ORDER BY p.created_at DESC
+	</select>
+
+	
+
+	<update id="updatePaymentStatus">
+		UPDATE payment
+		 SET pay_status = #{status}
+		 WHERE imp_uid = #{impUid}
+	</update>
+	
+	
+	
+</mapper>
