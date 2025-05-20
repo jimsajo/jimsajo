@@ -1,5 +1,6 @@
 package com.jimsajo.Dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -17,11 +18,12 @@ public class PaymentDto {
 	private String pName;   // 패키지 이름 (상품명)
 	private int pPrice;     // 패키지 가격
 	private int oNum;
+	private LocalDate oStart;
+	private LocalDate oReturn;
 	public int getPaymentId() {
 		return paymentId;
-	}
-	public void setPaymentId(int paymentId) {
-		this.paymentId = paymentId;
+		
+		
 	}
 	public String getImpUid() {
 		return impUid;
@@ -95,12 +97,27 @@ public class PaymentDto {
 	public void setoNum(int oNum) {
 		this.oNum = oNum;
 	}
+	public LocalDate getoStart() {
+		return oStart;
+	}
+	public void setoStart(LocalDate oStart) {
+		this.oStart = oStart;
+	}
+	public LocalDate getoReturn() {
+		return oReturn;
+	}
+	public void setoReturn(LocalDate oReturn) {
+		this.oReturn = oReturn;
+	}
+	public void setPaymentId(int paymentId) {
+		this.paymentId = paymentId;
+	}
 	@Override
 	public String toString() {
 		return "PaymentDto [paymentId=" + paymentId + ", impUid=" + impUid + ", merchantUid=" + merchantUid
 				+ ", payMethod=" + payMethod + ", payAmount=" + payAmount + ", payStatus=" + payStatus + ", paidAt="
 				+ paidAt + ", createdAt=" + createdAt + ", pNum=" + pNum + ", mNum=" + mNum + ", pName=" + pName
-				+ ", pPrice=" + pPrice + ", oNum=" + oNum + "]";
+				+ ", pPrice=" + pPrice + ", oNum=" + oNum + ", oStart=" + oStart + ", oReturn=" + oReturn + "]";
 	}
-
+	
 }

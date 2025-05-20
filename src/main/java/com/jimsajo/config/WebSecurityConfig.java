@@ -39,7 +39,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/login", "/loginProcess", "/join", "/save").permitAll()
 
 
-                .requestMatchers("/newBoard", "/boardSave","/package").hasRole("admin")
+                .requestMatchers("/newBoard", "/boardSave","/package","orders/orderList").hasRole("admin")
                 .requestMatchers("/admin/**").hasRole("admin")
                 .anyRequest().authenticated()
             )
@@ -48,13 +48,13 @@ public class WebSecurityConfig {
                 .loginProcessingUrl("/loginProcess")
                 .usernameParameter("mId")
                 .passwordParameter("mPasswd")
-                .defaultSuccessUrl("/myPage", true)
+                .defaultSuccessUrl("/", true)
                 .failureUrl("/login?error=true")
                 .permitAll()
             )
             .oauth2Login(oauth2 -> oauth2
                 .loginPage("/login")
-                .defaultSuccessUrl("/myPage", true)
+                .defaultSuccessUrl("/", true)
                 .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
             )
             .logout(logout -> logout

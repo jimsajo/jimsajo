@@ -21,6 +21,7 @@
 </form>
 
 <a href="/inquiry/inquiryList">목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
+<<<<<<< HEAD
 <script>
     ClassicEditor
     .create(document.querySelector('#editor'), {
@@ -113,5 +114,8 @@
 
   <!-- Main JS File -->
   <script src="/assets/js/main.js"></script>
+=======
+<script src="${pageContext.request.contextPath}/assets/js/CKEditor5.js"></script>
+>>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
 </body>
 </html>

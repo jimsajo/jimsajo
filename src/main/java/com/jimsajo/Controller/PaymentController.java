@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,30 +68,31 @@ public class PaymentController {
 
         return "payment/payment"; 
     }
-    // 결제 내역 조회
-    @RequestMapping("/payment/paymentList")
-    public ModelAndView paymentList() throws Exception{
-    	ModelAndView mv = new ModelAndView("payment/paymentList");
-    	
-    	List<PaymentDto> list = iPaymentMapper.selectPayment();
-    	mv.addObject("payments",list);
-    	return mv;
-    }
-    
-//    //사용자 본인 결제 내역만 보이게 하기
-//    @GetMapping("/paymentList")
-//    public ModelAndView paymentList(HttpSession session) {
-//        ModelAndView mv = new ModelAndView("paymentList");
-//        MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
-//        if (loginUser == null) {
-//            mv.setViewName("redirect:/loginForm");
-//            return mv;
-//        }
-//
-//        List<PaymentDto> list = paymentService.selectPaymentsByMember(loginUser.getMNum());
-//        mv.addObject("payments", list);
-//        return mv;
+//    // 결제 내역 조회 : 전체 결제내역(관리자 필요시 사용)
+//    @RequestMapping("/payment/paymentList")
+//    public ModelAndView paymentList() throws Exception{
+//    	ModelAndView mv = new ModelAndView("payment/paymentList");
+//    	
+//    	List<PaymentDto> list = iPaymentMapper.selectPayment();
+//    	mv.addObject("payments",list);
+//    	return mv;
 //    }
+    
+    //사용자 본인 결제 내역만 보이게 하기
+    @GetMapping("/payment/paymentList")
+    public ModelAndView paymentList(HttpSession session, RedirectAttributes ra) {
+        memberDto loginUser = (memberDto) session.getAttribute("loginUser");
+
+        if (loginUser == null) {
+            ra.addFlashAttribute("msg", "로그인이 필요합니다.");
+            return new ModelAndView("redirect:/loginForm");
+        }
+
+        List<PaymentDto> list = paymentService.selectPaymentsByMember(loginUser.getmNum());
+        ModelAndView mv = new ModelAndView("payment/paymentList");
+        mv.addObject("payments", list);
+        return mv;
+    }
 
     // 아임포트 결제 검증 후 DB 저장
     @ResponseBody

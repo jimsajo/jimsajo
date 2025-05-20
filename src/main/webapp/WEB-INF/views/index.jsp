@@ -12,7 +12,6 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -71,7 +70,7 @@
             <li><a href="/packagelist/country?pCountry=Vietnam">베트남</a></li>
           <li><a href="/packagelist/country?pCountry=Malaysia">말레이시아</a></li>
            <li><a href="/packagelist/country?pCountry=Philippines">필리핀</a></li>
-            <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <li class="dropdown"><a href="board"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="/board">공지사항</a></li>               
                 <li><a href="${pageContext.request.contextPath}/review/reviewList">여행 리뷰</a></li>
@@ -113,7 +112,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+      <img src="/assets/img/halong.jpg" alt="" data-aos="fade-in">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row justify-content-start">
@@ -270,7 +269,7 @@
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
 
-      <img src="/assets/img/cta-bg.jpg" alt="">
+      <img src="/assets/img/dongNama.jpg" alt="">
 
       <div class="container">
         <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
@@ -326,12 +325,12 @@
 
           <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
-              <img src="/assets/img/team/team-2.jpg" class="img-fluid" alt="">
+              <img src="/assets/img/team/gangjin.png" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>이강진</h4>
                 <span>팀원</span>
                 <p>
-                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                  css, 부스트트립, 결제 관련 api, 리뷰리스트, 리뷰 상세보기, 리뷰 수정 및 삭제 , 예약하기, 예약리스트보기를 구현하였습니다. 
                 </p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>

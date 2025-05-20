@@ -12,14 +12,6 @@
 <body class="bg-light">
 
 
-
-  <!-- 로고 -->
-  <div class="text-center my-4">
-    <a href="/">
-      <img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;">
-    </a>
-  </div>
-
   <!-- 공지사항 테이블 -->
   <div class="container">
     <div class="card shadow">
@@ -53,13 +45,6 @@
         </table>
       </div>
     </div>
-
-    <!-- 글쓰기 버튼 (관리자만) -->
-    <sec:authorize access="hasRole('ROLE_admin')">
-      <div class="text-end mt-3">
-        <a href="/newBoard" class="btn btn-primary">글쓰기</a>
-      </div>
-    </sec:authorize>
   </div>
   
   <nav class="mt-4">

@@ -1,4 +1,4 @@
-<footer id="footer" class="footer position-relative dark-background">
+	<footer id="footer" class="footer position-relative dark-background">
 
     <div class="container footer-top">
       <div class="row gy-4">
@@ -23,7 +23,7 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="/">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li><a href="#">About us</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">Terms of service</a></li>
@@ -59,6 +59,8 @@
     </div>
 
   </footer>
+
+  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
@@ -75,3 +77,4 @@
 
   <!-- Main JS File -->
   <script src="/assets/js/main.js"></script>
+
