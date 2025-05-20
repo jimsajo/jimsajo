@@ -140,7 +140,6 @@
         console.error(error);
     });
     </script>
-   <jsp:include page="../footer.jsp" />
-</body>
+ <jsp:include page="../section/footer.jsp"/></body>
 </html>
    

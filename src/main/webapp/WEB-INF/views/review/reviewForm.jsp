@@ -157,12 +157,6 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-<jsp:include page="../footer.jsp" />
-=======
-
-<jsp:include page="../footer.jsp"/>
-
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
+ <jsp:include page="../section/footer.jsp"/>
 </body>
 </html>

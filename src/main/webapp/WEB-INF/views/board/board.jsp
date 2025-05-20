@@ -29,7 +29,6 @@
   <link href="/assets/css/main.css" rel="stylesheet">
   
 </head>
-<body class="bg-light">
 <body class="index-page">
 
   <header id="header" class="header fixed-top">
@@ -66,12 +65,33 @@
             <li><a href="/packagelist/country?pCountry=Vietnam">베트남</a></li>
           <li><a href="/packagelist/country?pCountry=Malaysia">말레이시아</a></li>
            <li><a href="/packagelist/country?pCountry=Philippines">필리핀</a></li>
-            <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <li class="dropdown"><a href="board"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="/board">공지사항</a></li>               
-                <li><a href="/reviewList">여행 리뷰</a></li>
+                <li><a href="${pageContext.request.contextPath}/review/reviewList">여행 리뷰</a></li>
               </ul>
             </li>
+            <!-- 로그인 여부 체크 -->
+		  <c:if test="${empty sessionScope.loginUser}">
+		    <!-- 비로그인 상태일 때 -->
+		    <li class="dropdown">
+		      <a href="/login"><span>로그인</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+		      <ul>
+		        <li><a href="/join">회원가입</a></li>
+		      </ul>
+		    </li>
+		  </c:if><%-- 디버깅용 세션 확인 코드 --%>
+
+		  
+		  <c:if test="${not empty sessionScope.loginUser}">
+		    <!-- 로그인 상태일 때 -->
+		    <li class="dropdown">
+		      <a href="/myPage"><span>마이페이지</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+		      <ul>
+		        <li><a href="/logout">로그아웃</a></li>
+		      </ul>
+		    </li>
+		  </c:if>
             <li><a href="#contact">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -82,7 +102,7 @@
 
   </header>
   <!-- 공지사항 테이블 -->
-  <div class="container" style="margin-top: 120px;">
+  <div class="container mt-5 pt-5">
     <div class="card shadow">
       <div class="card-header bg-dark text-white text-center fs-5 fw-bold">
         공지사항 목록
@@ -141,5 +161,8 @@
 
   <!-- Bootstrap JS (선택, 모달이나 드롭다운 등에 필요 시) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <jsp:include page="../section/footer.jsp"/>
+  
 </body>
 </html>

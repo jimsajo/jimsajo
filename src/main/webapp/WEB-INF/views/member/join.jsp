@@ -176,5 +176,8 @@
     <button type="submit" class="btn btn-dark btn-lg w-100">가입하기</button>
   </form>
 </div>
+
+<jsp:include page="../section/footer.jsp"/>
+
 </body>
 </html>
