@@ -21,13 +21,18 @@
     <update id="updateInquiry" parameterType="com.jimsajo.Dto.InquiryDto">
         UPDATE inquiry
         SET iTitle = #{iTitle}, iType = #{iType}, iContent = #{iContent}, iTime = #{iTime}
-        WHERE iNum = #{iNum};
+        WHERE iNum = #{iNum}
     </update>
 
     <!-- 문의 삭제 -->
     <delete id="deleteInquiry" parameterType="int">
-        DELETE FROM inquiry WHERE iNum = #{iNum};
+        DELETE FROM inquiry WHERE iNum = #{iNum}
     </delete>
+    <select id="selectUserInquiries" parameterType="int" resultType="com.jimsajo.Dto.InquiryDto">
+        SELECT * FROM inquiry
+        WHERE mNum = #{mNum}
+        ORDER BY iNum DESC
+    </select>
 </mapper>
 
 

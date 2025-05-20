@@ -95,10 +95,21 @@
       </div>
     </div>
   </header>
+
 		<div style="margin-top: 140px; text-align: center;">
 			<h2>${dto.pName}</h2>
 			<hr>
-		<div>${dto.pDescription}</div>
+			<table style="margin:0px 0px 0px 550px;">
+				<tr>
+					<td>${dto.pDescription}</td>
+					<td style="vertical-align:top; width:400px; padding:100px;">
+					<a href="https://b2b.travelover.co.kr/main/24465"> <img src="/assets/img/img1.png" style="width: 100%; height: 100%; object-fit: cover;"></a>
+					<a href="https://b2b.travelover.co.kr/main/24465"> <img src="/assets/img/img2.png" style="width: 100%; height: 100%; object-fit: cover;"></a>
+					<a href="https://b2b.travelover.co.kr/main/24465"> <img src="/assets/img/img3.png" style="width: 100%; height: 100%; object-fit: cover;"></a>
+					</td>
+	        	</tr>
+	        </table>
+    	</div>
 		<form method="get" action="/orders/ordersform" class="text-center mt-2">
              <input type="hidden" name="pNum" value="${dto.pNum}" />
 	         <button type="submit" style="margin:10px; background-color: #000; color: #fff; border: none; padding: 10px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-weight: bold; letter-spacing: 1px;">예약하기</button>
