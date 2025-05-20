@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 
 <!DOCTYPE html>
 <html>
@@ -45,56 +41,8 @@
   
 </head>
 <body class="index-page">
-<header id="header" class="header fixed-top">
-  <div class="topbar d-flex align-items-center">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">jimsajo456@gmail.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>010-9435-4524</span></i>
-      </div>
-      <div class="social-links d-none d-md-flex align-items-center">
-        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="branding d-flex align-items-center">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
-      <a href="/" class="logo d-flex align-items-center">
-        <h1 class="sitename">JIMSAJO</h1>
-      </a>
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="/" class="active">홈</a></li>
-          <li><a href="/packagelist/country?pCountry=Thailand">태국</a></li>
-          <li><a href="/packagelist/country?pCountry=Indonesia">인도네시아</a></li>
-          <li><a href="/packagelist/country?pCountry=Vietnam">베트남</a></li>
-          <li><a href="/packagelist/country?pCountry=Malaysia">말레이시아</a></li>
-          <li><a href="/packagelist/country?pCountry=Philippines">필리핀</a></li>
-          <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="/board">공지사항</a></li>
-              <li><a href="/reviewList">여행 리뷰</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<!-- 로고 -->
-<div class="text-center mt-4">
-  <a href="/">
-    <img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;">
-  </a>
-</div>
-
+<!-- 헤더 -->
+<%@include file = "../section/header.jsp" %>
 <!-- 전체 컨테이너 -->
 <div class="container mt-5 pt-5">
   <div class="row d-flex align-items-stretch">
@@ -137,56 +85,54 @@
       </div>
     </div>
 
-    <!-- 메인 콘텐츠 -->
-    <div class="col-md-9">
-      <sec:authorize access="isAuthenticated()">
-        <div class="text-center mt-2 mb-3">
-          <h3 class="fw-bold mb-2">
-            ${sessionScope.loginUser.mName}님, 안녕하세요!
-          </h3>
+<!-- 인사말 -->
+<sec:authorize access="isAuthenticated()">
+  <div class="text-center mt-3 mb-5"> <%-- 위아래 여백 넉넉하게 확보 --%>
+    <h3 class="fw-bold mb-3">${sessionScope.loginUser.mName}님, 안녕하세요!</h3>
+  </div>
+</sec:authorize>
+
+<!-- 주문 내역 섹션 -->
+<div class="d-flex justify-content-center mb-5"> <%-- 메인 콘텐츠 가운데 정렬 --%>
+  <div class="w-100" style="max-width: 900px;"> <%-- 최대 폭 제한 --%>
+    
+    <div class="text-center mb-4">
+      <h4 class="fw-bold">🛒 내 주문 내역</h4>
+    </div>
+
+    <c:choose>
+      <c:when test="${empty payments}">
+        <div class="text-center text-muted fs-5">
+          주문 내역이 없습니다.
         </div>
-      </sec:authorize>
-	</div>
-	
-	<%-- 디버깅용: payments 값이 null인지 아닌지 확인 --%>
-<c:if test="${not empty payments}">
-  <p class="text-success text-center">payments 있음! size: ${fn:length(payments)}</p>
-</c:if>
-<c:if test="${empty payments}">
-  <p class="text-danger text-center">❌ payments 없음 (null 또는 empty)</p>
-</c:if>
-	<!-- 주문 내역 섹션 -->
-<sec:authorize access="hasRole('ROLE_user')">	
-<div class="text-center mb-3 mt-5">
-  <h4 class="fw-bold">🛒 내 주문 내역</h4>
+      </c:when>
+      <c:otherwise>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle text-center">
+            <thead class="table-dark">
+              <tr>
+                <th>상품명</th>
+                <th>출발날짜</th>
+                <th>도착날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach var="payment" items="${payments}">
+                <tr>
+                  <td>${payment.pName}</td>
+                  <td>${payment.oStart}</td>
+                  <td>${payment.oReturn}</td>
+                </tr>
+              </c:forEach>
+            </tbody>
+          </table>
+        </div>
+      </c:otherwise>
+    </c:choose>
+
+  </div>
 </div>
-<c:choose>
-  <c:when test="${empty payments}">
-    <p class="text-muted text-center">주문 내역이 없습니다.</p>
-  </c:when>
-  <c:otherwise>
-    <table class="table table-bordered text-center">
-      <thead class="table-light">
-        <tr>
-          <th>상품명</th>
-          <th>출발날짜</th>
-          <th>도착날짜</th>
-        </tr>
-      </thead>
-      <tbody>
-        <c:forEach var="p" items="${payments}">
-          <tr>
-            <td>${p.merchantUid }</td> 
-            <td>${p.pName}</td>
-            <td>${p.oStart}</td>
-            <td>${p.oReturn}</td>
-          </tr>
-        </c:forEach>
-      </tbody>
-    </table>
-  </c:otherwise>
-</c:choose>
-</sec:authorize >
+
 
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">

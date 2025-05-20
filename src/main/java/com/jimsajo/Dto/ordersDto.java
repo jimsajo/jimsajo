@@ -12,6 +12,7 @@ public class ordersDto {
 	private int oPrice;  //패키지 상품 가격
 	private int mNum; // 로그인
 	private int pNum; // 패키지
+	private String pName;
 	public int getoNum() {
 		return oNum;
 	}
@@ -60,10 +61,19 @@ public class ordersDto {
 	public void setpNum(int pNum) {
 		this.pNum = pNum;
 	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
 	@Override
 	public String toString() {
 		return "ordersDto [oNum=" + oNum + ", oDate=" + oDate + ", oStart=" + oStart + ", oReturn=" + oReturn
-				+ ", oPeople=" + oPeople + ", oPrice=" + oPrice + ", mNum=" + mNum + ", pNum=" + pNum + "]";
+				+ ", oPeople=" + oPeople + ", oPrice=" + oPrice + ", mNum=" + mNum + ", pNum=" + pNum + ", pName="
+				+ pName + "]";
 	}
 	
 }
+
+	
