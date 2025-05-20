@@ -33,14 +33,6 @@
 	</select>
 	
 	
-	
-	<!--  <insert id = "insertBoard" parameterType = "com.jimsajo.Dto.boardDto">
-		insert into board (bTitle, bContent, bImage, mNum)
-		values(#{bTitle}, #{bContent}, #{bImage}, #{mNum})
-		
-	</insert> 
-	-->
-	
 	<insert id="insertBoard" parameterType="com.jimsajo.Dto.boardDto">
   		insert into board (bTitle, bContent, bImage, mNum, bTime, bCnt)
 		  	values (

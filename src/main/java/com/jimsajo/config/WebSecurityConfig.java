@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.jimsajo.Service.CustomOAuth2UserService;
+import com.jimsajo.config.auth.LoginSuccessHandler;
 
 import jakarta.servlet.DispatcherType;
 
@@ -17,6 +18,8 @@ public class WebSecurityConfig {
 
     @Autowired
     private CustomOAuth2UserService customOAuth2UserService;
+    @Autowired
+    private LoginSuccessHandler loginSuccessHandler;
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance(); // 보안상 매우 위험
@@ -41,14 +44,14 @@ public class WebSecurityConfig {
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
-                .loginPage("/login")
-                .loginProcessingUrl("/loginProcess")
-                .usernameParameter("mId")
-                .passwordParameter("mPasswd")
-                .defaultSuccessUrl("/", true)
-                .failureUrl("/login?error=true")
-                .permitAll()
-            )
+            	    .loginPage("/login")
+            	    .loginProcessingUrl("/loginProcess")
+            	    .usernameParameter("mId")
+            	    .passwordParameter("mPasswd")
+            	    .successHandler(loginSuccessHandler)  // ⬅ 여기!
+            	    .failureUrl("/login?error=true")
+            	    .permitAll()
+            	)
             .oauth2Login(oauth2 -> oauth2
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true)
