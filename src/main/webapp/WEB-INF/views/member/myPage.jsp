@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,10 +18,16 @@
 
 <!-- 헤더 -->
 <%@include file = "../section/header.jsp" %>
+<<<<<<< HEAD
 
 <!-- 전체 레이아웃 컨테이너 -->
 <div class="container mt-5 pt-5">
   <div class="row">
+=======
+<!-- 전체 컨테이너 -->
+<div class="container mt-5" style="margin-top: ">
+  <div class="row d-flex align-items-stretch">
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 
     <!-- 사이드 메뉴 -->
     <div class="col-md-3">
@@ -67,6 +74,7 @@
         <div class="text-center mb-3">
           <h4 class="fw-bold">🛒 내 주문 내역</h4>
         </div>
+<<<<<<< HEAD
         <c:choose>
           <c:when test="${empty payments}">
             <div class="text-center text-muted fs-5 mb-5">
@@ -98,6 +106,14 @@
         </c:choose>
       </sec:authorize>
 	</div>
+=======
+      </c:otherwise>
+    </c:choose>
+
+  </div>
+</div>
+
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">
@@ -224,5 +240,7 @@
   });
 </script>
 </c:if>
+
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

@@ -28,7 +28,8 @@ public class boardController {
 
     // 공지사항 목록
 	@RequestMapping("/board")
-	public String list(@RequestParam(defaultValue = "1") int page, Model model) throws Exception {
+
+	public String list(@RequestParam(name = "page", defaultValue = "1") int page, Model model) throws Exception {
 	    int pageSize = 10;
 	    int offset = (page - 1) * pageSize;
 
@@ -91,7 +92,7 @@ public class boardController {
 
     // 상세 보기
     @RequestMapping("/board/{bNum}/detail")
-    public String detailBoard(@PathVariable int bNum, Model model) throws Exception{
+    public String detailBoard(@PathVariable("bNum") int bNum, Model model) throws Exception{
         mapper.updateCnt(bNum); // 조회수 증가
         boardDto board = mapper.selectBoardById(bNum);
         model.addAttribute("board", board);
@@ -100,7 +101,7 @@ public class boardController {
 
     // 수정 폼
     @RequestMapping("/board/{bNum}/update")
-    public String updateBoard(@PathVariable int bNum, Model model) throws Exception {
+    public String updateBoard(@PathVariable("bNum") int bNum, Model model) throws Exception {
         boardDto board = mapper.selectBoardById(bNum);
         model.addAttribute("board", board);
         return "board/boardUpdate";
@@ -116,7 +117,7 @@ public class boardController {
 
     // 삭제하기
     @RequestMapping("board/{bNum}/delete")
-    public String deleteBoard(@PathVariable int bNum) throws Exception{
+    public String deleteBoard(@PathVariable("bNum") int bNum) throws Exception{
         mapper.deleteBoard(bNum);
         return "redirect:/board";
     }

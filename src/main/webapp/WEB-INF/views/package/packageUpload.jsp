@@ -32,52 +32,7 @@
   </style>
 </head>
 <body class="index-page">
-	<header id="header" class="header fixed-top">
-    <div class="topbar d-flex align-items-center">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">jimsajo456@gmail.com</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>010-9435-4524</span></i>
-        </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div><!-- End Top Bar -->
-
-    <div class="branding d-flex align-items-center">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="/" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">JIMSAJO</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="/" class="active">홈</a></li>
-            <li><a href="/packagelist/country?pCountry=Thailand">태국</a></li>
-            <li><a href="/packagelist/country?pCountry=Indonesia">인도네시아</a></li>
-            <li><a href="/packagelist/country?pCountry=Vietnam">베트남</a></li>
-          <li><a href="/packagelist/country?pCountry=Malaysia">말레이시아</a></li>
-           <li><a href="/packagelist/country?pCountry=Philippines">필리핀</a></li>
-            <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="/board">공지사항</a></li>               
-                <li><a href="${pageContext.request.contextPath}/review/reviewList">여행 리뷰</a></li>
-              </ul>
-            </li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-      </div>
-    </div>
-  </header>
+<%@ include file="../section/header.jsp" %>
     <!-- CKEditor5 로딩 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 
@@ -98,7 +53,7 @@
 	
 	    <div class="mb-3">
               <label class="form-label">제목</label>
-              <input type="text" class="form-control" name="rName" required>
+              <input type="text" class="form-control" name="pName" required>
             </div>
 	    가격 : <input type="number" name="pPrice" placeholder="가격" min="0"><br>
 	
@@ -127,19 +82,8 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-<script>
-    <!-- CKEditor5 초기화 및 이미지 업로드 설정 -->
-    ClassicEditor
-    .create(document.querySelector('#editor'), {
-        ckfinder: {
-            uploadUrl: '/api/upload-package-image'
-        },
-        toolbar: ['heading', '|', 'bold', 'italic', '|', 'link', 'imageUpload']
-    })
-    .catch(error => {
-        console.error(error);
-    });
-    </script>
- <jsp:include page="../section/footer.jsp"/></body>
+<script src="../js/CKEditor5.js"></script>
+<%@ include file="../section/footer.jsp" %>
+</body>
 </html>
    

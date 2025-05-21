@@ -14,8 +14,8 @@ public interface boardMapper {
 	List<boardDto> selectBoard() throws Exception;
     boardDto selectBoardById(@Param("bNum") int bNum) throws Exception;
 	int deleteBoard(@Param("bNum") int bNum) throws Exception;
-	int updateBoard(@Param("bNum") boardDto board) throws Exception;
-	int updateCnt(int bNum) throws Exception;
+	int updateBoard(boardDto board) throws Exception;
+	int updateCnt(@Param("bNum") int bNum) throws Exception;
 	int selectBoardCount();
 	List<boardDto> selectBoardPage(@Param("startRow") int startRow, @Param("pageSize") int pageSize);
 }

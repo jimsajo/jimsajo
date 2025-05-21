@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <title>리뷰 작성</title>
@@ -25,64 +26,12 @@
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   </head>
-  
-  <header id="header" class="header fixed-top">
-    <div class="topbar d-flex align-items-center">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">jimsajo456@gmail.com</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>010-9435-4524</span></i>
-        </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div><!-- End Top Bar -->
-
-    <div class="branding d-flex align-items-center">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="/" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">JIMSAJO</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="/" class="active">홈</a></li>
-            <li><a href="/packagelist/country?pCountry=Thailand">태국</a></li>
-            <li><a href="/packagelist/country?pCountry=Indonesia">인도네시아</a></li>
-            <li><a href="/packagelist/country?pCountry=Vietnam">베트남</a></li>
-          <li><a href="/packagelist/country?pCountry=Malaysia">말레이시아</a></li>
-           <li><a href="/packagelist/country?pCountry=Philippines">필리핀</a></li>
-            <li class="dropdown"><a href="#"><span>공지사항</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="/board">공지사항</a></li>               
-                <li><a href="${pageContext.request.contextPath}/review/reviewList">여행 리뷰</a></li>
-              </ul>
-            </li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-      </div>
-    </div>
-  </header>
 <body class="bg-light">
-
+<%@ include file="../section/header.jsp" %>
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-lg-8">
-<<<<<<< HEAD
-      <div class="card shadow" style ="margin-top:90px;">
-=======
       <div class="card shadow" style="margin-top:90px;">
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
-        
         <div class="card-header text-white text-center p-5" style="
 			background: url('${pageContext.request.contextPath}/assets/img/header-travel.jpg') center/cover no-repeat;
    	 		position: relative;
@@ -157,6 +106,6 @@
     </div>
   </div>
 </div>
- <jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

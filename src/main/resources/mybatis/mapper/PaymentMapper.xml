@@ -78,14 +78,9 @@
    </select>
 	
 
-	
-
 	<update id="updatePaymentStatus">
 		UPDATE payment
 		 SET pay_status = #{status}
 		 WHERE imp_uid = #{impUid}
 	</update>
-	
-	
-	
 </mapper>

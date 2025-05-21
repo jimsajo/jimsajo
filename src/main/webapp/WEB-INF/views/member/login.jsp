@@ -111,7 +111,6 @@
     카카오 로그인
   </a>
 </div>
-
 <jsp:include page="../section/footer.jsp"/>
 </body>
 </html>
