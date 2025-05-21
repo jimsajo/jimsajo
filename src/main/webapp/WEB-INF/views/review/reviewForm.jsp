@@ -1,4 +1,6 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <html>
 <head>
 <title>리뷰 작성</title>
@@ -25,13 +27,12 @@
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   </head>
-  
-<%@ include file="../section/header.jsp"%>
 <body class="bg-light">
+<%@ include file="../section/header.jsp" %>
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-lg-8">
-      <div class="card shadow" style ="margin-top:90px;">       
+      <div class="card shadow" style="margin-top:90px;">
         <div class="card-header text-white text-center p-5" style="
 			background: url('${pageContext.request.contextPath}/assets/img/header-travel.jpg') center/cover no-repeat;
    	 		position: relative;
@@ -106,8 +107,7 @@
     </div>
   </div>
 </div>
-
-<%@ include file="../section/footer.jsp"%>
+<%@ include file="../section/footer.jsp" %>
 
 </body>
 </html>

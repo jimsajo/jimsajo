@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 
 <!DOCTYPE html>
 <html>
@@ -46,11 +43,11 @@
 </head>
 <body class="index-page">
 
-<%@ include file="../header.jsp" %>
-
+<!-- 헤더 -->
+<%@include file = "../section/header.jsp" %>
 
 <!-- 전체 컨테이너 -->
-<div class="container mt-5 pt-5">
+<div class="container mt-5" style="margin-top: ">
   <div class="row d-flex align-items-stretch">
 
     <!-- 사이드 메뉴 -->
@@ -91,49 +88,59 @@
       </div>
     </div>
 
-    <!-- 메인 콘텐츠 -->
-    <div class="col-md-9">
-      <sec:authorize access="isAuthenticated()">
-        <div class="text-center mt-2 mb-3">
-          <h3 class="fw-bold mb-2">
-            ${sessionScope.loginUser.mName}님, 안녕하세요!
-          </h3>
+<!-- 인사말 -->
+<sec:authorize access="isAuthenticated()">
+  <div class="text-center mt-3 mb-5"> <%-- 위아래 여백 넉넉하게 확보 --%>
+    <h3 class="fw-bold mb-3">${sessionScope.loginUser.mName}님, 안녕하세요!</h3>
+  </div>
+</sec:authorize>
+
+<!-- 주문 내역 섹션 -->
+<div class="d-flex justify-content-center mb-5"> <%-- 메인 콘텐츠 가운데 정렬 --%>
+  <div class="w-100" style="max-width: 900px;"> <%-- 최대 폭 제한 --%>
+    
+    <div class="text-center mb-4">
+      <h4 class="fw-bold">🛒 내 주문 내역</h4>
+    </div>
+
+    <c:choose>
+      <c:when test="${empty payments}">
+        <div class="text-center text-muted fs-5">
+          주문 내역이 없습니다.
         </div>
-      </sec:authorize>
 	</div>
 	
 
-	<!-- 주문 내역 섹션 -->
-<sec:authorize access="hasRole('ROLE_user')">	
-<div class="text-center mb-3 mt-5">
-  <h4 class="fw-bold">🛒 내 주문 내역</h4>
+
+      </c:when>
+      <c:otherwise>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle text-center">
+            <thead class="table-dark">
+              <tr>
+                <th>상품명</th>
+                <th>출발날짜</th>
+                <th>도착날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach var="payment" items="${payments}">
+                <tr>
+                  <td>${payment.pName}</td>
+                  <td>${payment.oStart}</td>
+                  <td>${payment.oReturn}</td>
+                </tr>
+              </c:forEach>
+            </tbody>
+          </table>
+        </div>
+      </c:otherwise>
+    </c:choose>
+
+  </div>
+
 </div>
-<c:choose>
-  <c:when test="${empty payments}">
-    <p class="text-muted text-center">주문 내역이 없습니다.</p>
-  </c:when>
-  <c:otherwise>
-    <table class="table table-bordered text-center">
-      <thead class="table-light">
-        <tr>
-          <th>상품명</th>
-          <th>출발날짜</th>
-          <th>도착날짜</th>
-        </tr>
-      </thead>
-      <tbody>
-        <c:forEach var="p" items="${payments}">
-          <tr>
-            <td>${p.pName}</td>
-            <td>${p.oStart}</td>
-            <td>${p.oReturn}</td>
-          </tr>
-        </c:forEach>
-      </tbody>
-    </table>
-  </c:otherwise>
-</c:choose>
-</sec:authorize >
+
 
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
@@ -268,6 +275,9 @@
   });
 </script>
 </c:if>
-<%-- <%@ include file="../footer.jsp" %> --%>
+
+
+<%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

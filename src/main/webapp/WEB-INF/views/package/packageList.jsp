@@ -29,11 +29,8 @@
 </head>
 
 <body class="index-page">
-
-
 <%@ include file="../section/header.jsp"%>
-
-  <main class="main" style="margin-top: 140px;">
+ <main class="main" style="margin-top: 140px;">
 <div>
     <div class="container-md">
       <div class="container my-5">
@@ -68,6 +65,7 @@
 	    </div>
 	</div>
   </main>
+
 	
 <%@ include file="../section/footer.jsp"%>
 </body>

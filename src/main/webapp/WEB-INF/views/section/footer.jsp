@@ -1,3 +1,4 @@
+
 	<footer id="footer" class="footer position-relative dark-background">
 
     <div class="container footer-top">

@@ -27,7 +27,7 @@
 </head>
 <body class="bg-light">
 
-<%@ include file="../section/header.jsp"%>
+ <%@ include file="../section/header.jsp" %>
 
   <div class="container py-5" style="margin-top:100px;">
     <h2 class="mb-4 text-primary text-center fw-bold">📋 전체 예약 내역</h2>
@@ -78,6 +78,8 @@
     </div>
   </div>
   
-<%@ include file="../section/footer.jsp"%>
+
+<%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

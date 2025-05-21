@@ -30,10 +30,10 @@
  
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
-
   
 </head>
 <body class="index-page">
+
  <%@ include file="../section/header.jsp"%>
 		<div style="margin-top: 140px; text-align: center;">
 			<h2>${dto.pName}</h2>
@@ -73,6 +73,7 @@
 	    <input type="submit" value="삭제" style="margin:10px; background-color: #000; color: #fff; border: none; padding: 10px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-weight: bold; letter-spacing: 1px;">
 	</form>
 	</c:if>
+
 </div>
 
 <%@ include file="../section/footer.jsp"%>

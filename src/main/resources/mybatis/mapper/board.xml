@@ -7,14 +7,14 @@
 	<!-- 모든 공지 사항 조회-->
 	<select id = "selectBoard" resultType ="com.jimsajo.Dto.boardDto"> 
 		select 
-      	b.bNum, b.bTitle, b.bContent, b.bTime, b.bCnt, b.bImage,b.mNum, m.mName
+      	b.bNum as bNum, b.bTitle as bTitle, b.bContent as bContent, b.bTime as bTime, b.bCnt as bCnt, b.bImage as bImage,b.mNum as mNum, m.mName as mNum
 	    from board b join member m 
 	    on b.mNum = m.mNum 
 	</select>
 	
 	<!-- 단건 공지 사항 조회-->
 	<select id = "selectBoardById" parameterType = "int" resultType = "com.jimsajo.Dto.boardDto">
-		select b.bNum, b.bTitle, b.bContent, b.bTime, b.bCnt, b.bImage, b.mNum, m.mName
+		select b.bNum as bNum, b.bTitle as bTitle, b.bContent as bContent, b.bTime as bTime, b.bCnt as bCnt, b.bImage as bImage, b.mNum as mNum, m.mName as mName
 		from board b join member m
 		on b.mNum = m.mNum
 		where b.bNum = #{bNum}
@@ -59,7 +59,7 @@
     	update board set bCnt = bCnt + 1 where bNum = #{bNum}
 	</update>
 	
-	<delete id = "deleteBoard" parameterType = "com.jimsajo.Dto.boardDto">
+	<delete id = "deleteBoard" parameterType = "int">
 		delete from board where bNum = #{bNum}
 	</delete>
 </mapper>

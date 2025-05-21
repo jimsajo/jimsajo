@@ -12,5 +12,6 @@ public interface OrdersMapper {
 	List<ordersDto> selectOrders();
 	ordersDto getOrderById(int oNum);
 	List<ordersDto> selectPaidOrders();
+	List<ordersDto> selectOrderDetailsByMember(int mNum);
 
 }

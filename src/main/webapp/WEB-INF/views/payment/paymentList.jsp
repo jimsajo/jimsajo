@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
@@ -26,8 +26,7 @@
 </head>
 <body class="index-page">
 
-<%@ include file="../section/header.jsp"%>
-  
+<%@ include file="../section/header.jsp" %>
 <div id="payment-title" class="pt-5" style="margin-top: 100px;">
   <h2 class="text-center my-5">결제 내역</h2>
 </div>
@@ -88,16 +87,7 @@
     </sec:authorize>
   </div>
 </div>
+<%@ include file="../section/footer.jsp" %>
+<script src="../js/paymentList.js"></script>
 </body>
-<script>
-  window.addEventListener('load', function () {
-    const target = document.getElementById('payment-title');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  });
-</script>
-
-<%@ include file="../section/footer.jsp"%>
-
 </html>

@@ -29,10 +29,9 @@
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
-<%@ include file="../section/header.jsp"%>
 
 <body class="index-page">
-
+<%@ include file="../section/header.jsp" %>
 <!-- <a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a> -->
 
 <div style="margin-top: 140px;">
@@ -66,13 +65,11 @@
 				</c:forEach>
 			</div>
 
-			<div class="text-center mt-5">
-				<a href="${pageContext.request.contextPath}/review"
-					class="btn btn-primary">리뷰 쓰기</a>
-			</div>
+
 		</div>
 	</div>
 
-	<%@ include file="../section/footer.jsp"%>
+<%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

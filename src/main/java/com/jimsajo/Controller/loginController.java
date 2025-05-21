@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jimsajo.Dto.PaymentDto;
 import com.jimsajo.Dto.memberDto;
+import com.jimsajo.Dto.ordersDto;
 import com.jimsajo.Mapper.IPaymentMapper;
 import com.jimsajo.Mapper.OrdersMapper;
 import com.jimsajo.Mapper.loginMapper;

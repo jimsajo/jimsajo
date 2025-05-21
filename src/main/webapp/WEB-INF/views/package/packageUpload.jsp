@@ -32,7 +32,7 @@
   </style>
 </head>
 <body class="index-page">
-	<%@ include file="../section/header.jsp"%>
+<%@ include file="../section/header.jsp" %>
     <!-- CKEditor5 로딩 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 
@@ -82,19 +82,9 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-<script>
-    <!-- CKEditor5 초기화 및 이미지 업로드 설정 -->
-    ClassicEditor
-    .create(document.querySelector('#editor'), {
-        ckfinder: {
-            uploadUrl: '/api/upload-package-image'
-        },
-        toolbar: ['heading', '|', 'bold', 'italic', '|', 'link', 'imageUpload']
-    })
-    .catch(error => {
-        console.error(error);
-    });
-    </script>
 <%@ include file="../section/footer.jsp"%>
+<script src="../js/CKEditor5.js"></script>
+</body>
+
 </html>
    

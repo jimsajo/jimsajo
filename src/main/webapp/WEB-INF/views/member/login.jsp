@@ -36,7 +36,7 @@
 </head>
 
 <body class="index-page">
-<%@ include file="../header.jsp" %>
+<%@ include file="../section/header.jsp"%>
 
 <!-- 로그인 폼 컨테이너 -->
 <div class="container" style="max-width: 400px; margin-top: 120px;">
@@ -72,8 +72,7 @@
   <br><br>
 </div>
 
-
-<jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp"%>
 
 </body>
 </html>
