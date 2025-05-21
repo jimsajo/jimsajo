@@ -33,15 +33,21 @@
   
 </head>
 <body class="index-page">
- <%@ include file="../section/header.jsp" %>
-
-		<h1>패키지 상세정보</h1>
-			<p>제목: ${dto.pName}</p>
-			<p>국가: ${dto.pCountry}</p>
-			<p>작성일: ${dto.pCreate}</p>
-			<p>내용:</p>
-		<div>${dto.pDescription}</div>
-		<!-- 예약 버튼 -->
+ <%@ include file="../section/header.jsp"%>
+		<div style="margin-top: 140px; text-align: center;">
+			<h2>${dto.pName}</h2>
+			<hr>
+			<table style="margin:0px 0px 0px 550px;">
+				<tr>
+					<td>${dto.pDescription}</td>
+					<td style="vertical-align:top; width:400px; padding:100px;">
+					<a href="https://b2b.travelover.co.kr/main/24465"> <img src="/assets/img/img1.png" style="width: 100%; height: 100%; object-fit: cover;"></a>
+					<a href="https://b2b.travelover.co.kr/main/24465"> <img src="/assets/img/img2.png" style="width: 100%; height: 100%; object-fit: cover;"></a>
+					<a href="https://b2b.travelover.co.kr/main/24465"> <img src="/assets/img/img3.png" style="width: 100%; height: 100%; object-fit: cover;"></a>
+					</td>
+	        	</tr>
+	        </table>
+    	</div>
 		<form method="get" action="/orders/ordersform" class="text-center mt-2">
 		    <input type="hidden" name="pNum" value="${dto.pNum}" />
 		    <button type="submit" class="btn btn-sm btn-primary">예약하기</button>
@@ -68,7 +74,6 @@
 		        </form>
 		    </div>
 		</c:if>
-
-<%@ include file="../section/footer.jsp" %>
+<%@ include file="../section/footer.jsp"%>
 </body>
 </html>

@@ -26,7 +26,9 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body class="bg-light">
+
 <%@ include file="../section/header.jsp" %>
+
   <div class="container py-5" style="margin-top: 120px;">
     <div class="row justify-content-center">
       <div class="col-lg-8">
@@ -82,6 +84,8 @@
       </div>
     </div>
   </div>
+
 <%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

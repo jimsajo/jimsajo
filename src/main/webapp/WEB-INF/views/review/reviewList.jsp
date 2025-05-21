@@ -29,6 +29,7 @@
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
+
 <body class="index-page">
 <%@ include file="../section/header.jsp" %>
 <!-- <a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a> -->
@@ -67,6 +68,8 @@
 
 		</div>
 	</div>
+
 <%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

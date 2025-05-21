@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <html>
 <head>
 <title>리뷰 작성</title>
@@ -107,5 +108,6 @@
   </div>
 </div>
 <%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

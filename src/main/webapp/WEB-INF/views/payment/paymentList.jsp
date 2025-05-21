@@ -25,6 +25,7 @@
 
 </head>
 <body class="index-page">
+
 <%@ include file="../section/header.jsp" %>
 <div id="payment-title" class="pt-5" style="margin-top: 100px;">
   <h2 class="text-center my-5">결제 내역</h2>

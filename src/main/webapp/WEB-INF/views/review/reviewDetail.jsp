@@ -31,9 +31,8 @@
 </head>
 
 <body class="index-page">
-<%@ include file="../section/header.jsp" %>
-<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
 
+<%@ include file="../section/header.jsp" %>
 <div class="position-relative text-center" style="margin-top: 140px; margin-bottom: 20px; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);">
   <h3 class="mb-1 fw-bold" style="color: #00CFFF;">
     📸 내가 쓴 리뷰 보기 🧳
@@ -113,6 +112,8 @@
   </div>
 </div>
 
+
 <%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

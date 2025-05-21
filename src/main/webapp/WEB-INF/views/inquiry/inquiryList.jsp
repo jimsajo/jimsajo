@@ -1,51 +1,67 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<<<<<<< HEAD
-<html>
+<<html>
 <head>
-    <title>문의 목록</title>
-    <!-- Favicons -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>문의 목록</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../css/instaReview.css" rel="stylesheet">
- 
-  <!-- Main CSS File -->
+  <link href="${pageContext.request.contextPath}/assets/css/instaReview.css" rel="stylesheet">
+
   <link href="/assets/css/main.css" rel="stylesheet">
+
+  <c:set var="currentCountry" value="${param.pCountry}" />
 </head>
-<body class="index-page">
-<%@ include file="../section/header.jsp" %>
- 	<div class="container mt-5 pt-5">
-<h2>문의 목록</h2>
-<table border="1" width="700">
-    <thead>
-        <tr>
-            <th>제목</th>
-            <th>타입</th>
-            <th>상세보기</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach var="dto" items="${list}">
+<body>
+<%@ include file="../section/header.jsp"%>
+
+<br><br><br><br>
+<div class="container" style="margin-top: 120px; margin-bottom:120px;">
+    <div class="card shadow">
+      <div class="card-header bg-dark text-white text-center fs-5 fw-bold">
+        문의목록
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-bordered text-center mb-0">
+          <thead class="table-light">
             <tr>
-                <td>${dto.iTitle}</td>
-                <td>${dto.iType}</td>
-                 <td><a href="/inquiry/detail?iNum=${dto.iNum}">상세보기</a></td> <!-- 상세보기 링크 추가 -->
+              <th>제목</th>
+              <th>문의종류</th>
+              <th>작성시간</th>
             </tr>
-        </c:forEach>
-    </tbody>
-</table>
-<%@ include file="../section/footer.jsp" %>
+          </thead>
+          <tbody>
+            <c:forEach var="dto" items="${list}">
+              <tr>
+                <th class="text-center" >
+                  <a href="/inquiry/detail?iNum=${dto.iNum}" class="text-decoration-none text-dark">
+                    ${dto.iTitle}
+                  </a>
+                </th>
+                <td>${dto.iType}</td>
+                <td>${dto.iTime}</td>
+                
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<%@ include file="../section/footer.jsp"%>
 </body>
 </html>
