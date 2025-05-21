@@ -11,10 +11,10 @@ public class InquiryDto {
 	private String iAnswer;
 	private String iImage;
 	private int mNum;
-	public int getiNum() {
+	public Integer getiNum() {
 		return iNum;
 	}
-	public void setiNum(int iNum) {
+	public void setiNum(Integer iNum) {
 		this.iNum = iNum;
 	}
 	public String getiTitle() {

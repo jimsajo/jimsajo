@@ -17,4 +17,5 @@ public interface InquiryMapper {
     
     // 삭제 메서드 추가
     void deleteInquiry(int iNum);
+
 }
