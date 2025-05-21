@@ -41,30 +41,34 @@
 			<p>작성일: ${dto.pCreate}</p>
 			<p>내용:</p>
 		<div>${dto.pDescription}</div>
+		<!-- 예약 버튼 -->
 		<form method="get" action="/orders/ordersform" class="text-center mt-2">
-             <input type="hidden" name="pNum" value="${dto.pNum}" />
-	         <button type="submit" class="btn btn-sm btn-primary">예약하기</button>
-        </form>
+		    <input type="hidden" name="pNum" value="${dto.pNum}" />
+		    <button type="submit" class="btn btn-sm btn-primary">예약하기</button>
+		</form>
+		
+		<!-- 관리자만 버튼 표시 -->
+		<c:if test="${sessionScope.loginUser.mRole == 'admin'}">
+		    <!-- 버튼들을 가로로 정렬하고 간격 추가 -->
+		    <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
+		        <!-- 추천 등록 버튼 -->
+		        <form action="/recommend/${dto.pNum}" method="post">
+		            <input type="submit" value="추천하기" class="btn btn-outline-success btn-sm">
+		        </form>
+		
+		        <!-- 수정 버튼 -->
+		        <form action="/package/update/${dto.pNum}" method="get">
+		            <input type="submit" value="수정" class="btn btn-outline-warning btn-sm">
+		        </form>
+		
+		        <!-- 삭제 버튼 -->
+		        <form action="/package/delete" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+		            <input type="hidden" name="pNum" value="${dto.pNum}">
+		            <input type="submit" value="삭제" class="btn btn-outline-danger btn-sm">
+		        </form>
+		    </div>
+		</c:if>
 
-<!-- 관리자만 추천 버튼을 보이도록 처리 -->
-	<c:if test="${sessionScope.loginUser.mRole == 'admin'}">
-	    <!-- 추천 등록 버튼 -->
-	    <form action="/recommend/${dto.pNum}" method="post">
-	        <input type="submit" value="추천하기">
-	    </form>
-	
-	
-	<!-- 수정 버튼 -->
-	<form action="/package/update/${dto.pNum}" method="get">
-	    <input type="submit" value="수정">
-	</form>
-	
-	<!-- 삭제 버튼 -->
-	<form action="/package/delete" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
-	    <input type="hidden" name="pNum" value="${dto.pNum}">
-	    <input type="submit" value="삭제">
-	</form>
-	</c:if>
 <%@ include file="../section/footer.jsp" %>
 </body>
 </html>

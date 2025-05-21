@@ -87,6 +87,6 @@
   </div>
 </div>
 <%@ include file="../section/footer.jsp" %>
-<script src="../js/paymentList.js"></script>
+<script src="assets/js/paymentList.js"></script>
 </body>
 </html>
