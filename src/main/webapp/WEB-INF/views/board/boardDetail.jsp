@@ -48,8 +48,8 @@
 
       <div class="text-end mt-4">
         <a href="/board" class="btn btn-secondary">목록으로</a>
-        <a href="/boardEdit?bNum=${board.bNum}" class="btn btn-warning">수정</a>
-        <a href="/boardDelete?bNum=${board.bNum}" class="btn btn-danger">삭제</a>
+		<a href="/board/${board.bNum}/update" class="btn btn-warning">수정</a>
+        <a href="/board/${board.bNum}/delete" class="btn btn-danger">삭제</a>
       </div>
     </div>
   </div>

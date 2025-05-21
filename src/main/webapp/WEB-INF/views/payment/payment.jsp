@@ -36,7 +36,7 @@
 <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="../section/header.jsp"></jsp:include>
+<%@ include file="../section/header.jsp" %>
 <!-- 	<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" -->
 <!-- 		style="height: 150px; width: auto;"></a> -->
 <br>
@@ -88,8 +88,7 @@
 		</form>
 	</div>
 
-	<script src="${pageContext.request.contextPath}/assets/js/payment.js"></script>
-  
-<jsp:include page="../section/footer.jsp"></jsp:include>
+<script src="../js/payment.js"></script>  
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

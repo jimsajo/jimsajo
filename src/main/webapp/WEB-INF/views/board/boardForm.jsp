@@ -30,6 +30,10 @@
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   
+  <!-- CKEditor5 로드 및 적용 -->
+  <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+  <script src="../js/CKEditor5.js"></script>
+  
 </head>
 <body class="index-page">
 <%@ include file="../section/header.jsp" %> 
@@ -59,7 +63,12 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
+=======
+    <!-- Bootstrap JS (선택) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 <%@ include file="../section/footer.jsp" %>
 
 <!-- CKEditor5 CDN 로드 -->

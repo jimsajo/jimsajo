@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -19,12 +19,14 @@
 <!-- 헤더 -->
 <%@include file = "../section/header.jsp" %>
 
+
 <!-- 전체 레이아웃 컨테이너 -->
 <div class="container" style="margin-top: 150px; margin-bottom: 100px;">
   <div class="row d-flex align-items-start">
   <!-- 전체 컨테이너 -->
 <div class="container mt-5">
   <div class="row d-flex align-items-stretch">
+
     <!-- 사이드 메뉴 -->
     <div class="col-md-3">
       <div class="list-group">
@@ -38,10 +40,9 @@
           <a href="/inquiry" class="list-group-item list-group-item-action">1대1 문의하기</a>
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_admin')">
-          <a href="/newBoard" class="list-group-item list-group-item-action">공지사항 작성</a>
-        </sec:authorize>
-        <sec:authorize access="hasRole('ROLE_admin')">
-          <a href="#" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
+
+        <a href="/inquiry/inquiryList" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
+        <a href="/newBoard" class="list-group-item list-group-item-action">공지사항 작성</a>
         </sec:authorize>
         <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#updateModal">정보수정</a>
         <sec:authorize access="hasRole('ROLE_user')">
@@ -105,7 +106,46 @@
   </div>
 </div>
 
-<!-- 회원정보 수정 모달 -->
+<!-- 주문 내역 -->
+      <sec:authorize access="hasRole('ROLE_admin')">
+        <div class="text-center mb-3">
+          <h4 class="fw-bold">1:1 문의 내역</h4>
+        </div>
+
+        <c:choose>
+          <c:when test="${empty inquiries}">
+            <div class="text-center text-muted fs-5 mb-5">
+              주문 내역이 없습니다.
+            </div>
+          </c:when>
+          <c:otherwise>
+            <div class="table-responsive mb-5">
+              <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>작성자</th>
+                    <th>제목</th>
+                    <th>타입</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach var="i" items="${inquiries}">
+                    <tr>
+                      <td>${i.mName}</td>
+                      <td>${i.iTitle}</td>
+                      <td>${i.iType}</td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </div>
+          </c:otherwise>
+        </c:choose>
+      </sec:authorize>
+	</div>
+  </div>
+
+<!-- 회원정보 수정 모델 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">
     <form method="post" action="/memberUpdateProcess" onsubmit = "return validateForm(this)">
@@ -183,29 +223,30 @@
 </div>
 
 <!-- 회원탈퇴 확인 모달 -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form method="post" action="/memberDeleteCheck">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">비밀번호 확인</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
-        </div>
-        <div class="modal-body">
-          <p>탈퇴하시려면 비밀번호를 입력해주세요.</p>
-          <input type="password" class="form-control" name="mPasswd" required placeholder="비밀번호">
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger">탈퇴하기</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        </div>
-      </div>
-    </form>
-  </div>
+				<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <form method="post" action="/memberDeleteCheck">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <h5 class="modal-title" id="deleteModalLabel">비밀번호 확인</h5>
+				          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+				        </div>
+				        <div class="modal-body">
+				          <p>탈퇴하시려면 비밀번호를 입력해주세요.</p>
+				          <input type="password" class="form-control" name="mPasswd" required placeholder="비밀번호">
+				        </div>
+				        <div class="modal-footer">
+				          <button type="submit" class="btn btn-danger">탈퇴하기</button>
+				          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        </div>
+				      </div>
+				    </form>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-</div>
-</div>
-
 <!-- 기존 비밀번호 다르게 입력했을때 프롬포트 창 띄우기 -->
 <c:if test="${not empty errorMsg}">
 <script>

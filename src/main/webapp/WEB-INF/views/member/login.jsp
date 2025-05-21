@@ -1,4 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%
+    Boolean loginError = (Boolean) request.getAttribute("loginError");
+    if (loginError != null && loginError) {
+        request.setAttribute("loginError", true);
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,11 +118,11 @@
     카카오 로그인
   </a>
 </div>
+<jsp:include page="../section/footer.jsp"/>
 <c:if test="${loginError}">
   <script>
     alert("아이디 또는 비밀번호가 일치하지 않습니다.");
   </script>
 </c:if>
-<jsp:include page="../section/footer.jsp"/>
 </body>
 </html>

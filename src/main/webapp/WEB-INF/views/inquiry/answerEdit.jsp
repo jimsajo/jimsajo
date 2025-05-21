@@ -20,26 +20,33 @@
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/assets/css/instaReview.css" rel="stylesheet">
  
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 <%@ include file="../section/header.jsp" %>
-<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
-
-	<h2>답변 수정</h2>
+<div class="container mt-5">
+	<div class="text-black text-center fs-2 fw-bold" style="margin-top:120px;">
+		✏️ 답변 수정
+	</div>
+   <div class="card shadow" style="margin-top:20px;">
+	  <div class="card-body">
 		<form action="/answer/update" method="post">
 		    <input type="hidden" name="aNum" value="${answer.aNum}" />
 		    <input type="hidden" name="iNum" value="${answer.iNum}" />
-		    
-		    <label>답변 내용</label><br/>
-		    <textarea name="aContent" rows="6" cols="60" required>${answer.aContent}</textarea><br/><br/>
-		
-		    <button type="submit">수정 완료</button>
-		    <a href="/inquiry/detail?iNum=${answer.iNum}">취소</a>
+			<div class="mb-3">
+	            <label class="form-label">답변 내용</label>
+	            <textarea name="aContent" rows="6" cols="60" required>${answer.aContent}</textarea>
+	         </div>
+	         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> 수정 완료</button>
+	            <a href="/inquiry/detail?iNum=${answer.iNum}" class="btn btn-outline-secondary"><i class="bi bi-list-ul"></i> 취소</a>
+	          </div>
 		</form>
+		</div>
+	</div>
+</div>
 <%@ include file="../section/footer.jsp" %>
 </body>
 </html>

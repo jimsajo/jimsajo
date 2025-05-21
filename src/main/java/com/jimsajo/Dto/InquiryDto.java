@@ -11,6 +11,7 @@ public class InquiryDto {
 	private String iAnswer;
 	private String iImage;
 	private int mNum;
+	private String mName;
 	public Integer getiNum() {
 		return iNum;
 	}
@@ -59,5 +60,12 @@ public class InquiryDto {
 	public void setmNum(int mNum) {
 		this.mNum = mNum;
 	}
+	public String getmName() {
+		return mName;
+	}
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+	
 	
 }

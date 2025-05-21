@@ -13,6 +13,15 @@
     <select id="selectAllInquiries" resultType="com.jimsajo.Dto.InquiryDto">
         SELECT * FROM inquiry
     </select>
+    <!-- 관리자페이지 문의목록 -->
+	<select id = "selectAllInquiryByAdmin" parameterType="int" resultType="com.jimsajo.Dto.InquiryDto">
+		select 
+		 m.mName as mName, 
+		 i.iTitle as iTitle,
+		 i.iType as iType
+		 from inquiry i join member m
+		 on m.mNum = i.mNum
+	</select>  
       <!-- 문의 상세 조회 -->
 	<select id="getInquiryById" parameterType="int" resultType="com.jimsajo.Dto.InquiryDto">
         SELECT * FROM inquiry WHERE iNum = #{iNum}

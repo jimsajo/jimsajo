@@ -65,7 +65,7 @@
             <textarea id="editor" name="iContent" class="form-control" rows="10"></textarea>
           </div>
 
-          <input type="hidden" name="mNum" value="1">
+          <input type="hidden" name="mNum" value="${sessionScope.loginUser.mNum}" >
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success">제출하기</button>

@@ -37,4 +37,11 @@ public class InquiryServiceImpl implements InquiryService {
         inquiryMapper.deleteInquiry(iNum);  // MyBatis Mapper를 통해 DB 삭제
     }
     
+    @Override
+    public List<InquiryDto> selectAllInquiryByAdmin(int mNum) {
+        return inquiryMapper.selectAllInquiryByAdmin(mNum);
+    }
+
+  
+    
 }

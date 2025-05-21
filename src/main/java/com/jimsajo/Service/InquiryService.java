@@ -12,4 +12,6 @@ public interface InquiryService {
 	InquiryDto getInquiryById(Integer iNum);
 	void updateInquiry(InquiryDto inquiry);  // 수정 메서드
     void deleteInquiry(Integer iNum);  // 삭제 메서드
+    List<InquiryDto> selectAllInquiryByAdmin(int mNum);
+
 } 
