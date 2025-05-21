@@ -42,22 +42,23 @@ public class loginController {
 	public String login() {
 		return "member/login"; 
 	}
-	// 로그인 처리
 	@RequestMapping("/loginProcess")
 	public String login(memberDto inputMember, HttpSession session, Model model) throws Exception {
 	    // 아이디로 회원 조회
 	    memberDto member = mapper.selectMemberById(inputMember.getmId());
-	    System.out.println("mName: " + member.getmName()); // 🔍 콘솔 출력 확인
+	    System.out.println("mName: " + (member != null ? member.getmName() : "null")); // null 방지
 
-	    // 아이디가 있는지 체크
+	    // 로그인 실패 시
 	    if (member == null || !passwordEncoder.matches(inputMember.getmPasswd(), member.getmPasswd())) {
-	        return "index";
+	        model.addAttribute("loginError", true); // ✅ 로그인 실패 여부 전달
+	        return "login"; // login.jsp에서 alert 처리
 	    }
 
-	    // 세션 저장
+	    // 로그인 성공
 	    session.setAttribute("loginUser", member);
 	    return "redirect:/";
 	}
+
 
 	
 	// 로그아웃

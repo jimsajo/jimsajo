@@ -25,7 +25,7 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-<<<<<<< HEAD
+
  <%@ include file="../section/header.jsp" %>
   <div class="container mt-5" >
     <div class="card shadow" style="margin-top:120px;">

@@ -18,17 +18,13 @@
 
 <!-- 헤더 -->
 <%@include file = "../section/header.jsp" %>
-<<<<<<< HEAD
 
 <!-- 전체 레이아웃 컨테이너 -->
-<div class="container mt-5 pt-5">
-  <div class="row">
-=======
-<!-- 전체 컨테이너 -->
-<div class="container mt-5" style="margin-top: ">
+<div class="container" style="margin-top: 150px; margin-bottom: 100px;">
+  <div class="row d-flex align-items-start">
+  <!-- 전체 컨테이너 -->
+<div class="container mt-5">
   <div class="row d-flex align-items-stretch">
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
-
     <!-- 사이드 메뉴 -->
     <div class="col-md-3">
       <div class="list-group">
@@ -64,7 +60,7 @@
 
       <!-- 인사말 -->
       <sec:authorize access="isAuthenticated()">
-        <div class="text-center mb-4" style="margin-top: 100px;">
+        <div class="text-center mb-4" style="position: relative; top: -30px;">
           <h3 class="fw-bold">${sessionScope.loginUser.mName}님, 안녕하세요!</h3>
         </div>
       </sec:authorize>
@@ -74,7 +70,7 @@
         <div class="text-center mb-3">
           <h4 class="fw-bold">🛒 내 주문 내역</h4>
         </div>
-<<<<<<< HEAD
+
         <c:choose>
           <c:when test="${empty payments}">
             <div class="text-center text-muted fs-5 mb-5">
@@ -106,14 +102,9 @@
         </c:choose>
       </sec:authorize>
 	</div>
-=======
-      </c:otherwise>
-    </c:choose>
-
   </div>
 </div>
 
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">

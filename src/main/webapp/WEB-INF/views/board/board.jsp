@@ -33,7 +33,7 @@
 <%@ include file="../section/header.jsp" %>
   <!-- 공지사항 테이블 -->
   <div class="container mt-5 pt-5">
-   <div class="bg-white text-black text-center fs-2 fw-bold" style="margin-top:80px;">
+   	   <div class="bg-white text-black text-center fs-2 fw-bold" style="margin-top:80px;">
         공지사항 목록
       </div>
     <div class="card shadow" style="margin-top:20px;">

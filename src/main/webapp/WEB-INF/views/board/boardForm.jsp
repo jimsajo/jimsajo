@@ -34,7 +34,7 @@
 <body class="index-page">
 <%@ include file="../section/header.jsp" %> 
 <!-- 공지사항 작성 폼 -->
-    <div class="container" style="margin-top: 120px;">
+    <div class="container" style="margin-top: 180px; margin-bottom: 100px;">
         <div class="card shadow">
             <div class="card-header bg-dark text-white text-center fw-bold fs-5">
                 공지사항 작성
@@ -60,11 +60,21 @@
         </div>
     </div>
 
-    <!-- CKEditor5 로드 및 적용 -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
-    <script src="../js/CKEditor5.js"></script>
-    <!-- Bootstrap JS (선택) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <%@ include file="../section/footer.jsp" %>
+
+<!-- CKEditor5 CDN 로드 -->
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+
+<!--  CKEditor5 초기화 코드 직접 삽입 -->
+<script>
+  ClassicEditor
+    .create(document.querySelector('#editor'))
+    .catch(error => {
+        console.error('CKEditor 초기화 에러:', error);
+    });
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

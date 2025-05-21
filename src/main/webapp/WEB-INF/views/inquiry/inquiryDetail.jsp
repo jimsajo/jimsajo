@@ -3,7 +3,6 @@
 <html>
 <head>
     <title>문의 상세보기</title>
-<<<<<<< HEAD
     <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
