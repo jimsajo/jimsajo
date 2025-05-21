@@ -36,7 +36,11 @@
 <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-<%@ include file="../section/header.jsp"%>
+
+
+
+<%@ include file="../section/header.jsp" %>
+
 <br>
 	<div class="text-center pt-5 mt-5">
 	  <h2 class="fw-bold display-5 text-primary">패키지 결제</h2>
@@ -86,8 +90,10 @@
 		</form>
 	</div>
 
-	<script src="${pageContext.request.contextPath}/assets/js/payment.js"></script>
 
-  <%@ include file="../section/footer.jsp"%>
+	<script src="${pageContext.request.contextPath}/assets/js/payment.js"></script>
+  
+<%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

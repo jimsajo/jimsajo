@@ -275,8 +275,8 @@
         <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-xl-10">
             <div class="text-center">
-              <h3>Call To Action</h3>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <h3>여행, 가볍게 떠나세요!!</h3>
+              <p>동남아 여행, 어디서부터 시작할지 고민되시나요? 짐싸조는 태국, 인도네시아, 베트남, 말레이시아, 필리핀 등 인기있는 동남아 5개국 여행 패키지를 한눈에 비교하고 예약할 수 있는 웹 플랫폼 입니다. 여행준비는 짐싸조에게 맡기고, 당신은 설레는 마음만 챙기세요.<br>짐싸조와 함께라면 여행은 더 가볍고, 기억은 더 깊어집니다.</p>
               <a class="cta-btn" href="#">Call To Action</a>
             </div>
           </div>
@@ -295,8 +295,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <span>Team</span>
-        <h2>Team</h2>
+        <span>함께한 팀원들</span>
+        <h2>함께한 팀원들</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
@@ -372,9 +372,10 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <span>Contact</span>
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <span>찾아오시는 길</span>
+        <h2>찾아오시는 길</h2>
+        <p>부산 부산진구 중앙대로 627 2, 12층 <br>
+        범내골역 7번 출구에서 70미터 직진 후 좌측에 보이는 삼비빌딩 2층, 12층 입니다.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">

@@ -18,13 +18,9 @@
 
 <!-- 헤더 -->
 <%@include file = "../section/header.jsp" %>
-<<<<<<< HEAD
 
-<!-- 전체 레이아웃 컨테이너 -->
-<div class="container mt-5 pt-5">
-  <div class="row">
-  <!-- 전체 컨테이너 -->
-<div class="container mt-5" style="margin-top: ">
+<!-- 전체 컨테이너 -->
+<div class="container mt-5">
   <div class="row d-flex align-items-stretch">
     <!-- 사이드 메뉴 -->
     <div class="col-md-3">
@@ -103,8 +99,12 @@
         </c:choose>
       </sec:authorize>
 	</div>
+  </div>
+</div>
 
-<!-- 회원정보 수정 모달 -->
+
+<!-- 회원정보 수정 모델 -->
+
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">
     <form method="post" action="/memberUpdateProcess" onsubmit = "return validateForm(this)">
@@ -182,30 +182,26 @@
 </div>
 
 <!-- 회원탈퇴 확인 모달 -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form method="post" action="/memberDeleteCheck">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">비밀번호 확인</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
-        </div>
-        <div class="modal-body">
-          <p>탈퇴하시려면 비밀번호를 입력해주세요.</p>
-          <input type="password" class="form-control" name="mPasswd" required placeholder="비밀번호">
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger">탈퇴하기</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+				<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <form method="post" action="/memberDeleteCheck">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <h5 class="modal-title" id="deleteModalLabel">비밀번호 확인</h5>
+				          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+				        </div>
+				        <div class="modal-body">
+				          <p>탈퇴하시려면 비밀번호를 입력해주세요.</p>
+				          <input type="password" class="form-control" name="mPasswd" required placeholder="비밀번호">
+				        </div>
+				        <div class="modal-footer">
+				          <button type="submit" class="btn btn-danger">탈퇴하기</button>
+				          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        </div>
+				      </div>
+				    </form>
+				  </div>
+				</div>
 <!-- 기존 비밀번호 다르게 입력했을때 프롬포트 창 띄우기 -->
 <c:if test="${not empty errorMsg}">
 <script>
