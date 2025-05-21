@@ -30,7 +30,7 @@
 </head>
 
 <body class="index-page">
-<%@ include file="../header.jsp"%>
+<%@ include file="../section/header.jsp"%>
  
 <div class="position-relative text-center" style="margin-top: 140px; margin-bottom: 20px; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);">
   <h3 class="mb-1 fw-bold" style="color: #00CFFF;">
@@ -111,7 +111,8 @@
   </div>
 </div>
 
-<%@ include file="../footer.jsp"%>
+
+<%@ include file="../section/footer.jsp"%>
 
 </body>
 </html>

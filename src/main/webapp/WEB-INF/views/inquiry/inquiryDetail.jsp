@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
+<meta charset="UTF-8">
 
   <!-- login JS -->
   <script src="/js/login.js"></script>
@@ -34,9 +33,25 @@
 <link href="${pageContext.request.contextPath}/assets/css/reviewDetail.css" rel="stylesheet">
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
+
+    <title>문의 상세보기</title>
+    
+   
+	 <!-- Vendor JS Files -->
+	 <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	 <script src="/assets/vendor/php-email-form/validate.js"></script>
+	 <script src="/assets/vendor/aos/aos.js"></script>
+	 <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	 <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	 <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+	 <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	
+	 <!-- Main JS File -->
+	 <script src="/assets/js/main.js"></script>
 </head>
 <body>
-<%@ include file="../header.jsp"%>
+
+<%@ include file="../section/header.jsp"%>
 <br><br><br><br><br>
 <div class="position-relative text-center" style="margin-top: 40px; margin-bottom: 20px; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);">
   <h3 class="mb-1 fw-bold" style="color: #000;">
@@ -54,8 +69,7 @@
     <div class="review-content">
       <p>${inquiry.iContent}</p>
     </div>
-   
-
+<h2>문의 상세보기</h2>
     <div class="btn-area text-end">
       <a href="/inquiry/edit?iNum=${inquiry.iNum}" class="btn btn-secondary">수정</a>
       <a href="/inquiry/delete?iNum=${inquiry.iNum}" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
@@ -86,17 +100,13 @@
 	        <button type="submit" class="btn btn-primary mt-2">댓글 등록</button>
 	    </form>
 	</c:if>
-        
-
-<%--     <form action="${pageContext.request.contextPath}/review/commentAdd" method="post" class="mt-4"> --%>
-<%--       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
-<%--       <input type="hidden" name="rNum" value="${review.rNum}" /> --%>
-<!--       <input type="hidden" name="parentCNum" value="0" /> -->
-<!--       <textarea name="cContent" class="form-control" rows="3" placeholder="댓글을 입력하세요…" required></textarea> -->
-<!--       <button type="submit" class="btn btn-primary mt-2">댓글 등록</button> -->
-<!--     </form> -->
-  </div>
 </div>
-  <%@ include file="../footer.jsp"%>
+<a href="/inquiry/inquiryList">목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
+  <%@ include file="../section/footer.jsp"%>
+
+
+
+
+
 </body>
 </html>

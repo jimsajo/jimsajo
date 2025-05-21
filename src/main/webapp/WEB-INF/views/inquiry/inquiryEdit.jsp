@@ -35,7 +35,7 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="../header.jsp" />
+<%@ include file="../section/header.jsp"%>
 <br><br><br><br><br>
 <h2>문의 수정</h2>
 <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
@@ -66,6 +66,6 @@
 
 </script>
 
- <jsp:include page="../footer.jsp" />
+<%@ include file="../section/footer.jsp"%>
 </body>
 </html>

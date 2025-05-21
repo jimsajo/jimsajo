@@ -106,7 +106,7 @@
 <!--     </div> -->
 
 <!--   </header> -->
-<%@ include file="./header.jsp" %>
+<%@ include file="section/header.jsp"%>
   <main class="main">
 
     <!-- Hero Section -->

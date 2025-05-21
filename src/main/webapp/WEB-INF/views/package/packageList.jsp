@@ -31,7 +31,7 @@
 <body class="index-page">
 
 
-  <%@ include file="../header.jsp" %>
+<%@ include file="../section/header.jsp"%>
 
   <main class="main" style="margin-top: 140px;">
 <div>
@@ -69,6 +69,6 @@
 	</div>
   </main>
 	
-   <%@ include file="../footer.jsp" %>
+<%@ include file="../section/footer.jsp"%>
 </body>
 </html>

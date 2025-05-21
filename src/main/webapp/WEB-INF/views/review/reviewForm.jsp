@@ -26,7 +26,7 @@
   <link href="/assets/css/main.css" rel="stylesheet">
   </head>
   
-<%@ include file="../header.jsp" %>
+<%@ include file="../section/header.jsp"%>
 <body class="bg-light">
 <div class="container py-5">
   <div class="row justify-content-center">
@@ -106,6 +106,8 @@
     </div>
   </div>
 </div>
-<%@ include file="../footer.jsp" %>
+
+<%@ include file="../section/footer.jsp"%>
+
 </body>
 </html>

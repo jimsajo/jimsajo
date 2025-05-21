@@ -50,8 +50,9 @@
 	    ORDER BY p.payment_id DESC
 	</select>
 
-	<!-- PaymentMapper.xml -->
+	
 	<select id="selectPaymentsByMember" parameterType="int" resultMap="PaymentResultMap">
+
 		  SELECT 
 		    p.merchant_uid    AS merchantUid,
 		    p.pay_method      AS payMethod,
@@ -74,9 +75,14 @@
 		  ORDER BY p.created_at DESC
 	</select>
 
+	
+
 	<update id="updatePaymentStatus">
 		UPDATE payment
 		 SET pay_status = #{status}
 		 WHERE imp_uid = #{impUid}
 	</update>
+	
+	
+	
 </mapper>

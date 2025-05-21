@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -44,15 +47,10 @@
 <body class="index-page">
 
 <%@ include file="../header.jsp" %>
-<!-- 로고 -->
-<div class="text-center mt-4">
-  <a href="/">
-    <img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;">
-  </a>
-</div>
+
 
 <!-- 전체 컨테이너 -->
-<div class="container mt-5">
+<div class="container mt-5 pt-5">
   <div class="row d-flex align-items-stretch">
 
     <!-- 사이드 메뉴 -->
@@ -103,13 +101,15 @@
         </div>
       </sec:authorize>
 	</div>
+	
+
 	<!-- 주문 내역 섹션 -->
 <sec:authorize access="hasRole('ROLE_user')">	
 <div class="text-center mb-3 mt-5">
   <h4 class="fw-bold">🛒 내 주문 내역</h4>
 </div>
 <c:choose>
-  <c:when test="${empty paymentList}">
+  <c:when test="${empty payments}">
     <p class="text-muted text-center">주문 내역이 없습니다.</p>
   </c:when>
   <c:otherwise>
@@ -122,9 +122,8 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach var="p" items="${paymentList}">
+        <c:forEach var="p" items="${payments}">
           <tr>
-            <!--  <td>${p.merchantUid }</td> -->
             <td>${p.pName}</td>
             <td>${p.oStart}</td>
             <td>${p.oReturn}</td>
@@ -134,10 +133,8 @@
     </table>
   </c:otherwise>
 </c:choose>
-	
-</div>
-</div> 
 </sec:authorize >
+
 <!-- 회원정보 수정 모달 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">

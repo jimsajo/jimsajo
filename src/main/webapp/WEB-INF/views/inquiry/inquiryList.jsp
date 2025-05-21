@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<<html>
+
+<!DOCTYPE html>
+<html>
+
 <head>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>문의 목록</title>
@@ -25,25 +29,29 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 
   <c:set var="currentCountry" value="${param.pCountry}" />
-</head>
-<body>
-<jsp:include page="../header.jsp" />
 
-<br><br><br><br>
-<div class="container" style="margin-top: 120px; margin-bottom:120px;">
-    <div class="card shadow">
-      <div class="card-header bg-dark text-white text-center fs-5 fw-bold">
-        문의목록
-      </div>
-      <div class="card-body p-0">
-        <table class="table table-bordered text-center mb-0">
-          <thead class="table-light">
-            <tr>
-              <th>문의종류</th>
-              <th>제목</th>
-              <th>작성시간</th>
-            </tr>
-          </thead>
+</head>
+
+<body class="index-page">
+
+<!-- 상단 헤더 포함 -->
+<%@ include file="../section/header.jsp"%>
+
+<!--  본문 콘텐츠 -->
+<div class="container mt-5 pt-5 mb-5" >
+  <div class="card shadow">
+    <div class="card-header bg-dark text-white text-center fs-5 fw-bold" style="margain-top: 100px;">
+      1:1 문의 목록
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-bordered text-center mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>제목</th>
+            <th>타입</th>
+            <th>상세보기</th>
+          </tr>
+        </thead>
           <tbody>
             <c:forEach var="dto" items="${list}">
               <tr>
@@ -58,10 +66,13 @@
               </tr>
             </c:forEach>
           </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <jsp:include page="../footer.jsp" />
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- footer -->
+<%@ include file="../section/footer.jsp"%>
+
 </body>
 </html>

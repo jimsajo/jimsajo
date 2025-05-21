@@ -49,6 +49,6 @@
 		    <button type="submit">수정 완료</button>
 		    <a href="/inquiry/detail?iNum=${answer.iNum}">취소</a>
 		</form>
-  <jsp:include page="../footer.jsp" />		
+  		<%@ include file="../footer.jsp"%>
 </body>
 </html>

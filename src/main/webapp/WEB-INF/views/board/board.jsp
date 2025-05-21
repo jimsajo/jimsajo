@@ -29,12 +29,10 @@
   <link href="/assets/css/main.css" rel="stylesheet">
   
 </head>
-
 <body class="index-page">
-
-  <%@ include file="../header.jsp" %>
+<%@ include file="../section/header.jsp"%>
   <!-- 공지사항 테이블 -->
-  <div class="container" style="margin-top: 120px;">
+  <div class="container mt-5 pt-5">
     <div class="card shadow">
       <div class="card-header bg-dark text-white text-center fs-5 fw-bold">
         공지사항 목록
@@ -91,5 +89,8 @@
 </nav>
   <!-- Bootstrap JS (선택, 모달이나 드롭다운 등에 필요 시) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+<%@ include file="../section/footer.jsp"%>
+  
 </body>
 </html>
