@@ -51,9 +51,8 @@
 
               <div class="mb-3">
                 <label class="form-label">기존 이미지</label><br>
-                <p>${review.rReview}</p>
                 <c:if test="${not empty upReview.rImage}">
-                  <img src="/assets/img/package/${review.rImage}" class="img-thumbnail" style="max-width: 200px;">
+                  <img src="/assets/img/package/${upReview.rImage}" class="img-thumbnail" style="max-width: 200px;">
                 </c:if>
               </div>
 

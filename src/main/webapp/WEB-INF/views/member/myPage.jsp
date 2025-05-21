@@ -68,7 +68,7 @@
     	</sec:authorize>
         
         <sec:authorize access="hasRole('ROLE_admin')">
-        <a href="#" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
+        <a href="/inquiry/inquiryList" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
         </sec:authorize>
         
         <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#updateModal">정보수정</a>
@@ -130,11 +130,10 @@
         </div>
       </c:otherwise>
     </c:choose>
-
   </div>
 </div>
 
-<!-- 회원정보 수정 모달 -->
+<!-- 회원정보 수정 모델 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 600px; margin: auto;">
     <form method="post" action="/memberUpdateProcess" onsubmit = "return validateForm(this)">
@@ -241,7 +240,8 @@
 		</div>
 	</div>
 </div>
-
+</div>
+</div>
 <!-- 기존 비밀번호 다르게 입력했을때 프롬포트 창 띄우기 -->
 <c:if test="${not empty errorMsg}">
 <script>
