@@ -30,11 +30,10 @@
  
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
-
   
 </head>
 <body class="index-page">
-  <jsp:include page="../section/header.jsp"/>
+ <%@ include file="../section/header.jsp" %>
 
 		<h1>패키지 상세정보</h1>
 			<p>제목: ${dto.pName}</p>
@@ -66,6 +65,6 @@
 	    <input type="submit" value="삭제">
 	</form>
 	</c:if>
-<jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

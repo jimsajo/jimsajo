@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <title>리뷰 작성</title>
@@ -26,7 +27,7 @@
   <link href="/assets/css/main.css" rel="stylesheet">
   </head>
 <body class="bg-light">
-<jsp:include page="../section/header.jsp"/>
+<%@ include file="../section/header.jsp" %>
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-lg-8">
@@ -105,6 +106,6 @@
     </div>
   </div>
 </div>
-<jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

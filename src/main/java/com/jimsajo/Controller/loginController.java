@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,11 +70,12 @@ public class loginController {
 	        model.addAttribute("member", customUser.getMember());
 
 	        // ── 여기서 주문 내역을 꺼내 모델에 담기
-            int mNum = customUser.getMember().getmNum();
-            List<PaymentDto> paymentList =
-            paymentMapper.selectPaymentsByMember(mNum);
-            model.addAttribute("paymentList", paymentList);
-	        
+	        int mNum = customUser.getMember().getmNum();
+	        System.out.println("✅ 카카오 로그인 사용자 - 회원 번호: " + mNum); // 추가된 로그
+	        List<PaymentDto> paymentList = paymentMapper.selectPaymentsByMember(mNum);
+	        System.out.println("✅ 결제 내역 개수: " + paymentList.size()); // 추가된 로그
+	        model.addAttribute("payments", paymentList);
+
 	    }  
 	    // 일반 로그인 사용자
 	    else if (principal instanceof org.springframework.security.core.userdetails.User springUser) {
@@ -83,18 +85,17 @@ public class loginController {
 	            session.setAttribute("loginUser", member);
 	            model.addAttribute("member", member);
 
-                // ── 여기서도 주문 내역을 꺼내 모델에 담기
-                int mNum = member.getmNum();
-                List<PaymentDto> paymentList =
-                paymentMapper.selectPaymentsByMember(mNum);
-                model.addAttribute("paymentList", paymentList);
-
+	            // ── 여기서도 주문 내역을 꺼내 모델에 담기
+	            int mNum = member.getmNum();
+	            System.out.println("✅ 일반 로그인 사용자 - 회원 번호: " + mNum); // 추가된 로그
+	            List<PaymentDto> paymentList = paymentMapper.selectPaymentsByMember(mNum);
+	            System.out.println("✅ 결제 내역 개수: " + paymentList.size()); // 추가된 로그
+	            model.addAttribute("payments", paymentList);
 	        }
 	    }
 
 	    return "member/myPage"; // jsp에서 ${member.~~} 사용 가능해짐
 	}
-
 //	@RequestMapping("/myPage")
 //	public String myPage(HttpSession session, Authentication authentication) {
 //		Object principal = authentication.getPrincipal();

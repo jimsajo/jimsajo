@@ -125,7 +125,7 @@ public class PackageController {
 
     // 패키지 수정 폼
     @GetMapping("/package/update/{pNum}")
-    public String updatePackageForm(@PathVariable Integer pNum, Model model) {
+    public String updatePackageForm(@PathVariable("pNum") Integer pNum, Model model) {
         PackageDto packageDto = packageService.getPackageById(pNum);
         model.addAttribute("dto", packageDto);
         return "package/packageEdit";

@@ -28,6 +28,7 @@ public class boardController {
 
     // 공지사항 목록
 	@RequestMapping("/board")
+
 	public String list(@RequestParam(name = "page", defaultValue = "1") int page, Model model) throws Exception {
 	    int pageSize = 10;
 	    int offset = (page - 1) * pageSize;

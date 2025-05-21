@@ -32,7 +32,7 @@
   
 </head>
 <body class="index-page">
- <jsp:include page="../section/header.jsp"/>    
+<%@ include file="../section/header.jsp" %> 
 <!-- 공지사항 작성 폼 -->
     <div class="container" style="margin-top: 120px;">
         <div class="card shadow">
@@ -65,6 +65,6 @@
     <script src="../js/CKEditor5.js"></script>
     <!-- Bootstrap JS (선택) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

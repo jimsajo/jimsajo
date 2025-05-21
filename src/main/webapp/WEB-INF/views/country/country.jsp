@@ -7,6 +7,7 @@
     <title>${pCountry} 패키지 리스트</title>
 </head>
 <body>
+
  <jsp:include page="../section/header.jsp"/>
 <a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
 

@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>문의 상세보기</title>
+<<<<<<< HEAD
     <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -24,7 +25,7 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
- <jsp:include page="../section/header.jsp"/>
+<%@ include file="../section/header.jsp" %>
 <a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
 
 <h2>문의 상세보기</h2>
@@ -72,6 +73,6 @@
 	</c:if>
 
 <a href="/inquiry/inquiryList">목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
-<jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

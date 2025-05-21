@@ -49,8 +49,7 @@
 	    JOIN package pkg ON p.pNum = pkg.pNum
 	    ORDER BY p.payment_id DESC
 	</select>
-
-
+	
 	<select id="selectPaymentsByMember" parameterType="int" resultMap="PaymentResultMap">
 	  SELECT 
 	    p.payment_id      AS paymentId,
@@ -69,21 +68,16 @@
 	    o.oStart          AS oStart,
 	    o.oReturn         AS oReturn
 	
-	  FROM payment p
-	  JOIN package pkg ON p.pNum = pkg.pNum
-	  JOIN orders o ON p.oNum = o.oNum
-	  WHERE p.mNum = #{mNum}
-	  ORDER BY p.created_at DESC
+	   FROM payment p
+	   LEFT JOIN package pkg ON p.pNum = pkg.pNum
+	   LEFT JOIN orders o ON p.oNum = o.oNum
+	   WHERE p.mNum = #{mNum}
+	   ORDER BY p.created_at DESC
 	</select>
-
-	
 
 	<update id="updatePaymentStatus">
 		UPDATE payment
 		 SET pay_status = #{status}
 		 WHERE imp_uid = #{impUid}
 	</update>
-	
-	
-	
 </mapper>

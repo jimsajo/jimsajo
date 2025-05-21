@@ -25,7 +25,8 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body class="bg-light">
- <jsp:include page="../section/header.jsp"/>
+<<<<<<< HEAD
+ <%@ include file="../section/header.jsp" %>
   <div class="container mt-5" >
     <div class="card shadow" style="margin-top:120px;">
 	      <div class="card-header text-white text-center p-5" style="
@@ -74,7 +75,7 @@
       </div>
     </div>
   </div>
-  <script src="../js/CKEditor5.js"></script>
- <jsp:include page="../section/footer.jsp"/>
+<script src="../js/CKEditor5.js"></script>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

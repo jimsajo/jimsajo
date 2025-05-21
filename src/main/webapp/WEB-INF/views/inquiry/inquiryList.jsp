@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<<<<<<< HEAD
 <html>
 <head>
     <title>문의 목록</title>
@@ -23,8 +24,9 @@
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
-<body>
- <jsp:include page="../section/header.jsp"/>
+<body class="index-page">
+<%@ include file="../section/header.jsp" %>
+ 	<div class="container mt-5 pt-5">
 <h2>문의 목록</h2>
 <table border="1" width="700">
     <thead>
@@ -44,6 +46,6 @@
         </c:forEach>
     </tbody>
 </table>
- <jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

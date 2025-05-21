@@ -6,8 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <title>리뷰 수정</title>
-    <!-- Favicons -->
-
+  <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -27,7 +26,7 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body class="bg-light">
- <jsp:include page="../section/header.jsp"/>
+<%@ include file="../section/header.jsp" %>
   <div class="container py-5" style="margin-top: 120px;">
     <div class="row justify-content-center">
       <div class="col-lg-8">
@@ -84,6 +83,6 @@
       </div>
     </div>
   </div>
-<jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

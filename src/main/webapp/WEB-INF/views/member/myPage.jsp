@@ -42,7 +42,7 @@
   
 </head>
 <body class="index-page">
- <jsp:include page="../section/header.jsp"/>
+ <%@ include file="../section/header.jsp" %>
 
 <!-- 로고 -->
 <div class="text-center mt-4">
@@ -272,6 +272,6 @@
 </script>
 </c:if>
 
- <jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

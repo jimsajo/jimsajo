@@ -32,7 +32,7 @@
   </style>
 </head>
 <body class="index-page">
-<jsp:include page="../section/header.jsp"/>
+<%@ include file="../section/header.jsp" %>
     <!-- CKEditor5 로딩 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 
@@ -83,7 +83,7 @@
         }
     </script>
 <script src="../js/CKEditor5.js"></script>
-<jsp:include page="../section/footer.jsp" />
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>
    

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.jimsajo.Dto.CommentDto" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
 </head>
 
 <body class="index-page">
-<jsp:include page="../section/header.jsp"/>
+<%@ include file="../section/header.jsp" %>
 <a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
 
 <div class="position-relative text-center" style="margin-top: 140px; margin-bottom: 20px; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);">
@@ -112,7 +113,6 @@
   </div>
 </div>
 
-<jsp:include page="../section/footer.jsp"/>
-
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

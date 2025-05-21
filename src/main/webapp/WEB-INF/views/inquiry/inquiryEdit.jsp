@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,7 +28,7 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-<jsp:include page="../section/header.jsp"/>
+<%@ include file="../section/header.jsp" %>
 
 <div class="container mt-5">
   <div class="card shadow" style="margin-top:120px;">
@@ -84,6 +85,6 @@
 </div>
 
 <script src="../js/CKEditor5.js"></script>
-<jsp:include page="../section/footer.jsp"/>
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>
