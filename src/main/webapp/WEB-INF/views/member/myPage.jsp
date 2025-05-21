@@ -8,130 +8,99 @@
 <head>
   <meta charset="UTF-8">
   <title>마이페이지</title>
-  <!-- memberUpdate JS -->
-  <script src = "/js/memberUpdate.js"></script>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- JS -->
-  <script src="/js/memberDelete.js"></script>
-  
-  <!-- Flatpickr CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
-
-  <!-- Favicon -->
-  <link href="/assets/img/favicon.png" rel="icon">
-  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
+  <!-- Main CSS -->
   <link href="/assets/css/main.css" rel="stylesheet">
-  
 </head>
 <body class="index-page">
+
 <!-- 헤더 -->
 <%@include file = "../section/header.jsp" %>
 <!-- 전체 컨테이너 -->
-<div class="container mt-5" style="margin-top: ">
+<div class="container mt-5">
   <div class="row d-flex align-items-stretch">
 
     <!-- 사이드 메뉴 -->
-    <div class="col-md-3 h-100">
-      <div class="list-group h100">
+    <div class="col-md-3">
+      <div class="list-group">
         <sec:authorize access="hasRole('ROLE_user')">
-        <a href="/payment/paymentList" class="list-group-item list-group-item-action">주문상세보기</a>
+          <a href="/payment/paymentList" class="list-group-item list-group-item-action">주문상세보기</a>
         </sec:authorize>
-        
         <sec:authorize access="hasRole('ROLE_admin')">
-        <a href="/orders/orderList" class="list-group-item list-group-item-action">전체주문내역</a>
+          <a href="/orders/orderList" class="list-group-item list-group-item-action">전체주문내역</a>
         </sec:authorize>
-        
         <sec:authorize access="hasRole('ROLE_user')">
-        <a href="/inquiry" class="list-group-item list-group-item-action">1대1 문의하기</a>
+          <a href="/inquiry" class="list-group-item list-group-item-action">1대1 문의하기</a>
         </sec:authorize>
-    	
-    	<sec:authorize access="hasRole('ROLE_admin')">
-    	<a href="/newBoard" class="list-group-item list-group-item-action">공지사항 작성</a>
-    	</sec:authorize>
-        
         <sec:authorize access="hasRole('ROLE_admin')">
+
         <a href="/inquiry/inquiryList" class="list-group-item list-group-item-action">1대1 문의 답변하기</a>
+        <a href="/newBoard" class="list-group-item list-group-item-action">공지사항 작성</a>
         </sec:authorize>
-        
         <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#updateModal">정보수정</a>
-        
         <sec:authorize access="hasRole('ROLE_user')">
-        <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#deleteModal">회원탈퇴</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#deleteModal">회원탈퇴</a>
         </sec:authorize>
-        
         <sec:authorize access="hasRole('ROLE_admin')">
           <a href="/package" class="list-group-item list-group-item-action">상품등록</a>
         </sec:authorize>
-        
         <a href="/logout" class="list-group-item list-group-item-action">로그아웃</a>
         <a href="/review" class="list-group-item list-group-item-action">✍️ 리뷰 작성하기</a>
       </div>
     </div>
 
-<!-- 인사말 -->
-<sec:authorize access="isAuthenticated()">
-  <div class="text-center mt-3 mb-5"> <%-- 위아래 여백 넉넉하게 확보 --%>
-    <h3 class="fw-bold mb-3">${sessionScope.loginUser.mName}님, 안녕하세요!</h3>
-  </div>
-</sec:authorize>
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="col-md-9">
 
-<!-- 주문 내역 섹션 -->
-<div class="d-flex justify-content-center mb-5"> <%-- 메인 콘텐츠 가운데 정렬 --%>
-  <div class="w-100" style="max-width: 900px;"> <%-- 최대 폭 제한 --%>
-    
-    <div class="text-center mb-4">
-      <h4 class="fw-bold">🛒 내 주문 내역</h4>
-    </div>
+      <!-- 인사말 -->
+      <sec:authorize access="isAuthenticated()">
+        <div class="text-center mb-4" style="margin-top: 100px;">
+          <h3 class="fw-bold">${sessionScope.loginUser.mName}님, 안녕하세요!</h3>
+        </div>
+      </sec:authorize>
 
-    <c:choose>
-      <c:when test="${empty payments}">
-        <div class="text-center text-muted fs-5">
-          주문 내역이 없습니다.
+      <!-- 주문 내역 -->
+      <sec:authorize access="hasRole('ROLE_user')">
+        <div class="text-center mb-3">
+          <h4 class="fw-bold">🛒 내 주문 내역</h4>
         </div>
-      </c:when>
-      <c:otherwise>
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover align-middle text-center">
-            <thead class="table-dark">
-              <tr>
-                <th>상품명</th>
-                <th>출발날짜</th>
-                <th>도착날짜</th>
-              </tr>
-            </thead>
-            <tbody>
-              <c:forEach var="payment" items="${payments}">
-                <tr>
-                  <td>${payment.pName}</td>
-                  <td>${payment.oStart}</td>
-                  <td>${payment.oReturn}</td>
-                </tr>
-              </c:forEach>
-            </tbody>
-          </table>
-        </div>
-      </c:otherwise>
-    </c:choose>
+
+        <c:choose>
+          <c:when test="${empty payments}">
+            <div class="text-center text-muted fs-5 mb-5">
+              주문 내역이 없습니다.
+            </div>
+          </c:when>
+          <c:otherwise>
+            <div class="table-responsive mb-5">
+              <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>상품명</th>
+                    <th>출발날짜</th>
+                    <th>도착날짜</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach var="payment" items="${payments}">
+                    <tr>
+                      <td>${payment.pName}</td>
+                      <td>${payment.oStart}</td>
+                      <td>${payment.oReturn}</td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </div>
+          </c:otherwise>
+        </c:choose>
+      </sec:authorize>
+	</div>
   </div>
 </div>
+
 
 <!-- 회원정보 수정 모델 -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
@@ -211,36 +180,29 @@
 </div>
 
 <!-- 회원탈퇴 확인 모달 -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form method="post" action="/memberDeleteCheck">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">비밀번호 확인</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
-        </div>
-        <div class="modal-body">
-          <p>탈퇴하시려면 비밀번호를 입력해주세요.</p>
-          <input type="password" class="form-control" name="mPasswd" required placeholder="비밀번호">
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger">탈퇴하기</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- 1:1 문의 내역 -->
-<div>
-	<div>
-		<div>
-			
+				<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <form method="post" action="/memberDeleteCheck">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <h5 class="modal-title" id="deleteModalLabel">비밀번호 확인</h5>
+				          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+				        </div>
+				        <div class="modal-body">
+				          <p>탈퇴하시려면 비밀번호를 입력해주세요.</p>
+				          <input type="password" class="form-control" name="mPasswd" required placeholder="비밀번호">
+				        </div>
+				        <div class="modal-footer">
+				          <button type="submit" class="btn btn-danger">탈퇴하기</button>
+				          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        </div>
+				      </div>
+				    </form>
+				  </div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-</div>
 </div>
 <!-- 기존 비밀번호 다르게 입력했을때 프롬포트 창 띄우기 -->
 <c:if test="${not empty errorMsg}">

@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jimsajo.Dto.AnswerDto;
 import com.jimsajo.Dto.InquiryDto;
+import com.jimsajo.Dto.PaymentDto;
+import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Service.AnswerService;
 import com.jimsajo.Service.InquiryService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class InquiryController {
@@ -47,7 +52,7 @@ public class InquiryController {
         model.addAttribute("list", list);
         return "inquiry/inquiryList";
     }
-
+    
     @GetMapping("/inquiry/detail")
     public String detail(@RequestParam("iNum") Integer iNum, Model model) {
         InquiryDto inquiry = inquiryService.getInquiryById(iNum);

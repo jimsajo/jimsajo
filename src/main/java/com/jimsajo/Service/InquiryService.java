@@ -1,6 +1,9 @@
 package com.jimsajo.Service;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.jimsajo.Dto.InquiryDto;
 
 public interface InquiryService {
@@ -9,4 +12,4 @@ public interface InquiryService {
 	InquiryDto getInquiryById(Integer iNum);
 	void updateInquiry(InquiryDto inquiry);  // 수정 메서드
     void deleteInquiry(Integer iNum);  // 삭제 메서드
-}
+} 
