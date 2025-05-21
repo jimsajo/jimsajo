@@ -28,11 +28,62 @@
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
+<<<<<<< HEAD
+<body class="bg-light">
+
+ <%@ include file="../section/header.jsp" %>
+  <div class="container mt-5" >
+    <div class="card shadow" style="margin-top:120px;">
+	      <div class="card-header text-white text-center p-5" style="
+			background: url('${pageContext.request.contextPath}/assets/img/moonE.jpg') center/cover no-repeat;
+   	 		position: relative;
+    		border-top-left-radius: 0.5rem;
+    		border-top-right-radius: 0.5rem;">
+  
+		  <div style="
+		      position: absolute;
+		      top: 0; left: 0; width: 100%; height: 100%;
+		      background-color: rgba(0, 0, 0, 0.4);
+		      z-index: 1;
+		      border-top-left-radius: 0.5rem;
+		      border-top-right-radius: 0.5rem;"></div>
+=======
 
 <body class="index-page">
 <%@ include file="../section/header.jsp"%>
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 
 
+<<<<<<< HEAD
+		  <div class="position-relative" style="z-index: 2; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); color: #fff;">
+		    <h3 class="mb-2 fw-bold">📬 <span style="color: #ffffff;"> 문의작성 하기</span></h3>
+		  </div>
+		</div>
+      <div class="card-body">
+        <form method="post" action="/inquiryList">
+          <div class="mb-3">
+            <label class="form-label">제목</label>
+            <input type="text" name="iTitle" class="form-control" placeholder="제목을 입력하세요" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">문의 유형</label>
+            <input type="text" name="iType" class="form-control" placeholder="예: 예약, 결제, 기타" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">내용</label>
+            <textarea id="editor" name="iContent" class="form-control" rows="10"></textarea>
+          </div>
+
+          <input type="hidden" name="mNum" value="${sessionScope.loginUser.mNum}" >
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-success">제출하기</button>
+            <a href="/" class="btn btn-outline-secondary">홈으로</a>
+          </div>
+        </form>
+=======
 <div class="container mt-5">
   <div class="card shadow" style="margin-top:120px;">
     <div class="card-header text-white text-center p-5" style="
@@ -49,6 +100,7 @@
         border-top-right-radius: 0.5rem;"></div>
       <div class="position-relative" style="z-index: 2; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); color: #fff;">
         <h3 class="mb-2 fw-bold">📬 <span style="color: #ffffff;"> 문의작성 하기</span></h3>
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
       </div>
     </div>
 

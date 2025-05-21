@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jimsajo.Dto.boardDto;
@@ -69,10 +70,6 @@ public class boardController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); // 로그인한 사용자 ID
         String role = auth.getAuthorities().iterator().next().getAuthority(); // 
-
-        System.out.println("저장 요청자 아이디: " + username);
-        System.out.println("저장 요청자 권한: " + role);
-
         if (!role.equals("ROLE_admin")) {
             return "redirect:/accessDenied";
         }

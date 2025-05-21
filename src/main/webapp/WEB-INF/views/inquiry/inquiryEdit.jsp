@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="ko">
+=======
 <html>
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
