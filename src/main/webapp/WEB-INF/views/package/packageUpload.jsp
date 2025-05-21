@@ -82,8 +82,9 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
+<%@ include file="../section/footer.jsp"%>
 <script src="../js/CKEditor5.js"></script>
-<%@ include file="../section/footer.jsp" %>
 </body>
+
 </html>
    

@@ -29,7 +29,9 @@
   
 </head>
 <body class="bg-light">
+
  <%@ include file="../section/header.jsp" %>
+
   <div class="container mt-5">
     <div class="card shadow-sm" style="margin-top:120px;">
       <div class="card-header bg-primary text-white">
@@ -84,6 +86,8 @@
       </div>
     </div>
   </div>
+
 <%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

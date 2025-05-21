@@ -36,9 +36,11 @@
 <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
+
+
+
 <%@ include file="../section/header.jsp" %>
-<!-- 	<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" -->
-<!-- 		style="height: 150px; width: auto;"></a> -->
+
 <br>
 	<div class="text-center pt-5 mt-5">
 	  <h2 class="fw-bold display-5 text-primary">패키지 결제</h2>
@@ -88,7 +90,10 @@
 		</form>
 	</div>
 
-<script src="../js/payment.js"></script>  
+
+	<script src="${pageContext.request.contextPath}/assets/js/payment.js"></script>
+  
 <%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

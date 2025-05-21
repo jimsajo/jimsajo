@@ -29,7 +29,7 @@
 </head>
 
 <body class="index-page">
- <%@ include file="../section/header.jsp" %>
+<%@ include file="../section/header.jsp"%>
  <main class="main" style="margin-top: 140px;">
 <div>
     <div class="container-md">
@@ -65,6 +65,8 @@
 	    </div>
 	</div>
   </main>
-<%@ include file="../section/footer.jsp" %>
+
+	
+<%@ include file="../section/footer.jsp"%>
 </body>
 </html>

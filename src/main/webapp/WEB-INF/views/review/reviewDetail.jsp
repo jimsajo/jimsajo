@@ -31,9 +31,8 @@
 </head>
 
 <body class="index-page">
-<%@ include file="../section/header.jsp" %>
-<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
 
+<%@ include file="../section/header.jsp" %>
 <div class="position-relative text-center" style="margin-top: 140px; margin-bottom: 20px; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);">
   <h3 class="mb-1 fw-bold" style="color: #00CFFF;">
     📸 내가 쓴 리뷰 보기 🧳
@@ -68,9 +67,9 @@
     </form>
 
     <div class="btn-area text-end">
-      <a href="${pageContext.request.contextPath}/review/updateReview/${review.rNum}" class="btn btn-secondary">수정</a>
+      <a href="${pageContext.request.contextPath}/review/updateReview/${review.rNum}" class="btn btn-secondary"><i class="bi bi-check-circle"></i>수정</a>
       <a href="${pageContext.request.contextPath}/review/deleteReview/${review.rNum}" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
-      <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-primary">목록보기</a>
+      <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-primary"><i class="bi bi-list-ul"></i>목록보기</a>
     </div>
   </div>
 
@@ -113,6 +112,8 @@
   </div>
 </div>
 
+
 <%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

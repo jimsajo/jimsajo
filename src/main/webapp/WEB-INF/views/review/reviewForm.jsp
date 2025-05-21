@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <html>
 <head>
 <title>리뷰 작성</title>
@@ -96,8 +97,8 @@
             </div>
 
             <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-success">리뷰 등록하기</button>
-              <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-secondary">리뷰 목록으로 가기</a>
+              <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>리뷰 등록</button>
+              <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-secondary"><i class="bi bi-list-ul"></i>리뷰 목록</a>
             </div>
           </form>
         </div>
@@ -107,5 +108,6 @@
   </div>
 </div>
 <%@ include file="../section/footer.jsp" %>
+
 </body>
 </html>

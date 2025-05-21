@@ -35,6 +35,7 @@
  
 
   <!-- 공지사항 상세보기 카드 -->
+<<<<<<< HEAD
   <div class="container" style="margin-top: 180px; margin-bottom: 100px;">
   <div class="card" style="border: none; box-shadow: none;">
     <div class="card-body">
@@ -50,6 +51,28 @@
         <a href="/board" class="btn btn-secondary">목록으로</a>
 		<a href="/board/${board.bNum}/update" class="btn btn-warning">수정</a>
         <a href="/board/${board.bNum}/delete" class="btn btn-danger">삭제</a>
+=======
+  <div class="container">
+    <div class="card shadow">
+      <div class="card-header bg-dark text-white fw-bold fs-5">
+        ${board.bTitle}
+      </div>
+      <div class="card-body">
+        <p class="text-muted mb-2">
+          작성자: ${board.mName} &nbsp;|&nbsp; 작성시간: ${board.bTime} &nbsp;|&nbsp; 조회수: ${board.bCnt}
+        </p>
+        <hr>
+        <div style="min-height: 150px;">
+        	${board.bContent}
+        </div>
+      </div>
+      <div class="card-footer bg-white text-end">
+        <a href="/board" class="btn btn-secondary me-2"><i class="bi bi-list-ul"></i>목록으로</a>
+        <sec:authorize access="hasRole('ROLE_admin')">
+          <a href="/board/${board.bNum}/update" class="btn btn-warning me-2"><i class="bi bi-list-ul"></i>수정</a>
+          <a href="/board/${board.bNum}/delete" class="btn btn-danger">삭제</a>
+        </sec:authorize>
+>>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
       </div>
     </div>
   </div>
