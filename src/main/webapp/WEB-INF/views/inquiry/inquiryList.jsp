@@ -39,8 +39,8 @@
         <table class="table table-bordered text-center mb-0">
           <thead class="table-light">
             <tr>
-              <th>문의종류</th>
               <th>제목</th>
+              <th>문의종류</th>
               <th>작성시간</th>
             </tr>
           </thead>

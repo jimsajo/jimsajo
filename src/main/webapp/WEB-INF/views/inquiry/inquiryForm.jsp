@@ -28,7 +28,7 @@
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
-<<<<<<< HEAD
+
 <body class="index-page">
 <%@ include file="../section/header.jsp"%>
 
@@ -63,27 +63,6 @@
           <label class="form-label">문의 유형</label>
           <input type="text" name="iType" class="form-control" placeholder="예: 예약, 결제, 기타" required>
         </div>
-=======
-<body class="bg-light">
-<<<<<<< HEAD
- <%@ include file="../section/header.jsp" %>
-  <div class="container mt-5" >
-    <div class="card shadow" style="margin-top:120px;">
-	      <div class="card-header text-white text-center p-5" style="
-			background: url('${pageContext.request.contextPath}/assets/img/moonE.jpg') center/cover no-repeat;
-   	 		position: relative;
-    		border-top-left-radius: 0.5rem;
-    		border-top-right-radius: 0.5rem;">
-  
-		  <div style="
-		      position: absolute;
-		      top: 0; left: 0; width: 100%; height: 100%;
-		      background-color: rgba(0, 0, 0, 0.4);
-		      z-index: 1;
-		      border-top-left-radius: 0.5rem;
-		      border-top-right-radius: 0.5rem;"></div>
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
-
         <div class="mb-3">
           <label class="form-label">내용</label>
           <textarea id="editor" name="iContent" class="form-control" rows="10"></textarea>
@@ -102,16 +81,12 @@
       </form>
     </div>
   </div>
-<<<<<<< HEAD
+
 </div>
 
 
-  <script src="${pageContext.request.contextPath}/assets/js/CKEditor5.js"></script>
-  
+  <script src="${pageContext.request.contextPath}/assets/js/CKEditor5.js"></script>  
 <%@ include file="../section/footer.jsp"%>
-=======
 <script src="../js/CKEditor5.js"></script>
-<%@ include file="../section/footer.jsp" %>
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
 </body>
 </html>

@@ -79,7 +79,7 @@
 	      </div>
 	    </div>
 	  </div>
-    <script src="../js/packageEdit.js"></script>
+    <script src="/assets/js/packageEdit.js"></script>
 <%@ include file="../section/footer.jsp" %>
 </body>
 </html>

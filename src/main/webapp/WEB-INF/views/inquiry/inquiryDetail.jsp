@@ -35,7 +35,7 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 
     <title>문의 상세보기</title>
-<<<<<<< HEAD
+
     
    
 	 <!-- Vendor JS Files -->
@@ -49,8 +49,8 @@
 	
 	 <!-- Main JS File -->
 	 <script src="/assets/js/main.js"></script>
-=======
-<<<<<<< HEAD
+
+
     <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -70,10 +70,9 @@
  
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
+
 </head>
 <body>
-<<<<<<< HEAD
 
 <%@ include file="../section/header.jsp"%>
 <br><br><br><br><br>
@@ -82,22 +81,15 @@
     나의 문의 목록
   </h3>
 </div>
-
 <div class="container">
   <div class="review-container">
-    <h1 class="review-title">${inquiry.iTitle}</h1>
-    
+    <h1 class="review-title">${inquiry.iTitle}</h1>  
     <div class="mt-2">
       <span class="badge bg-primary"> ${inquiry.iType}</span>
     </div>
     <div class="review-content">
       <p>${inquiry.iContent}</p>
     </div>
-=======
-<%@ include file="../section/header.jsp" %>
-<a href="/"><img src="images/jimsajo_logo2.png" alt="짐싸조 로고" style="height:150px; width:auto;"></a>
-
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
 <h2>문의 상세보기</h2>
     <div class="btn-area text-end">
       <a href="/inquiry/edit?iNum=${inquiry.iNum}" class="btn btn-secondary">수정</a>
@@ -131,15 +123,8 @@
 	</c:if>
 </div>
 <a href="/inquiry/inquiryList">목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
-<<<<<<< HEAD
-  <%@ include file="../section/footer.jsp"%>
-
-
-
-
-
-=======
+</div>
 <%@ include file="../section/footer.jsp" %>
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
+
 </body>
 </html>

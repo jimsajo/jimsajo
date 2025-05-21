@@ -30,11 +30,9 @@
   
 </head>
 <body class="index-page">
-<<<<<<< HEAD
-<%@ include file="../section/header.jsp"%>
-=======
+
 <%@ include file="../section/header.jsp" %>
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
+
   <!-- 공지사항 테이블 -->
   <div class="container mt-5 pt-5">
    <div class="bg-white text-black text-center fs-2 fw-bold" style="margin-top:80px;">
@@ -94,11 +92,10 @@
   <!-- Bootstrap JS (선택, 모달이나 드롭다운 등에 필요 시) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-<<<<<<< HEAD
-<%@ include file="../section/footer.jsp"%>
+
+
   
-=======
   <%@ include file="../section/footer.jsp" %>
->>>>>>> branch 'master' of https://jimsajo@github.com/jimsajo/jimsajo.git
+
 </body>
 </html>

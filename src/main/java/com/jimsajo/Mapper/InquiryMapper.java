@@ -17,6 +17,8 @@ public interface InquiryMapper {
     // 삭제 메서드 추가
     void deleteInquiry(int iNum);
 
+
     // 특정 사용자의 문의 목록 조회 (mNum으로 조회)
     List<InquiryDto> selectUserInquiries(int mNum);
 }
+

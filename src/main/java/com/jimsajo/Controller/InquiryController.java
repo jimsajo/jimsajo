@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jimsajo.Dto.AnswerDto;
 import com.jimsajo.Dto.InquiryDto;
+//jimsajo@github.com/jimsajo/jimsajo.git
 import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Service.AnswerService;
 import com.jimsajo.Service.InquiryService;
@@ -61,8 +62,6 @@ public class InquiryController {
         model.addAttribute("list", list);
         return "inquiry/inquiryList";
     }
-
-    // 문의 상세 보기
     @GetMapping("/inquiry/detail")
     public String detail(@RequestParam("iNum") Integer iNum, Model model) {
         InquiryDto inquiry = inquiryService.getInquiryById(iNum);
