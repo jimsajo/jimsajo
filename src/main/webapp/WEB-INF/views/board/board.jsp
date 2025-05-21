@@ -92,10 +92,6 @@
   <!-- Bootstrap JS (선택, 모달이나 드롭다운 등에 필요 시) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-
-
-  
-  <%@ include file="../section/footer.jsp" %>
-
+<%@ include file="../section/footer.jsp" %>
 </body>
 </html>

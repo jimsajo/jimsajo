@@ -74,9 +74,9 @@
         </c:if>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="submit" class="btn btn-success">제출하기</button>
+          <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>제출하기</button>
           <a href="/" class="btn btn-outline-secondary">홈으로</a>
-         <a href="/inquiry/inquiryList" class="btn btn-primary">문의 리스트</a>
+         <a href="/inquiry/inquiryList" class="btn btn-primary"><i class="bi bi-list-ul"></i>문의 리스트</a>
         </div>
       </form>
     </div>

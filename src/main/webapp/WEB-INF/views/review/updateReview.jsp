@@ -75,8 +75,8 @@
               </div>
 
               <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-success">수정 완료</button>
-                <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-secondary">목록으로</a>
+                <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>수정 완료</button>
+                <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-secondary"><i class="bi bi-list-ul"></i>목록으로</a>
               </div>
             </form>
           </div>

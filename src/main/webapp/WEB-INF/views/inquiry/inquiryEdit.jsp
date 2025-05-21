@@ -85,8 +85,8 @@
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="submit" class="btn btn-primary">수정하기</button>
-          <a href="/inquiry/inquiryList" class="btn btn-outline-secondary">목록으로</a>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle"></i>수정하기</button>
+          <a href="/inquiry/inquiryList" class="btn btn-outline-secondary"><i class="bi bi-list-ul"></i>목록으로</a>
         </div>
       </form>
     </div>

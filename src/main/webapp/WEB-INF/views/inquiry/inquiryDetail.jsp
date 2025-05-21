@@ -122,7 +122,7 @@
 	    </form>
 	</c:if>
 </div>
-<a href="/inquiry/inquiryList">목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
+<a href="/inquiry/inquiryList"><i class="bi bi-list-ul"></i>목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
 </div>
 <%@ include file="../section/footer.jsp" %>
 

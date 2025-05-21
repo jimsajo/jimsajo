@@ -67,9 +67,9 @@
     </form>
 
     <div class="btn-area text-end">
-      <a href="${pageContext.request.contextPath}/review/updateReview/${review.rNum}" class="btn btn-secondary">수정</a>
+      <a href="${pageContext.request.contextPath}/review/updateReview/${review.rNum}" class="btn btn-secondary"><i class="bi bi-check-circle"></i>수정</a>
       <a href="${pageContext.request.contextPath}/review/deleteReview/${review.rNum}" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
-      <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-primary">목록보기</a>
+      <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-primary"><i class="bi bi-list-ul"></i>목록보기</a>
     </div>
   </div>
 

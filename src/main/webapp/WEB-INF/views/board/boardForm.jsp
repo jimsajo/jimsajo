@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="text-end">
-                    <a href="/board" class="btn btn-secondary me-2">목록으로</a>
+                    <a href="/board" class="btn btn-secondary me-2"><i class="bi bi-list-ul"></i>목록으로</a>
                         <input type="submit" value="작성 완료" class="btn btn-primary">
                     </div>
                 </form>

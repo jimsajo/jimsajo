@@ -55,9 +55,9 @@
         </div>
       </div>
       <div class="card-footer bg-white text-end">
-        <a href="/board" class="btn btn-secondary me-2">목록으로</a>
+        <a href="/board" class="btn btn-secondary me-2"><i class="bi bi-list-ul"></i>목록으로</a>
         <sec:authorize access="hasRole('ROLE_admin')">
-          <a href="/board/${board.bNum}/update" class="btn btn-warning me-2">수정</a>
+          <a href="/board/${board.bNum}/update" class="btn btn-warning me-2"><i class="bi bi-list-ul"></i>수정</a>
           <a href="/board/${board.bNum}/delete" class="btn btn-danger">삭제</a>
         </sec:authorize>
       </div>

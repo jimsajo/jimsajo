@@ -74,7 +74,7 @@
 		    <label>답변 내용</label><br/>
 		    <textarea name="aContent" rows="6" cols="60" required>${answer.aContent}</textarea><br/><br/>
 		
-		    <button type="submit">수정 완료</button>
+		    <button type="submit"><i class="bi bi-check-circle"></i>수정 완료</button>
 		    <a href="/inquiry/detail?iNum=${answer.iNum}">취소</a>
 		</form> 		
 
