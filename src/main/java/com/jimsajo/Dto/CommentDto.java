@@ -1,6 +1,6 @@
 package com.jimsajo.Dto;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class CommentDto {
 	private int cNum;          // 댓글 번호
@@ -8,7 +8,7 @@ public class CommentDto {
     private int mNum;          // 작성자 번호
     private String mId;        // 작성자 ID
     private String cContent;   // 댓글 내용
-    private LocalDateTime cCreate; // 작성 시간
+    private Date cCreate; // 작성 시간
     private Integer parentCNum;    // 부모 댓글 번호 (0이면 최상위)
     private int depth;         // JSP 들여쓰기용 (DB 저장 X)
 	public int getcNum() {
@@ -41,10 +41,10 @@ public class CommentDto {
 	public void setcContent(String cContent) {
 		this.cContent = cContent;
 	}
-	public LocalDateTime getcCreate() {
+	public Date getcCreate() {
 		return cCreate;
 	}
-	public void setcCreate(LocalDateTime cCreate) {
+	public void setcCreate(Date cCreate) {
 		this.cCreate = cCreate;
 	}
 	public Integer getParentCNum() {

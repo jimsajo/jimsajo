@@ -9,11 +9,20 @@
 	</insert>
 	
 	<select id="selectCommentList" resultType="com.jimsajo.Dto.CommentDto" parameterType="int">
-		select c.cNum as cNum, c.rNum as rNum ,c.mNum as mNum, m.mId as mId, c.cContent as cContent, c.cCreate as cCreate, c.parentCNum as parentCNum
-		  from comment c join member m
-		  on c.mNum = m.mNum
-		  where c.rNum = #{value}
-		  order by c.parentCNum asc, c.cCreate asc
+		 select 
+	        c.cNum as cNum,
+	        c.rNum as rNum,
+	        c.mNum as mNum,
+	        m.mId as mId,
+	        c.cContent as cContent,
+	        c.cCreate as cCreate,
+	        c.parentCNum as parentCNum,
+	        0 as depth,
+	        CAST(c.cNum AS CHAR(200)) AS sortPath
+	    from comment c 
+	    join member m on c.mNum = m.mNum
+	    where c.rNum = #{value}
+	    order by sortPath asc, c.parentCNum asc, c.cCreate asc
 	</select>
 	
 	<!-- 댓글 수정 -->

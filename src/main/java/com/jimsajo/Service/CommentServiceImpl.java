@@ -18,7 +18,9 @@ public class CommentServiceImpl implements CommentService{
 	    List<CommentDto> original = icommentMapper.selectCommentList(rNum); // parent -> child 정렬되어 있다고 가정
 	    List<CommentDto> flatList = new ArrayList<>();
 	    for (CommentDto comment : original) {
+	    	if(comment.getParentCNum() == null || comment.getParentCNum()==0) {
 	        addWithChildren(comment, original, flatList, 0);
+	    	}
 	    }
 	    return flatList;
 	}
@@ -27,7 +29,7 @@ public class CommentServiceImpl implements CommentService{
 	    parent.setDepth(depth);
 	    result.add(parent);
 	    for (CommentDto child : all) {
-	        if (child.getParentCNum() == parent.getcNum()) {
+	    	if (child.getParentCNum() != null && child.getParentCNum().equals(parent.getcNum())) {
 	            addWithChildren(child, all, result, depth + 1);
 	        }
 	    }

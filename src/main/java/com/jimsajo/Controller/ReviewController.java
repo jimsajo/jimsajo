@@ -80,9 +80,6 @@ public class ReviewController {
 		if(loginUser != null) {
 			commentDto.setmNum(loginUser.getmNum());
 		}
-		if(commentDto.getParentCNum() == 0) {
-			commentDto.setParentCNum(0);
-		}
 		commentService.addComment(commentDto);
 		return "redirect:/review/reviewDetail/"+commentDto.getrNum();
 	}

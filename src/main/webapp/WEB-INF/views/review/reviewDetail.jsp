@@ -76,27 +76,34 @@
   <div class="comment-section">
     <h4 class="fw-bold mb-4">📢 댓글</h4>
     <c:forEach var="comment" items="${comments}">
-      <div class="comment ms-${comment.depth * 3}">
+      <div class="comment" style="margin-left: ${comment.depth*15}px;">
         <strong>${comment.mId}</strong>
-        <small> (${comment.cCreate})</small>
+        <small>(<fmt:formatDate value="${comment.cCreate}" pattern="yyyy-MM-dd" />)</small>
         <p>${comment.cContent}</p>
         <c:if test="${loginUser != null && loginUser.mNum == comment.mNum}">
           <form action="${pageContext.request.contextPath}/review/commentUpdate" method="post">
             <input type="hidden" name="rNum" value="${comment.rNum}" />
             <input type="hidden" name="cNum" value="${comment.cNum}" />
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <textarea name="cContent" class="form-control mb-2" required>${comment.cContent}</textarea>
-            <button type="submit" class="btn btn-sm btn-success">수정</button>
-            <a href="${pageContext.request.contextPath}/review/commentDelete/${comment.cNum}/${comment.rNum}/${comment.parentCNum == 0}" class="btn btn-sm btn-outline-danger ms-1">삭제</a>
+            <!-- 댓글 수정 폼 -->
+				<div class="mb-3">
+				    <textarea name="cContent" class="form-control mb-2" rows="3" required>${comment.cContent}</textarea>
+				    <div class="d-flex justify-content-end gap-2">
+				        <button type="submit" class="btn btn-sm btn-success">수정</button>
+				        <a href="${pageContext.request.contextPath}/review/commentDelete/${comment.cNum}/${comment.rNum}/${comment.parentCNum == 0}" class="btn btn-sm btn-outline-danger">삭제</a>
+				    </div>
+				</div>
           </form>
         </c:if>
         <c:if test="${loginUser != null}">
           <form action="${pageContext.request.contextPath}/review/commentAdd" method="post" class="reply-box">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <input type="hidden" name="rNum" value="${comment.rNum}" />
-            <input type="hidden" name="parentCNum" value="${comment.parentCNum}" />
-            <input type="text" name="cContent" class="form-control" placeholder="답글을 입력하세요" required>
-            <button type="submit" class="btn btn-sm btn-outline-primary mt-2">답글</button>
+            <input type="hidden" name="parentCNum" value="${comment.cNum}" />
+            <div class="input-group mt-2">
+			  <input type="text" name="cContent" class="form-control" placeholder="답글을 입력하세요" required>
+			  <button type="submit" class="btn btn-primary">답글</button>
+			</div>
           </form>
         </c:if>
       </div>
@@ -111,9 +118,6 @@
     </form>
   </div>
 </div>
-
-
 <%@ include file="../section/footer.jsp" %>
-
 </body>
 </html>
