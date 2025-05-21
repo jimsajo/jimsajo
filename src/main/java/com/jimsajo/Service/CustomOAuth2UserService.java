@@ -8,10 +8,14 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.jimsajo.Dto.memberDto;
 import com.jimsajo.Mapper.loginMapper;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -33,7 +37,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         String kakaoId = String.valueOf(kakaoAttributes.get("id")); // 숫자 → 문자열
         String nickname = (String) profile.get("nickname");
 
-        // 소셜 로그인용 mId, socialType 설정 (중복 방지용 prefix 추천)
+        // 소셜 로그인용 mId, socialType 설정
         String mId = "kakao_" + kakaoId;
 
         // DB에 해당 회원이 있는지 확인
@@ -47,18 +51,21 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             newMember.setSocialType("kakao");
             newMember.setSocialId(kakaoId);
 
-            // optional: 기본값 세팅
             newMember.setmTel("미입력");
             newMember.setmBirth(LocalDate.now());
 
             loginMapper.insertSocialMember(newMember);
-            
-            //  여기서 다시 select해서 진짜 memberDto 받아오기!
-            member = loginMapper.selectMemberById(mId);
+            member = loginMapper.selectMemberById(mId); // 다시 조회
         }
 
+        // ✅ 세션에 로그인 유저 저장
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpServletRequest request = attr.getRequest();
+        HttpSession session = request.getSession();
+        session.setAttribute("loginUser", member);
 
-        // Spring Security에 사용자 정보를 전달할 수 있는 OAuth2User 리턴
+        System.out.println("✅ 카카오 로그인 완료 - mName: " + member.getmName());
+
         return new CustomOAuth2User(member, oAuth2User.getAttributes());
     }
 }

@@ -54,6 +54,24 @@
 	   WHERE p.pay_status = 'paid'
 	   ORDER BY o.oDate DESC
 	</select>
-    
+	
+	<select id="selectOrderDetailsByMember" parameterType="int" resultType="com.jimsajo.Dto.ordersDto">
+	  SELECT 
+	    o.oNum,
+	    o.oDate,
+	    o.oStart,
+	    o.oReturn,
+	    o.oPeople,
+	    o.oPrice,
+	    o.mNum,
+	    o.pNum,
+	    p.pName AS pName
+	  FROM orders o 
+	  JOIN package p ON o.pNum = p.pNum
+	  WHERE o.mNum = #{mNum}
+	  ORDER BY o.oStart DESC
+	</select>
 
+
+	
 </mapper>
