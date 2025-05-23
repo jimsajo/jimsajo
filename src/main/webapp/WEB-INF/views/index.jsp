@@ -26,7 +26,7 @@
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/assets/css/instaReview.css" rel="stylesheet">
+  <link href="/assets/css/instaReview.css" rel="stylesheet">
  
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
@@ -306,13 +306,10 @@
 
           <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <img src="/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+              <img src="/assets/img/team/JANGHWAN.png" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>김장환</h4>
                 <span>팀장</span>
-                <p>
-                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                </p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -329,9 +326,6 @@
               <div class="member-content">
                 <h4>이강진</h4>
                 <span>팀원</span>
-                <p>
-                  css, 부스트트립, 결제 관련 api, 리뷰리스트, 리뷰 상세보기, 리뷰 수정 및 삭제 , 예약하기, 예약리스트보기를 구현하였습니다. 
-                </p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -344,13 +338,10 @@
 
           <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <img src="/assets/img/team/team-3.jpg" class="img-fluid" alt="">
+              <img src="/assets/img/team/HYEONSEOK.png" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>김현석</h4>
                 <span>팀원</span>
-                <p>
-                  Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
-                </p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>

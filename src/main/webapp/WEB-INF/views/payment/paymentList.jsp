@@ -72,6 +72,13 @@
                   <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('정말 결제를 취소하시겠습니까?');">결제 취소</button>
                 </form>
               </c:if>
+              
+              <c:if test="${payment.payStatus eq 'cancelled' }">
+                 <form method="post" action="/payment/delete/${payment.paymentId}">
+                    <input type="hidden" name="paymentId" value="${payment.paymentId}" />
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('삭제하시겠습니까?');">예약 삭제</button>
+                 </form>
+              </c:if>
             </td>
           </tr>
         </c:forEach>
@@ -88,6 +95,6 @@
   </div>
 </div>
 <%@ include file="../section/footer.jsp" %>
-<script src="assets/js/paymentList.js"></script>
+<script src="/assets/js/paymentList.js"></script>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class PaymentDto {
 		return merchantUid;
 	}
 	public void setMerchantUid(String merchantUid) {
-		this.merchantUid = merchantUid;
+	    this.merchantUid = merchantUid;
 	}
 	public String getPayMethod() {
 		return payMethod;

@@ -36,7 +36,7 @@
 
 <meta charset="UTF-8">
 <title>답변 수정</title>
-<!-- Favicons -->
+  <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -51,17 +51,12 @@
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
- 
 
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-
 <%@ include file="../section/header.jsp" %>
-
-
-
 <div class="container mt-5">
 	<div class="text-black text-center fs-2 fw-bold" style="margin-top:120px;">
 		✏️ 답변 수정
@@ -76,13 +71,10 @@
 		
 		    <button type="submit"><i class="bi bi-check-circle"></i>수정 완료</button>
 		    <a href="/inquiry/detail?iNum=${answer.iNum}">취소</a>
-		</form> 		
-
-			
+		</form> 			
 		</div>
 	</div>
 </div>
-
 <%@ include file="../section/footer.jsp" %>
 </body>
 </html>

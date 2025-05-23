@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -123,6 +124,12 @@ public class PaymentController {
         return "redirect:/payment/paymentList";
     }
     
+    //결제 취소 후 예약 삭제
+    @PostMapping("/payment/delete/{paymentId}")
+    public String removePay(@PathVariable("paymentId") int paymentId) throws Exception{
+        paymentService.removePay(paymentId);
+        return "redirect:/payment/paymentList"; // 삭제 후 이동할 페이지
+    }
 }
 
 

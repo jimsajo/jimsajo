@@ -27,8 +27,8 @@ public class PaymentService {
 	@Autowired
 	private IPaymentMapper iPaymentMapper;
 
-	private final String impKey = "7147215444520710";
-	private final String impSecret = "T20TfyhxdHXEaXYxb2bfwqBw60fxBA0tgrK20xta87zgTQns9ogBDSgdr3HGqKWONe3Cro83mVOQlnmi";
+	private final String impKey = "4823667686834613";
+	private final String impSecret = "aji0GjhsC0rBtEOhlfM5uYh452EmcwumKkxxqErHk3lvwvphW6MZDGgMIdRXntYogO7LAt3JRaMuY4Uz";
 
 	public String getAccessToken() throws IOException {
 		URL url = new URL("https://api.iamport.kr/users/getToken");
@@ -86,6 +86,9 @@ public class PaymentService {
 	
 	public boolean cancelPayment(String impUid, int amount) throws IOException {
 	    String token = getAccessToken();
+	    
+	    System.out.println("취소 요청 impUid: " + impUid);
+	    System.out.println("결제 취소 금액: " + amount);
 
 	    URL url = new URL("https://api.iamport.kr/payments/cancel");
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -108,6 +111,7 @@ public class PaymentService {
 
 	    try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
 	        String response = br.lines().collect(Collectors.joining());
+	        System.out.println("아임포트 응답: " + response);
 	        JsonNode jsonNode = mapper.readTree(response);
 	     // ✅ 아임포트에서 응답 코드가 0이면 취소 성공
 	        if (jsonNode.path("code").asInt() == 0) {
@@ -123,6 +127,10 @@ public class PaymentService {
 	    return iPaymentMapper.selectPaymentsByMember(mNum);
 	}
 
+	   //예약 삭제
+	   public void removePay(int paymentId) {
+	      iPaymentMapper.removePay(paymentId);
+	   }
 }
 
 

@@ -31,10 +31,10 @@
 
 <br><br><br><br>
 <div class="container" style="margin-top: 120px; margin-bottom:120px;">
+	<div class="text-black text-center fs-2 fw-bold" style="margin-top:120px;">
+        ✏️ 문의목록
+   	</div>
     <div class="card shadow">
-      <div class="card-header bg-dark text-white text-center fs-5 fw-bold">
-        문의목록
-      </div>
       <div class="card-body p-0">
         <table class="table table-bordered text-center mb-0">
           <thead class="table-light">

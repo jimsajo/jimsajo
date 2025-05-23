@@ -29,44 +29,40 @@
 </head>
 
 <body class="index-page">
-<%@ include file="../section/header.jsp"%>
- <main class="main" style="margin-top: 140px;">
-<div>
-    <div class="container-md">
-      <div class="container my-5">
-        <div class="text-center mb-4">
-          <h2>동남아 추천 여행 패키지</h2>
-          <p class="text-muted">즐겁고 행복한 여행 되세요~~</p>
-        </div>
+	<%@ include file="../section/header.jsp"%>
+	<main class="main" style="margin-top: 140px;">
+		<div>
+			<div class="container-md">
+				<div class="container my-5">
+					<div class="text-center mb-4">
+						<h2>동남아 추천 여행 패키지</h2>
+						<p class="text-muted">즐겁고 행복한 여행 되세요~~</p>
+					</div>
 
-        <div class="row g-4 mt-4">
-          <c:forEach var="dto" items="${packageList}">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="insta-card shadow-sm">
-                <a href="${pageContext.request.contextPath}/package/detail/${dto.pNum}">
-                  <img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="패키지 이미지" class="insta-img">
-                  <div class="insta-overlay">
-                    <i class="bi bi-bookmark-heart-fill heart-icon"></i>
-                  </div>
-                </a>
-                <div class="insta-meta">
-                  <span><strong>${dto.pName}</strong></span><br>
-                  <span><i class="bi bi-geo-alt me-1"></i>${dto.pCountry}</span><br>
-                  <span><i class="bi bi-calendar-check me-1"></i><fmt:formatDate value="${dto.pCreate}" pattern="yyyy-MM-dd" /></span><br>
-                  <span><i class="bi bi-cash-coin me-1"></i><strong>${dto.pPrice} 원</strong></span>
-                </div>
-
-                
-	              </div>
-	            </div>
-	          </c:forEach>
-	      </div>
-	    </div>
-	    </div>
-	</div>
-  </main>
-
-	
-<%@ include file="../section/footer.jsp"%>
+					<div class="row g-4 mt-4">
+						<c:forEach var="dto" items="${packageList}">
+							<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="insta-card shadow-sm">
+									<a href="${pageContext.request.contextPath}/package/detail/${dto.pNum}">
+										<img src="${pageContext.request.contextPath}/assets/img/package/${dto.pImage}" alt="패키지 이미지" class="insta-img">
+										<div class="insta-overlay">
+											<i class="bi bi-bookmark-heart-fill heart-icon"></i>
+										</div>
+									</a>
+									<div class="insta-meta">
+										<span><strong>${dto.pName}</strong></span><br>
+										<span><i class="bi bi-geo-alt me-1"></i>${dto.pCountry}</span><br> 
+										<span><i class="bi bi-calendar-check me-1"></i><fmt:formatDate value="${dto.pCreate}" pattern="yyyy-MM-dd" /></span><br>
+										<span><i class="bi bi-cash-coin me-1"></i><strong>${dto.pPrice} 원</strong></span>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<%@ include file="../section/footer.jsp"%>
 </body>
 </html>

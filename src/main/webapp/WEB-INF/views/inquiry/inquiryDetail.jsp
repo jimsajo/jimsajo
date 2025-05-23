@@ -35,44 +35,6 @@
   <link href="/assets/css/main.css" rel="stylesheet">
 
     <title>문의 상세보기</title>
-<<<<<<< HEAD
-=======
-
-    
-   
-	 <!-- Vendor JS Files -->
-	 <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	 <script src="/assets/vendor/php-email-form/validate.js"></script>
-	 <script src="/assets/vendor/aos/aos.js"></script>
-	 <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-	 <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-	 <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-	 <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	
-	 <!-- Main JS File -->
-	 <script src="/assets/js/main.js"></script>
-
-
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
-    <!-- Favicons -->
-  <link href="/assets/img/favicon.png" rel="icon">
-  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/assets/css/instaReview.css" rel="stylesheet">
- 
-  <!-- Main CSS File -->
-  <link href="/assets/css/main.css" rel="stylesheet">
 
 </head>
 <body>
@@ -93,7 +55,6 @@
     <div class="review-content">
       <p>${inquiry.iContent}</p>
     </div>
-<h2>문의 상세보기</h2>
     <div class="btn-area text-end">
       <a href="/inquiry/edit?iNum=${inquiry.iNum}" class="btn btn-secondary">수정</a>
       <a href="/inquiry/delete?iNum=${inquiry.iNum}" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
@@ -120,12 +81,11 @@
 	    <h3>답변 작성</h3>
 	    <form action="/answer/add" method="post">
 	        <input type="hidden" name="iNum" value="${inquiry.iNum}" />
-	        <textarea name="cContent" class="form-control" rows="3" placeholder="댓글을 입력하세요…" required></textarea>
+	        <textarea name="aContent" class="form-control" rows="3" placeholder="댓글을 입력하세요…" required></textarea>
 	        <button type="submit" class="btn btn-primary mt-2">댓글 등록</button>
 	    </form>
 	</c:if>
 </div>
-<a href="/inquiry/inquiryList"><i class="bi bi-list-ul"></i>목록으로 돌아가기</a> <!-- 목록으로 돌아가기 링크 추가 -->
 </div>
 <%@ include file="../section/footer.jsp" %>
 

@@ -14,5 +14,5 @@ public interface IPaymentMapper {
 	void updatePaymentStatus(@Param("impUid") String impUid, @Param("status") String status);
     public int paymentWrite(PaymentDto dto);// 결제 내역 삽입
     List<PaymentDto> selectPaymentsByMember(@Param("mNum") int mNum);
-
+    public void removePay(@Param("paymentId") int paymentId);
 }

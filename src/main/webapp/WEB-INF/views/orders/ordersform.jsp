@@ -8,7 +8,6 @@
   <script src="${pageContext.request.contextPath}/assets/js/ordersform.js"></script>
   
   <!-- Favicons -->
-
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -30,64 +29,60 @@
 </head>
 <body class="bg-light">
 
- <%@ include file="../section/header.jsp" %>
+	<%@ include file="../section/header.jsp"%>
 
-  <div class="container mt-5">
-    <div class="card shadow-sm" style="margin-top:120px;">
-      <div class="card-header bg-primary text-white">
-        <h4 class="mb-0">✈️ 패키지 예약</h4>
-      </div>
-      <div class="card-body">
-        <form method="post" action="/orders/submit">
-          <!-- 패키지 번호 전달 -->
-          <input type="hidden" name="pNum" value="${packageDto.pNum}" />
-          <input type="hidden" id="price" value="${packageDto.pPrice}" />
+	<div class="container mt-5">
+	   <div class="text-black text-center fs-2 fw-bold" style="margin-top:120px;">
+        ✈️ 패키지 예약
+   	   </div>
+		<div class="card shadow-sm" style="margin-top: 40px; margin-bottom:80px;">
+			<div class="card-body">
+				<form method="post" action="/orders/submit">
+					<!-- 패키지 번호 전달 -->
+					<input type="hidden" name="pNum" value="${packageDto.pNum}" /> <input type="hidden" id="price" value="${packageDto.pPrice}" />
 
-          <div class="mb-3">
-            <label class="form-label">상품명</label>
-            <div class="form-control-plaintext">${packageDto.pName}</div>
-            <hr>
-          </div>
-			
-          <div class="mb-3">
-            <label class="form-label">1인당 가격</label>
-            <div class="form-control-plaintext text-danger fw-bold">${packageDto.pPrice} 원</div>
-            <hr>
-          </div>
+					<div class="mb-3">
+						<label class="form-label">상품명</label>
+						<div class="form-control-plaintext">${packageDto.pName}</div>
+						<hr>
+					</div>
 
-          <div class="mb-3">
-            <label class="form-label">출발일</label>
-            <input type="date" name="oStart" class="form-control" required />
-          </div>
+					<div class="mb-3">
+						<label class="form-label">1인당 가격</label>
+						<div class="form-control-plaintext text-danger fw-bold">${packageDto.pPrice} 원</div>
+						<hr>
+					</div>
 
-          <div class="mb-3">
-            <label class="form-label">도착일</label>
-            <input type="date" name="oReturn" class="form-control" required />
-          </div>
+					<div class="mb-3">
+						<label class="form-label">출발일</label> <input type="date" name="oStart" class="form-control" required />
+					</div>
 
-          <div class="mb-3">
-            <label class="form-label">인원수</label>
-            <input type="number" name="oPeople" id="people" value="1" min="1" class="form-control" onchange="calculateTotal()" required />
-          </div>
+					<div class="mb-3">
+						<label class="form-label">도착일</label> <input type="date" name="oReturn" class="form-control" required />
+					</div>
 
-          <div class="mb-3">
-            <label class="form-label">총 결제 금액</label>
-            <div class="form-control-plaintext fw-semibold text-success fs-5" id="totalPriceDisplay">0 원</div>
-          </div>
+					<div class="mb-3">
+						<label class="form-label">인원수</label> <input type="number" name="oPeople" id="people" value="1" min="1" class="form-control" onchange="calculateTotal()" required />
+					</div>
 
-          <!-- 서버로 보낼 총 금액 -->
-          <input type="hidden" id="oPrice" name="oPrice" value="0" />
+					<div class="mb-3">
+						<label class="form-label">총 결제 금액</label>
+						<div class="form-control-plaintext fw-semibold text-success fs-5" id="totalPriceDisplay">0 원</div>
+					</div>
 
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <input type="submit" value="💳 결제 페이지로 이동" class="btn btn-success" />
-            <input type="button" onclick="location.href='/packagelist'" value="📦 더 많은 패키지 둘러보기" class="btn btn-outline-secondary" />
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+					<!-- 서버로 보낼 총 금액 -->
+					<input type="hidden" id="oPrice" name="oPrice" value="0" />
 
-<%@ include file="../section/footer.jsp" %>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<input type="submit" value="💳 결제 페이지로 이동" class="btn btn-success" />
+						<input type="button" onclick="location.href='/packagelist'" value="📦 더 많은 패키지 둘러보기" class="btn btn-outline-secondary" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<%@ include file="../section/footer.jsp"%>
 
 </body>
 </html>

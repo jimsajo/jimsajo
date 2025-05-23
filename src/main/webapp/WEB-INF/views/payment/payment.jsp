@@ -36,26 +36,18 @@
 <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-
-
-
-<%@ include file="../section/header.jsp" %>
-
-<br>
-	<div class="text-center pt-5 mt-5">
-	  <h2 class="fw-bold display-5 text-primary">패키지 결제</h2>
+	<%@ include file="../section/header.jsp"%>
+	<div class="text-center" style="margin-top:140px;">
+		<h2 class="fw-bold display-5 text-primary">패키지 결제</h2>
 	</div>
-
-
-	<div class="container d-flex justify-content-center">
-		<form name="payment-form" id="payment-form" method="post"
-			class="card p-4 shadow w-100 d-block mx-auto" style="max-width: 500px;">
+	<div class="container d-flex justify-content-center" style="margin-bottom:80px;">
+		<form name="payment-form" id="payment-form" method="post" class="card p-4 shadow w-100 d-block mx-auto" style="max-width: 500px;">
 
 			<!-- 숨겨진 필드 -->
-			<input type="hidden" id="pNum" value="${packageDto.pNum}" /> <input
-				type="hidden" id="oNum" value="${orderDto.oNum}" /> <input
-				type="hidden" id="buyer_name" value="${loginUser.mName}" /> <input
-				type="hidden" id="buyer_tel" value="${loginUser.mTel}" />
+			<input type="hidden" id="pNum" value="${packageDto.pNum}" /> 
+			<input type="hidden" id="oNum" value="${orderDto.oNum}" />
+			<input type="hidden" id="buyer_name" value="${loginUser.mName}" />
+			<input type="hidden" id="buyer_tel" value="${loginUser.mTel}" />
 
 			<div class="card shadow-sm border-0">
 				<div class="card-body">
@@ -66,34 +58,25 @@
 					</div>
 
 					<ul class="list-group list-group-flush mb-4">
-						<li class="list-group-item d-flex justify-content-between"><span
-							class="fw-bold">상품명</span> <span id="name">${packageDto.pName}</span>
+						<li class="list-group-item d-flex justify-content-between">
+						<span class="fw-bold">상품명</span> <span id="name">${packageDto.pName}</span>
 						</li>
-						<li class="list-group-item d-flex justify-content-between"><span
-							class="fw-bold">금액</span> <span><span id="amount">${orderDto.oPrice}</span>
-								원</span></li>
-						<li class="list-group-item d-flex justify-content-between"><span
-							class="fw-bold">국가</span> <span>${packageDto.pCountry}</span></li>
+						<li class="list-group-item d-flex justify-content-between">
+						<span class="fw-bold">금액</span> <span><span id="amount">${orderDto.oPrice}</span> 원</span></li>
+						<li class="list-group-item d-flex justify-content-between">
+						<span class="fw-bold">국가</span> <span>${packageDto.pCountry}</span></li>
 					</ul>
 
 					<div class="d-grid gap-2">
-						<button type="button" class="btn btn-primary"
-							onclick="requestPay()">💳 결제하기</button>
-						<button type="button" class="btn btn-secondary"
-							onclick="location.href='/payment/paymentList'">📄 결제내역
-							보기</button>
+						<button type="button" class="btn btn-primary" onclick="requestPay()">💳 결제하기</button>
+						<button type="button" class="btn btn-secondary" onclick="location.href='/payment/paymentList'">📄 결제내역 보기</button>
 					</div>
-
 				</div>
 			</div>
-
 		</form>
 	</div>
-
-
-	<script src="${pageContext.request.contextPath}/assets/js/payment.js"></script>
-  
-<%@ include file="../section/footer.jsp" %>
+	<script src="/assets/js/payment.js"></script>
+	<%@ include file="../section/footer.jsp"%>
 
 </body>
 </html>

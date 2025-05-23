@@ -64,11 +64,8 @@
 					</div>
 				</c:forEach>
 			</div>
-
-
 		</div>
 	</div>
-
 <%@ include file="../section/footer.jsp" %>
 
 </body>

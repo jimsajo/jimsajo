@@ -34,7 +34,7 @@
 	   <div class="container mt-5">
 	   <div class="text-black text-center fs-2 fw-bold" style="margin-top:120px;">
         ✏️ 패키지 수정
-   		</div>
+   	   </div>
 	    <div class="card shadow" style="margin-top:20px;">
 	      <div class="card-body">
 	        <form action="/package/update" method="post" enctype="multipart/form-data">

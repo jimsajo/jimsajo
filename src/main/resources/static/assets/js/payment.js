@@ -1,10 +1,10 @@
 function requestPay() {
       // ✅ 반드시 테스트 상점코드 사용
-      IMP.init("imp60842643"); // 아임포트 테스트용 상점 코드
+      IMP.init("imp44303157"); // 아임포트 테스트용 상점 코드
 
       // ✅ 아임포트 결제 요청
       IMP.request_pay({
-        pg: "tosspay.tosstest",           // ✅ PG사 테스트 코드
+        pg: "kakaopay",           // ✅ PG사 테스트 코드
         pay_method: "card",
         merchant_uid: "order_" + new Date().getTime(),  // 고유 주문번호
         name: document.getElementById("name").innerText,

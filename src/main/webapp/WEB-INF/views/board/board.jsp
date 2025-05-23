@@ -54,8 +54,7 @@
               <tr>
                 <td>${board.bNum}</td>
                 <td class="text-start">
-                  <a href="/board/${board.bNum}/detail" class="text-decoration-none text-dark">
-                    ${board.bTitle}
+                  <a href="/board/${board.bNum}/detail" class="text-center text-dark"> ${board.bTitle}
                   </a>
                 </td>
                 <td>${board.bTime}</td>

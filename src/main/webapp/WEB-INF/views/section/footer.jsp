@@ -9,7 +9,7 @@
             <div class="footer-contact pt-3">
               <p> 12th floor JIMSAJO 627, Jungang-daero, Busanjin-gu, Busan,</p>
               <p>Republic of Korea </p>
-              <p class="mt-3"><strong>Phone:</strong> <span>82+ 9435 4524</span></p>
+              <p class="mt-3"><strong>Phone:</strong> <span>82+ 010-1234-5678</span></p>
               <p><strong>Email:</strong> <span>jimsajo456@gmail.com</span></p>
             </div>
             <div class="social-links d-flex mt-4">
