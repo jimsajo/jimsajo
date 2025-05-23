@@ -217,7 +217,7 @@ public class PackageController {
 
     // 추천 처리
     @PostMapping("/recommend/{pNum}")
-    public String recommendPackage(@PathVariable Integer pNum) {
+    public String recommendPackage(@PathVariable("pNum") Integer pNum) {
         try {
             packageService.recommendPackage(pNum);
             return "redirect:/package/detail/" + pNum;

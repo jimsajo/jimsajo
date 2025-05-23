@@ -63,12 +63,8 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-
-=======
     <!-- Bootstrap JS (선택) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
->>>>>>> branch 'master' of https://github.com/jimsajo/jimsajo.git
 <%@ include file="../section/footer.jsp" %>
 
 <!-- CKEditor5 CDN 로드 -->

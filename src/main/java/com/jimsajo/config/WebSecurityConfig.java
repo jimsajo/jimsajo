@@ -37,7 +37,7 @@ public class WebSecurityConfig {
 
 
 
-                .requestMatchers("/", "/assets/**" ,"/setion/**").permitAll()
+                .requestMatchers("/", "/assets/**" ,"/section/**").permitAll()
                 .requestMatchers("/login", "/loginProcess", "/join", "/save", "/board/**","/packagelist/country","/review/reviewList","/review/reviewDetail/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**","/package/**", "/checkId","/packageList").permitAll()
 

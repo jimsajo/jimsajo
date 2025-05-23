@@ -4,6 +4,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -249,17 +250,17 @@
 				updateModal.show();
 			});
 		</script>
-		
+	</c:if>
+	
 	<!-- 회원탈퇴시 비밀번호 잘못 입력하였을때 프롬포트 띄우기 -->
 	<c:if test="${not empty error}">
-	  <script>
-	    window.addEventListener('DOMContentLoaded', function () {
-	      alert("<c:out value='${error}' />");
-	    });
-	  </script>
+		<script>
+			window.addEventListener('DOMContentLoaded', function() {
+				alert("${error}");
+			});
+		</script>
 	</c:if>
-
-	</c:if>
+	
 	<!--비밀번호 변경 후 알림 -->
 	<c:if test="${openPopup}">
 		<script>
